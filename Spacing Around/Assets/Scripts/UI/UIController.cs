@@ -32,31 +32,39 @@ public class UIController : MonoBehaviour
              */
             if (!showUI)
             {
+                #region Cargo-UI Load
                 foreach (Image go in cargoUI_GO.GetComponentsInChildren<Image>())
                 {
-                    tempList.Add(go);
                     go.enabled = true;
                 }
                 foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
                 {
-                    tempList.Add(go);
                     go.enabled = true;
                 }
-                showUI = true;
-                foreach (object o in tempList)
+                foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
                 {
-                    print(o);
+                    go.enabled = true;
                 }
-                //cargoUI_GO.SetActive(true);
+                #endregion
+                showUI = true;
             }
             else
             {
+                #region Cargo-UI Unload
                 foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
                 {
                     go.enabled = false;
                 }
+                foreach (Image go in cargoUI_GO.GetComponentsInChildren<Image>())
+                {
+                    go.enabled = false;
+                }
+                foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
+                {
+                    go.enabled = false;
+                }
+                #endregion
                 showUI = false;
-                //cargoUI_GO.SetActive(false);
             }
         }
     }
