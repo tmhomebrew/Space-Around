@@ -120,10 +120,10 @@ public class ShipStats : MonoBehaviour
                 shipRegen = false;
 
                 //Movement
-                shipSpeedMax = 10;
+                shipSpeedMax = 20;
                 //shipSpeedCur = transform.GetComponent<Rigidbody>().velocity.magnitude;
                 shipAcceleration = 2;
-                shipTurnSpeed = 100;
+                shipTurnSpeed = 15;
 
                 shipWeight = 450;
                 shipWeightCapacityMax = 200;
