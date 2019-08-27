@@ -101,6 +101,11 @@ public class ShipStats : MonoBehaviour
         }
     }
 
+    public float ShipSpeedCur { get => shipSpeedCur; set => shipSpeedCur = value; }
+    public float ShipSpeedMax { get => shipSpeedMax; set => shipSpeedMax = value; }
+    public float ShipAcceleration { get => shipAcceleration; set => shipAcceleration = value; }
+    public float ShipTurnSpeed { get => shipTurnSpeed; set => shipTurnSpeed = value; }
+
     //list<Loot> - Length is shipCargoSpace... List of stored cargo
 
     #endregion
@@ -120,10 +125,10 @@ public class ShipStats : MonoBehaviour
                 shipRegen = false;
 
                 //Movement
-                shipSpeedMax = 20;
+                ShipSpeedMax = 10;
                 //shipSpeedCur = transform.GetComponent<Rigidbody>().velocity.magnitude;
-                shipAcceleration = 2;
-                shipTurnSpeed = 15;
+                ShipAcceleration = 30;
+                ShipTurnSpeed = 200;
 
                 shipWeight = 450;
                 shipWeightCapacityMax = 200;

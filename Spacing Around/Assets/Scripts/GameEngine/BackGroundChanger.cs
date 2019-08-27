@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackGroundChanger : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class BackGroundChanger : MonoBehaviour
     Sprite currentBackground;
     GameObject backgroundHolder;
     [SerializeField]
-    List<Object> BackGroundPNGs = new List<Object>();
+    List<Sprite> BackGroundPNGs = new List<Sprite>();
 
     #endregion
 
