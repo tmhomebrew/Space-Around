@@ -30,6 +30,7 @@ public class ShipStats : MonoBehaviour
     float shipSpeedCur;
     float shipAcceleration;
     float shipTurnSpeed;
+    bool isMoving;
 
     float shipWeight;
     float shipWeightCapacityMax;
@@ -75,6 +76,7 @@ public class ShipStats : MonoBehaviour
                 if (shipMainBodyHealthCur <= 0)
                 {
                     shipMainBodyHealthCur = 0;
+                    IsAlive = false;
                     print("Player_" + this.gameObject.name + " is dead..");
                 }
             }
@@ -105,6 +107,8 @@ public class ShipStats : MonoBehaviour
     public float ShipSpeedMax { get => shipSpeedMax; set => shipSpeedMax = value; }
     public float ShipAcceleration { get => shipAcceleration; set => shipAcceleration = value; }
     public float ShipTurnSpeed { get => shipTurnSpeed; set => shipTurnSpeed = value; }
+    public bool IsAlive { get => isAlive; set => isAlive = value; }
+    public bool IsMoving { get => isMoving; set => isMoving = value; }
 
     //list<Loot> - Length is shipCargoSpace... List of stored cargo
 
@@ -127,7 +131,7 @@ public class ShipStats : MonoBehaviour
                 //Movement
                 ShipSpeedMax = 10;
                 //shipSpeedCur = transform.GetComponent<Rigidbody>().velocity.magnitude;
-                ShipAcceleration = 30;
+                ShipAcceleration = 2000;
                 ShipTurnSpeed = 200;
 
                 shipWeight = 450;
@@ -137,7 +141,7 @@ public class ShipStats : MonoBehaviour
                 break;
         }
         isStatsSet = true;
-        isAlive = true;
+        IsAlive = true;
     }
 
     private void Awake()

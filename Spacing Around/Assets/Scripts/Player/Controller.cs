@@ -7,50 +7,63 @@ public class Controller : MonoBehaviour
     Rigidbody2D myRB;
     ShipStats myShip;
 
+    WrapScreenHandler myWrap;
+    IEnumerator wrapChecker;
+
     public float accSpeed;
     public float maxSpeed;
     public float maxRotationSpeed;
     public float curSpeed;
-    Vector3 forwardSpeed, maximumSpeed, currentSpeed;
+    Vector3 forwardSpeed;
 
     private void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
+        myWrap = GetComponent<WrapScreenHandler>();
+        wrapChecker = myWrap.CheckVisable();
 
         accSpeed = myShip.ShipAcceleration;
         maxRotationSpeed = myShip.ShipTurnSpeed;
         maxSpeed = myShip.ShipSpeedMax;
-
-        maximumSpeed = maxSpeed * transform.up;
-        currentSpeed = accSpeed * transform.up;
-        //print("MaximumSpeed: " + maximumSpeed.magnitude);
-        //print("CurrentSpeed: " + currentSpeed.magnitude);
     }
+
     private void Update()
     {
-        
+        if (myShip.IsAlive)
+        {
+            MoveController();
+            DirectionController();
+        }
     }
-    private void FixedUpdate()
-    {
 
+    private void MoveController()
+    {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            forwardSpeed = accSpeed * transform.up;
-            print("CurrentSpeed: " + forwardSpeed.magnitude);
-            if (forwardSpeed.y < maximumSpeed.y)
+            myShip.IsMoving = true;
+            forwardSpeed = (transform.up * (curSpeed + accSpeed) * Time.deltaTime); //<---
+
+            //print("CurrentSpeed: " + forwardSpeed.magnitude);
+            if (curSpeed < maxSpeed)
             {
                 myRB.AddForce(forwardSpeed, ForceMode2D.Force);
                 //print("adding Speed..");
             }
-            else
-            {
-                forwardSpeed = maximumSpeed;
-                myRB.AddForce(forwardSpeed, ForceMode2D.Force);
-                print("Maximum Speed added..");
-            }
-
         }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            myShip.IsMoving = false;
+        }
+        StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
+        curSpeed = myRB.velocity.magnitude;
+        myShip.ShipSpeedCur = curSpeed;
+        
+        //print("CurrentSpeed: " + curSpeed);
+    }
+
+    private void DirectionController()
+    {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(new Vector3(0, 0, 1) * maxRotationSpeed * Time.deltaTime, Space.Self);
@@ -59,6 +72,5 @@ public class Controller : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, 0, 1) * -maxRotationSpeed * Time.deltaTime, Space.Self);
         }
-        curSpeed = myRB.velocity.magnitude;
     }
 }
