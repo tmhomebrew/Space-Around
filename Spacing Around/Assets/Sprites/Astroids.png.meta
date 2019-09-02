@@ -1,0 +1,1517 @@
+fileFormatVersion: 2
+guid: fecabe0ac19ea2a438d36a9cc71dbea9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2945246880629265694
+    second: Astroids_0
+  - first:
+      213: 599752121860617863
+    second: Astroids_1
+  - first:
+      213: -2367007006154059656
+    second: Astroids_2
+  - first:
+      213: 7533668234474693187
+    second: Astroids_3
+  - first:
+      213: -6894395955471022273
+    second: Astroids_4
+  - first:
+      213: 2126870940194960191
+    second: Astroids_5
+  - first:
+      213: 3132008609753436388
+    second: Astroids_6
+  - first:
+      213: 2900357215303898642
+    second: Astroids_7
+  - first:
+      213: -1656804884831077823
+    second: Astroids_8
+  - first:
+      213: -6459741252113627894
+    second: Astroids_9
+  - first:
+      213: -8855285995206732717
+    second: Astroids_10
+  - first:
+      213: 8472032605490900527
+    second: Astroids_11
+  - first:
+      213: -716122404338100081
+    second: Astroids_12
+  - first:
+      213: -3254846329938982734
+    second: Astroids_13
+  - first:
+      213: -137737204092240489
+    second: Astroids_14
+  - first:
+      213: -4174447225859138972
+    second: Astroids_15
+  - first:
+      213: -5872496139851538569
+    second: Astroids_16
+  - first:
+      213: -3781617246597023428
+    second: Astroids_17
+  - first:
+      213: 7347920074892127947
+    second: Astroids_18
+  - first:
+      213: -894176584772733040
+    second: Astroids_19
+  - first:
+      213: -8364367356205869167
+    second: Astroids_20
+  - first:
+      213: -1788659012478667750
+    second: Astroids_21
+  - first:
+      213: -471236636671522532
+    second: Astroids_22
+  - first:
+      213: -403969548358108658
+    second: Astroids_23
+  - first:
+      213: -189447260614658499
+    second: Astroids_24
+  - first:
+      213: -3289539808657333381
+    second: Astroids_25
+  - first:
+      213: -1018042672484386835
+    second: Astroids_26
+  - first:
+      213: 3893107139103706912
+    second: Astroids_27
+  - first:
+      213: 7565404350793758873
+    second: Astroids_28
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 1, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Astroids_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 221
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10.5, y: 3.5}
+        - {x: 7.5, y: 7.5}
+        - {x: 0.5, y: 11.5}
+        - {x: -5.5, y: 11.5}
+        - {x: -10.5, y: 5.5}
+        - {x: -10.5, y: -5.5}
+        - {x: -8.5, y: -7.5}
+        - {x: -5.5, y: -9.5}
+        - {x: -2.5, y: -11.5}
+        - {x: 3.5, y: -11.5}
+        - {x: 7.5, y: -7.5}
+        - {x: 10.5, y: -1.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 26d02402b8a7a8848aa03297cc56d300
+      internalID: -2945246880629265694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 220
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 12.5}
+        - {x: -5, y: 12.5}
+        - {x: -10, y: 8.5}
+        - {x: -13, y: 0.5}
+        - {x: -13, y: -6.5}
+        - {x: -11, y: -10.5}
+        - {x: -8, y: -12.5}
+        - {x: 7, y: -12.5}
+        - {x: 12, y: -8.5}
+        - {x: 13, y: -6.5}
+        - {x: 13, y: 5.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 918704916460a5a46871231369fdde71
+      internalID: 599752121860617863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 224
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8.5, y: -0.5}
+        - {x: 9.5, y: 2.5}
+        - {x: 9.5, y: 5.5}
+        - {x: 7.5, y: 7.5}
+        - {x: 4.5, y: 9.5}
+        - {x: 1.5, y: 9.5}
+        - {x: -3.5, y: 6.5}
+        - {x: -6.5, y: 3.5}
+        - {x: -9.5, y: -0.5}
+        - {x: -9.5, y: -6.5}
+        - {x: -8.5, y: -7.5}
+        - {x: -5.5, y: -9.5}
+        - {x: -3.5, y: -9.5}
+        - {x: -0.5, y: -8.5}
+        - {x: 1.5, y: -7.5}
+        - {x: 5.5, y: -4.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: d11065fc5625e024d801ba167eaff3ed
+      internalID: -2367007006154059656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 193
+        width: 45
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 20.5, y: 9.5}
+        - {x: 17.5, y: 14.5}
+        - {x: 12.5, y: 19.5}
+        - {x: 2.5, y: 23.5}
+        - {x: -2.5, y: 23.5}
+        - {x: -6.5, y: 22.5}
+        - {x: -17.5, y: 10.5}
+        - {x: -22.5, y: -1.5}
+        - {x: -22.5, y: -9.5}
+        - {x: -16.5, y: -16.5}
+        - {x: -9.5, y: -20.5}
+        - {x: -1.5, y: -22.5}
+        - {x: 8.5, y: -22.5}
+        - {x: 12.5, y: -20.5}
+        - {x: 19.5, y: -13.5}
+        - {x: 22.5, y: -6.5}
+        - {x: 22.5, y: 2.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: fb328a1e70b0b6845b9e20490b5d68b9
+      internalID: 7533668234474693187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_4
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 194
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 20, y: -10.5}
+        - {x: 22, y: -6.5}
+        - {x: 22, y: 6.5}
+        - {x: 16, y: 15.5}
+        - {x: 10, y: 20.5}
+        - {x: 5, y: 22.5}
+        - {x: -5, y: 22.5}
+        - {x: -10, y: 19.5}
+        - {x: -13, y: 18.5}
+        - {x: -16, y: 15.5}
+        - {x: -20, y: 9.5}
+        - {x: -22, y: 1.5}
+        - {x: -21, y: -3.5}
+        - {x: -18, y: -9.5}
+        - {x: -13, y: -17.5}
+        - {x: -4, y: -22.5}
+        - {x: 5, y: -22.5}
+        - {x: 10, y: -19.5}
+        - {x: 15, y: -16.5}
+        - {x: 19, y: -11.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 0760ac4eaad3dce49b7959eb8bb8e58c
+      internalID: -6894395955471022273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_5
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 195
+        width: 40
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 20, y: -4.5}
+        - {x: 20, y: 8.5}
+        - {x: 17, y: 13.5}
+        - {x: 13, y: 17.5}
+        - {x: 10, y: 20.5}
+        - {x: 3, y: 22.5}
+        - {x: -4, y: 22.5}
+        - {x: -10, y: 20.5}
+        - {x: -15, y: 14.5}
+        - {x: -18, y: 7.5}
+        - {x: -20, y: 4.5}
+        - {x: -20, y: -5.5}
+        - {x: -17, y: -11.5}
+        - {x: -13, y: -16.5}
+        - {x: -4, y: -21.5}
+        - {x: 1, y: -22.5}
+        - {x: 7, y: -22.5}
+        - {x: 14, y: -17.5}
+        - {x: 18, y: -12.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 2e541b3d8dff05a458c11a3b7a5ee222
+      internalID: 2126870940194960191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 188
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 5.5, y: 11.5}
+        - {x: -5.5, y: 11.5}
+        - {x: -10.5, y: 5.5}
+        - {x: -10.5, y: -3.5}
+        - {x: -7.5, y: -8.5}
+        - {x: -3.5, y: -11.5}
+        - {x: 1.5, y: -11.5}
+        - {x: 8.5, y: -8.5}
+        - {x: 10.5, y: -5.5}
+        - {x: 10.5, y: 7.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 796bcd4d97e0815488e03f3a72bc0be4
+      internalID: 3132008609753436388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_7
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 190
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8.5, y: -3.5}
+        - {x: 8.5, y: 4.5}
+        - {x: 5.5, y: 8.5}
+        - {x: -3.5, y: 8.5}
+        - {x: -6.5, y: 5.5}
+        - {x: -8.5, y: 2.5}
+        - {x: -8.5, y: -4.5}
+        - {x: -6.5, y: -6.5}
+        - {x: -2.5, y: -8.5}
+        - {x: 2.5, y: -8.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 6e83f5025342a8d4ead3c9036bddee54
+      internalID: 2900357215303898642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_8
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: 8}
+        - {x: -4, y: 8}
+        - {x: -7, y: 5}
+        - {x: -8, y: 2}
+        - {x: -7, y: -5}
+        - {x: -4, y: -8}
+        - {x: 4, y: -8}
+        - {x: 8, y: -4}
+        - {x: 8, y: 5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 78947b21e218a19428241d0ebfb71806
+      internalID: -1656804884831077823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_9
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 156
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.5, y: 11}
+        - {x: -4.5, y: 11}
+        - {x: -8.5, y: 7}
+        - {x: -8.5, y: 2}
+        - {x: -9.5, y: 0}
+        - {x: -9.5, y: -8}
+        - {x: -5.5, y: -11}
+        - {x: 3.5, y: -11}
+        - {x: 7.5, y: -8}
+        - {x: 9.5, y: -4}
+        - {x: 9.5, y: 2}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 08f3ed770076b1a42b1e4975211e15ce
+      internalID: -6459741252113627894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_10
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 156
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4.5, y: 10}
+        - {x: -0.5, y: 12}
+        - {x: -3.5, y: 12}
+        - {x: -5.5, y: 11}
+        - {x: -9.5, y: 7}
+        - {x: -10.5, y: 4}
+        - {x: -11.5, y: 0}
+        - {x: -11.5, y: -7}
+        - {x: -10.5, y: -9}
+        - {x: -6.5, y: -12}
+        - {x: 5.5, y: -12}
+        - {x: 9.5, y: -8}
+        - {x: 11.5, y: -4}
+        - {x: 11.5, y: 4}
+        - {x: 10.5, y: 6}
+      tessellationDetail: 1
+      bones: []
+      spriteID: dec0711a09b0c7245b404b141c70569c
+      internalID: -8855285995206732717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_11
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 158
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6.5, y: 9.5}
+        - {x: -2.5, y: 9.5}
+        - {x: -5.5, y: 8.5}
+        - {x: -9.5, y: 2.5}
+        - {x: -9.5, y: -2.5}
+        - {x: -8.5, y: -4.5}
+        - {x: -7.5, y: -6.5}
+        - {x: -3.5, y: -9.5}
+        - {x: 2.5, y: -9.5}
+        - {x: 5.5, y: -7.5}
+        - {x: 7.5, y: -4.5}
+        - {x: 9.5, y: -1.5}
+        - {x: 9.5, y: 6.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: e9e8b111bf5550c42a20c50b3263676e
+      internalID: 8472032605490900527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_12
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 126
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 26, y: -4}
+        - {x: 26, y: 7}
+        - {x: 23, y: 13}
+        - {x: 20, y: 17}
+        - {x: 17, y: 20}
+        - {x: 14, y: 22}
+        - {x: 10, y: 24}
+        - {x: 5, y: 26}
+        - {x: -1, y: 26}
+        - {x: -6, y: 24}
+        - {x: -14, y: 24}
+        - {x: -20, y: 19}
+        - {x: -23, y: 14}
+        - {x: -26, y: 10}
+        - {x: -26, y: -1}
+        - {x: -24, y: -10}
+        - {x: -22, y: -14}
+        - {x: -20, y: -17}
+        - {x: -17, y: -20}
+        - {x: -13, y: -22}
+        - {x: -7, y: -24}
+        - {x: -3, y: -26}
+        - {x: 5, y: -26}
+        - {x: 16, y: -21}
+        - {x: 22, y: -15}
+      tessellationDetail: 1
+      bones: []
+      spriteID: c7f639b25f8b4d94c8685ad0c745b7a9
+      internalID: -716122404338100081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_13
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 129
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 24, y: -7.5}
+        - {x: 24, y: 1.5}
+        - {x: 21, y: 11.5}
+        - {x: 16, y: 17.5}
+        - {x: 11, y: 18.5}
+        - {x: 7, y: 20.5}
+        - {x: 1, y: 24.5}
+        - {x: -5, y: 24.5}
+        - {x: -10, y: 22.5}
+        - {x: -15, y: 20.5}
+        - {x: -18, y: 18.5}
+        - {x: -19, y: 13.5}
+        - {x: -21, y: 9.5}
+        - {x: -22, y: 5.5}
+        - {x: -24, y: 0.5}
+        - {x: -24, y: -3.5}
+        - {x: -22, y: -7.5}
+        - {x: -19, y: -13.5}
+        - {x: -15, y: -18.5}
+        - {x: -11, y: -21.5}
+        - {x: -7, y: -23.5}
+        - {x: -1, y: -24.5}
+        - {x: 7, y: -22.5}
+        - {x: 14, y: -19.5}
+        - {x: 19, y: -15.5}
+        - {x: 22, y: -10.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 085220c659719964cab2b95227276ba2
+      internalID: -3254846329938982734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_14
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 131
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 22, y: -8.5}
+        - {x: 22, y: 6.5}
+        - {x: 19, y: 13.5}
+        - {x: 16, y: 18.5}
+        - {x: 10, y: 20.5}
+        - {x: 3, y: 22.5}
+        - {x: -4, y: 22.5}
+        - {x: -11, y: 18.5}
+        - {x: -16, y: 14.5}
+        - {x: -20, y: 6.5}
+        - {x: -22, y: -0.5}
+        - {x: -22, y: -6.5}
+        - {x: -18, y: -11.5}
+        - {x: -14, y: -15.5}
+        - {x: -10, y: -18.5}
+        - {x: -5, y: -21.5}
+        - {x: 0, y: -22.5}
+        - {x: 5, y: -22.5}
+        - {x: 10, y: -21.5}
+        - {x: 16, y: -16.5}
+        - {x: 21, y: -11.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: b2ca049842749b945a6e6158903a6c81
+      internalID: -137737204092240489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_15
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 104
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 19, y: 1.5}
+        - {x: 19, y: 7.5}
+        - {x: 17, y: 11.5}
+        - {x: 13, y: 14.5}
+        - {x: 9, y: 16.5}
+        - {x: 3, y: 18.5}
+        - {x: -2, y: 19.5}
+        - {x: -11, y: 19.5}
+        - {x: -17, y: 13.5}
+        - {x: -18, y: 10.5}
+        - {x: -18, y: 1.5}
+        - {x: -19, y: 0.5}
+        - {x: -19, y: -7.5}
+        - {x: -17, y: -10.5}
+        - {x: -14, y: -14.5}
+        - {x: -6, y: -18.5}
+        - {x: -2, y: -19.5}
+        - {x: 2, y: -19.5}
+        - {x: 6, y: -17.5}
+        - {x: 9, y: -13.5}
+        - {x: 13, y: -12.5}
+        - {x: 17, y: -6.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: a30f9466eb797b040b42b482d0a133f5
+      internalID: -4174447225859138972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_16
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 107
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 16.5, y: 9}
+        - {x: 11.5, y: 14}
+        - {x: 6.5, y: 15}
+        - {x: 1.5, y: 18}
+        - {x: -7.5, y: 18}
+        - {x: -13.5, y: 15}
+        - {x: -17.5, y: 10}
+        - {x: -18.5, y: 0}
+        - {x: -18.5, y: -8}
+        - {x: -12.5, y: -15}
+        - {x: -6.5, y: -18}
+        - {x: 5.5, y: -18}
+        - {x: 12.5, y: -12}
+        - {x: 17.5, y: -7}
+        - {x: 18.5, y: -4}
+        - {x: 18.5, y: 3}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 2009ec3215a388e4faef466c8f769192
+      internalID: -5872496139851538569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_17
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 105
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 10}
+        - {x: 11, y: 14}
+        - {x: 5, y: 17}
+        - {x: 1, y: 18}
+        - {x: -3, y: 18}
+        - {x: -10, y: 15}
+        - {x: -14, y: 12}
+        - {x: -16, y: 8}
+        - {x: -17, y: 5}
+        - {x: -18, y: -4}
+        - {x: -17, y: -9}
+        - {x: -11, y: -14}
+        - {x: -6, y: -16}
+        - {x: -3, y: -17}
+        - {x: 0, y: -18}
+        - {x: 5, y: -18}
+        - {x: 8, y: -17}
+        - {x: 14, y: -10}
+        - {x: 17, y: -3}
+        - {x: 17, y: 8}
+      tessellationDetail: 1
+      bones: []
+      spriteID: a3fabda5598238b4ebac8a86ad5032f9
+      internalID: -3781617246597023428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_18
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 63
+        width: 50
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 21, y: -12.5}
+        - {x: 24, y: -6.5}
+        - {x: 25, y: -1.5}
+        - {x: 25, y: 8.5}
+        - {x: 21, y: 14.5}
+        - {x: 16, y: 21.5}
+        - {x: 13, y: 23.5}
+        - {x: 8, y: 25.5}
+        - {x: -6, y: 25.5}
+        - {x: -12, y: 22.5}
+        - {x: -18, y: 19.5}
+        - {x: -21, y: 14.5}
+        - {x: -24, y: 8.5}
+        - {x: -24, y: -0.5}
+        - {x: -25, y: -5.5}
+        - {x: -24, y: -7.5}
+        - {x: -21, y: -13.5}
+        - {x: -17, y: -16.5}
+        - {x: -13, y: -18.5}
+        - {x: -8, y: -22.5}
+        - {x: -2, y: -25.5}
+        - {x: 5, y: -25.5}
+        - {x: 10, y: -22.5}
+        - {x: 16, y: -17.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: afeb4d1715dfcdf4e994fb874a42e1ec
+      internalID: 7347920074892127947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_19
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 64
+        width: 46
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 22, y: -12.5}
+        - {x: 23, y: -9.5}
+        - {x: 23, y: -0.5}
+        - {x: 20, y: 4.5}
+        - {x: 17, y: 11.5}
+        - {x: 13, y: 16.5}
+        - {x: 9, y: 20.5}
+        - {x: 4, y: 23.5}
+        - {x: 0, y: 24.5}
+        - {x: -4, y: 24.5}
+        - {x: -10, y: 21.5}
+        - {x: -14, y: 17.5}
+        - {x: -18, y: 14.5}
+        - {x: -20, y: 9.5}
+        - {x: -23, y: 3.5}
+        - {x: -23, y: -3.5}
+        - {x: -22, y: -8.5}
+        - {x: -19, y: -14.5}
+        - {x: -16, y: -18.5}
+        - {x: -10, y: -21.5}
+        - {x: -4, y: -24.5}
+        - {x: 4, y: -24.5}
+        - {x: 8, y: -22.5}
+        - {x: 13, y: -21.5}
+        - {x: 18, y: -17.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: a949e19ed0a2d7447a81a3616bb82085
+      internalID: -894176584772733040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_20
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 63
+        width: 51
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 22.5, y: -15.5}
+        - {x: 25.5, y: -9.5}
+        - {x: 25.5, y: -1.5}
+        - {x: 23.5, y: 7.5}
+        - {x: 18.5, y: 15.5}
+        - {x: 10.5, y: 24.5}
+        - {x: 1.5, y: 24.5}
+        - {x: -5.5, y: 20.5}
+        - {x: -12.5, y: 15.5}
+        - {x: -17.5, y: 11.5}
+        - {x: -21.5, y: 6.5}
+        - {x: -25.5, y: -0.5}
+        - {x: -25.5, y: -2.5}
+        - {x: -22.5, y: -6.5}
+        - {x: -20.5, y: -9.5}
+        - {x: -16.5, y: -12.5}
+        - {x: -12.5, y: -15.5}
+        - {x: -7.5, y: -18.5}
+        - {x: -1.5, y: -21.5}
+        - {x: 5.5, y: -24.5}
+        - {x: 12.5, y: -24.5}
+        - {x: 15.5, y: -22.5}
+        - {x: 18.5, y: -20.5}
+        - {x: 20.5, y: -17.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 97402d57156e5da46b329f0f85c213e3
+      internalID: -8364367356205869167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_21
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 60
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10.5, y: 8.5}
+        - {x: 7.5, y: 11.5}
+        - {x: 3.5, y: 14.5}
+        - {x: -2.5, y: 14.5}
+        - {x: -7.5, y: 11.5}
+        - {x: -13.5, y: 6.5}
+        - {x: -13.5, y: -3.5}
+        - {x: -11.5, y: -8.5}
+        - {x: -7.5, y: -11.5}
+        - {x: -1.5, y: -13.5}
+        - {x: 1.5, y: -14.5}
+        - {x: 5.5, y: -14.5}
+        - {x: 8.5, y: -12.5}
+        - {x: 11.5, y: -9.5}
+        - {x: 13.5, y: -4.5}
+        - {x: 13.5, y: 2.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: e61be5a9730f57a4b978c624f71c88ab
+      internalID: -1788659012478667750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_22
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 57
+        width: 35
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 17.5, y: 8.5}
+        - {x: 15.5, y: 12.5}
+        - {x: 12.5, y: 15.5}
+        - {x: 8.5, y: 16.5}
+        - {x: 4.5, y: 18.5}
+        - {x: -1.5, y: 18.5}
+        - {x: -6.5, y: 17.5}
+        - {x: -11.5, y: 14.5}
+        - {x: -14.5, y: 10.5}
+        - {x: -16.5, y: 5.5}
+        - {x: -17.5, y: 4.5}
+        - {x: -17.5, y: -0.5}
+        - {x: -16.5, y: -2.5}
+        - {x: -14.5, y: -6.5}
+        - {x: -12.5, y: -10.5}
+        - {x: -11.5, y: -13.5}
+        - {x: -6.5, y: -16.5}
+        - {x: -1.5, y: -18.5}
+        - {x: 5.5, y: -18.5}
+        - {x: 9.5, y: -17.5}
+        - {x: 14.5, y: -13.5}
+        - {x: 17.5, y: -7.5}
+      tessellationDetail: 1
+      bones: []
+      spriteID: b6a3831d6e3532840964a51fa9a220af
+      internalID: -471236636671522532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_23
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 56
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 18, y: -7}
+        - {x: 18, y: 4}
+        - {x: 17, y: 11}
+        - {x: 14, y: 15}
+        - {x: 9, y: 18}
+        - {x: -2, y: 18}
+        - {x: -10, y: 16}
+        - {x: -16, y: 10}
+        - {x: -18, y: 5}
+        - {x: -18, y: -3}
+        - {x: -16, y: -9}
+        - {x: -8, y: -13}
+        - {x: 0, y: -18}
+        - {x: 7, y: -18}
+        - {x: 11, y: -15}
+        - {x: 14, y: -14}
+        - {x: 16, y: -11}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 6e60c34b37ede9b40ad4236e97859df2
+      internalID: -403969548358108658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_24
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 9
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 17.5, y: -5}
+        - {x: 17.5, y: 1}
+        - {x: 16.5, y: 6}
+        - {x: 11.5, y: 14}
+        - {x: 5.5, y: 18}
+        - {x: 0.5, y: 18}
+        - {x: -3.5, y: 14}
+        - {x: -6.5, y: 14}
+        - {x: -10.5, y: 12}
+        - {x: -14.5, y: 9}
+        - {x: -15.5, y: 4}
+        - {x: -17.5, y: -2}
+        - {x: -16.5, y: -4}
+        - {x: -15.5, y: -9}
+        - {x: -11.5, y: -13}
+        - {x: -2.5, y: -18}
+        - {x: 6.5, y: -18}
+        - {x: 11.5, y: -14}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 8091f9c82e07cd24daf11dc031630d81
+      internalID: -189447260614658499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_25
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 9
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 17.5, y: 5}
+        - {x: 16.5, y: 8}
+        - {x: 12.5, y: 11}
+        - {x: 7.5, y: 14}
+        - {x: 3.5, y: 16}
+        - {x: 0.5, y: 18}
+        - {x: -5.5, y: 18}
+        - {x: -13.5, y: 12}
+        - {x: -16.5, y: 8}
+        - {x: -18.5, y: 5}
+        - {x: -18.5, y: -2}
+        - {x: -17.5, y: -5}
+        - {x: -15.5, y: -8}
+        - {x: -13.5, y: -11}
+        - {x: -10.5, y: -14}
+        - {x: -6.5, y: -16}
+        - {x: -3.5, y: -18}
+        - {x: 7.5, y: -18}
+        - {x: 16.5, y: -10}
+        - {x: 17.5, y: -7}
+        - {x: 18.5, y: 0}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 6d632dba5116de14fae7508bec6b18b3
+      internalID: -3289539808657333381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_26
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 8
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 17.5, y: -4}
+        - {x: 18.5, y: -2}
+        - {x: 18.5, y: 4}
+        - {x: 15.5, y: 9}
+        - {x: 13.5, y: 13}
+        - {x: 10.5, y: 16}
+        - {x: 2.5, y: 16}
+        - {x: 0.5, y: 18}
+        - {x: -6.5, y: 18}
+        - {x: -12.5, y: 13}
+        - {x: -15.5, y: 8}
+        - {x: -18.5, y: 1}
+        - {x: -18.5, y: -3}
+        - {x: -14.5, y: -8}
+        - {x: -11.5, y: -9}
+        - {x: -11.5, y: -13}
+        - {x: -4.5, y: -18}
+        - {x: 3.5, y: -18}
+        - {x: 8.5, y: -15}
+        - {x: 13.5, y: -11}
+        - {x: 15.5, y: -8}
+      tessellationDetail: 1
+      bones: []
+      spriteID: 8a498910354e29d4f8ab8b5da8d95cf9
+      internalID: -1018042672484386835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_27
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 218
+        width: 10
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3247dff9f66008f408f0e3ccab4b42d7
+      internalID: 3893107139103706912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astroids_28
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 0
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08959637c69b534e9ca7c22999ca7f9
+      internalID: 7565404350793758873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -58.5, y: -78.5}
+      - {x: -70.5, y: -92.5}
+      - {x: -70.5, y: -105.5}
+      - {x: -64.5, y: -116.5}
+      - {x: -57.5, y: -120.5}
+      - {x: -38.5, y: -120.5}
+      - {x: -28.5, y: -104.5}
+      - {x: -28.5, y: -85.5}
+      - {x: -37.5, y: -78.5}
+    - - {x: -152.5, y: -77.5}
+      - {x: -164.5, y: -79.5}
+      - {x: -166.5, y: -84.5}
+      - {x: -166.5, y: -110.5}
+      - {x: -157.5, y: -119.5}
+      - {x: -134.5, y: -119.5}
+      - {x: -126.5, y: -106.5}
+      - {x: -126.5, y: -86.5}
+      - {x: -130.5, y: -77.5}
+    - - {x: -108.5, y: -78.5}
+      - {x: -118.5, y: -84.5}
+      - {x: -118.5, y: -109.5}
+      - {x: -104.5, y: -119.5}
+      - {x: -81.5, y: -119.5}
+      - {x: -77.5, y: -111.5}
+      - {x: -77.5, y: -80.5}
+      - {x: -80.5, y: -78.5}
+    - - {x: -59.5, y: -30.5}
+      - {x: -70.5, y: -36.5}
+      - {x: -70.5, y: -52.5}
+      - {x: -69.5, y: -60.5}
+      - {x: -56.5, y: -71.5}
+      - {x: -35.5, y: -71.5}
+      - {x: -28.5, y: -69.5}
+      - {x: -28.5, y: -34.5}
+      - {x: -34.5, y: -30.5}
+    - - {x: -111.5, y: -28.5}
+      - {x: -120.5, y: -37.5}
+      - {x: -121.5, y: -39.5}
+      - {x: -121.5, y: -57.5}
+      - {x: -107.5, y: -70.5}
+      - {x: -83.5, y: -70.5}
+      - {x: -76.5, y: -59.5}
+      - {x: -76.5, y: -32.5}
+      - {x: -85.5, y: -28.5}
+    - - {x: -139.5, y: -33.5}
+      - {x: -154.5, y: -33.5}
+      - {x: -162.5, y: -40.5}
+      - {x: -162.5, y: -58.5}
+      - {x: -155.5, y: -65.5}
+      - {x: -146.5, y: -67.5}
+      - {x: -136.5, y: -67.5}
+      - {x: -131.5, y: -62.5}
+      - {x: -130.5, y: -60.5}
+      - {x: -130.5, y: -40.5}
+    - - {x: -5.5, y: -8.5}
+      - {x: -15.5, y: -16.5}
+      - {x: -16.5, y: -24.5}
+      - {x: -16.5, y: -53.5}
+      - {x: -4.5, y: -64.5}
+      - {x: 22.5, y: -64.5}
+      - {x: 37.5, y: -58.5}
+      - {x: 37.5, y: -8.5}
+    - - {x: 110.5, y: -51.5}
+      - {x: 125.5, y: -64.5}
+      - {x: 156.5, y: -64.5}
+      - {x: 165.5, y: -58.5}
+      - {x: 165.5, y: -24.5}
+      - {x: 155.5, y: -10.5}
+      - {x: 134.5, y: -10.5}
+      - {x: 110.5, y: -21.5}
+    - - {x: 52.5, y: -10.5}
+      - {x: 49.5, y: -15.5}
+      - {x: 49.5, y: -50.5}
+      - {x: 57.5, y: -63.5}
+      - {x: 101.5, y: -63.5}
+      - {x: 101.5, y: -10.5}
+    - - {x: -163.5, y: 20.5}
+      - {x: -167.5, y: 15.5}
+      - {x: -167.5, y: -17.5}
+      - {x: -166.5, y: -23.5}
+      - {x: -164.5, y: -24.5}
+      - {x: -132.5, y: -24.5}
+      - {x: -125.5, y: -10.5}
+      - {x: -125.5, y: 15.5}
+      - {x: -131.5, y: 20.5}
+    - - {x: -40.5, y: 17.5}
+      - {x: -55.5, y: 17.5}
+      - {x: -68.5, y: 14.5}
+      - {x: -69.5, y: 10.5}
+      - {x: -69.5, y: -14.5}
+      - {x: -55.5, y: -22.5}
+      - {x: -43.5, y: -22.5}
+      - {x: -32.5, y: -20.5}
+      - {x: -29.5, y: -7.5}
+      - {x: -29.5, y: 12.5}
+    - - {x: -113.5, y: 20.5}
+      - {x: -118.5, y: 11.5}
+      - {x: -122.5, y: 1.5}
+      - {x: -122.5, y: -18.5}
+      - {x: -113.5, y: -21.5}
+      - {x: -82.5, y: -21.5}
+      - {x: -74.5, y: -15.5}
+      - {x: -74.5, y: 20.5}
+    - - {x: -3.5, y: 54.5}
+      - {x: -17.5, y: 44.5}
+      - {x: -17.5, y: 11.5}
+      - {x: -7.5, y: -1.5}
+      - {x: 28.5, y: -1.5}
+      - {x: 39.5, y: 11.5}
+      - {x: 39.5, y: 45.5}
+      - {x: 37.5, y: 54.5}
+    - - {x: 58.5, y: 55.5}
+      - {x: 49.5, y: 52.5}
+      - {x: 49.5, y: 13.5}
+      - {x: 62.5, y: 1.5}
+      - {x: 85.5, y: 1.5}
+      - {x: 102.5, y: 12.5}
+      - {x: 102.5, y: 44.5}
+      - {x: 90.5, y: 55.5}
+    - - {x: 117.5, y: 53.5}
+      - {x: 113.5, y: 37.5}
+      - {x: 113.5, y: 14.5}
+      - {x: 129.5, y: 2.5}
+      - {x: 157.5, y: 2.5}
+      - {x: 163.5, y: 15.5}
+      - {x: 163.5, y: 51.5}
+      - {x: 162.5, y: 53.5}
+    - - {x: -129.5, y: 56.5}
+      - {x: -134.5, y: 54.5}
+      - {x: -135.5, y: 52.5}
+      - {x: -135.5, y: 29.5}
+      - {x: -130.5, y: 27.5}
+      - {x: -110.5, y: 27.5}
+      - {x: -108.5, y: 29.5}
+      - {x: -108.5, y: 49.5}
+      - {x: -111.5, y: 56.5}
+    - - {x: -162.5, y: 54.5}
+      - {x: -166.5, y: 50.5}
+      - {x: -166.5, y: 33.5}
+      - {x: -165.5, y: 28.5}
+      - {x: -147.5, y: 28.5}
+      - {x: -143.5, y: 31.5}
+      - {x: -143.5, y: 43.5}
+      - {x: -149.5, y: 54.5}
+    - - {x: -90.5, y: 54.5}
+      - {x: -95.5, y: 53.5}
+      - {x: -101.5, y: 48.5}
+      - {x: -101.5, y: 37.5}
+      - {x: -97.5, y: 30.5}
+      - {x: -83.5, y: 30.5}
+      - {x: -77.5, y: 32.5}
+      - {x: -77.5, y: 51.5}
+      - {x: -82.5, y: 54.5}
+    - - {x: -145.5, y: 88.5}
+      - {x: -163.5, y: 88.5}
+      - {x: -167.5, y: 86.5}
+      - {x: -167.5, y: 68.5}
+      - {x: -163.5, y: 60.5}
+      - {x: -145.5, y: 60.5}
+      - {x: -141.5, y: 66.5}
+      - {x: -141.5, y: 78.5}
+      - {x: -143.5, y: 86.5}
+    - - {x: -117.5, y: 83.5}
+      - {x: -119.5, y: 84.5}
+      - {x: -128.5, y: 84.5}
+      - {x: -133.5, y: 78.5}
+      - {x: -133.5, y: 63.5}
+      - {x: -129.5, y: 62.5}
+      - {x: -115.5, y: 62.5}
+      - {x: -111.5, y: 66.5}
+      - {x: -111.5, y: 74.5}
+      - {x: -112.5, y: 80.5}
+    - - {x: -97.5, y: 84.5}
+      - {x: -100.5, y: 81.5}
+      - {x: -101.5, y: 79.5}
+      - {x: -101.5, y: 69.5}
+      - {x: -96.5, y: 63.5}
+      - {x: -81.5, y: 63.5}
+      - {x: -79.5, y: 68.5}
+      - {x: -79.5, y: 82.5}
+      - {x: -82.5, y: 84.5}
+    - - {x: -5.5, y: 117.5}
+      - {x: -15.5, y: 99.5}
+      - {x: -15.5, y: 70.5}
+      - {x: -3.5, y: 65.5}
+      - {x: 33.5, y: 65.5}
+      - {x: 33.5, y: 117.5}
+    - - {x: 65.5, y: 116.5}
+      - {x: 59.5, y: 113.5}
+      - {x: 50.5, y: 104.5}
+      - {x: 50.5, y: 81.5}
+      - {x: 52.5, y: 70.5}
+      - {x: 63.5, y: 65.5}
+      - {x: 88.5, y: 65.5}
+      - {x: 93.5, y: 66.5}
+      - {x: 99.5, y: 82.5}
+      - {x: 99.5, y: 108.5}
+      - {x: 83.5, y: 116.5}
+    - - {x: 119.5, y: 117.5}
+      - {x: 116.5, y: 106.5}
+      - {x: 116.5, y: 72.5}
+      - {x: 123.5, y: 66.5}
+      - {x: 153.5, y: 66.5}
+      - {x: 162.5, y: 68.5}
+      - {x: 162.5, y: 111.5}
+      - {x: 152.5, y: 117.5}
+    - - {x: -131.5, y: 117.5}
+      - {x: -135.5, y: 107.5}
+      - {x: -135.5, y: 100.5}
+      - {x: -134.5, y: 98.5}
+      - {x: -129.5, y: 94.5}
+      - {x: -115.5, y: 94.5}
+      - {x: -109.5, y: 100.5}
+      - {x: -109.5, y: 112.5}
+      - {x: -114.5, y: 119.5}
+      - {x: -126.5, y: 119.5}
+    - - {x: -146.5, y: 114.5}
+      - {x: -152.5, y: 118.5}
+      - {x: -157.5, y: 118.5}
+      - {x: -160.5, y: 117.5}
+      - {x: -162.5, y: 114.5}
+      - {x: -164.5, y: 110.5}
+      - {x: -164.5, y: 101.5}
+      - {x: -161.5, y: 98.5}
+      - {x: -156.5, y: 95.5}
+      - {x: -151.5, y: 95.5}
+      - {x: -149.5, y: 96.5}
+      - {x: -147.5, y: 98.5}
+      - {x: -143.5, y: 104.5}
+      - {x: -143.5, y: 110.5}
+    - - {x: -92.5, y: 119.5}
+      - {x: -100.5, y: 113.5}
+      - {x: -100.5, y: 96.5}
+      - {x: -85.5, y: 96.5}
+      - {x: -77.5, y: 106.5}
+      - {x: -77.5, y: 116.5}
+      - {x: -79.5, y: 119.5}
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
