@@ -8,15 +8,15 @@ public class SpawnerAstroids : MonoBehaviour
     bool IsGameRunning;
     [SerializeField]
     ShipStats myShip; //Test
+    public AstroidScript myAstroid;
+
     public GameObject enemyAstroid;
-    public GameObject astroidDir;
+    //public GameObject astroidDir;
     public Transform astroidHolder;
     public float spawnTimer;
     public Transform[] spawnPoints;
 
     //Astroid-settings
-    [SerializeField]
-    Sprite astroidsSheet;
     [SerializeField]
     List<Sprite> astroidList = new List<Sprite>();
     List<GameObject> astroidsInGame = new List<GameObject>();
@@ -46,8 +46,14 @@ public class SpawnerAstroids : MonoBehaviour
         int astroidIndex = Random.Range(0, astroidList.Count);
 
         Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
+        if(myAstroid == null)
+        {
+            myAstroid = enemyAstroid.GetComponent<AstroidScript>();
+            myAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];
+        }
         enemyAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
-        enemyAstroid.GetComponent<Rigidbody2D>().AddForce(spawnPoints[spawnPointIndex].GetComponent<PointRotater>().AstroidDir, ForceMode2D.Impulse);
+        enemyAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];
+
         astroidsInGame.Add(enemyAstroid);
     }
 }
