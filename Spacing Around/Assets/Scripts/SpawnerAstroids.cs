@@ -25,7 +25,10 @@ public class SpawnerAstroids : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myShip = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<ShipStats>();
+        if (myShip == null)
+        {
+            myShip = GameObject.FindGameObjectWithTag("Player").transform.GetComponentInChildren<ShipStats>();
+        }
         IsGameRunning = true;
         InvokeRepeating("Spawn", spawnTimer, spawnTimer);
     }

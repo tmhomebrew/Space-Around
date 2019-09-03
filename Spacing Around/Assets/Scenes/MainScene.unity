@@ -443,6 +443,8 @@ MonoBehaviour:
   UIHandlerRef: {fileID: 398644219}
   shipMainBodyHealthCur: 0
   shipShieldCur: 0
+  shipSpeedCur: 0
+  isMoving: 0
   shipCargoSpace: 0
   isStatsSet: 0
 --- !u!114 &766801129
@@ -490,7 +492,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 10
+  m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -509,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fc4dc09c17f2848800dc3195d25178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceShipBody: {fileID: 1069946579}
+  GO: {fileID: 0}
   Left: {fileID: 711219434}
   Right: {fileID: 1330838789}
   Top: {fileID: 1546583670}
@@ -546,12 +548,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1069946579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8682976378797271049, guid: d392d62ad59ca4445928c0ad31e62dbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1111820539509994618}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1189408727 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8980619670487801469, guid: d392d62ad59ca4445928c0ad31e62dbc,
@@ -5517,7 +5513,7 @@ GameObject:
   - component: {fileID: 2013907544}
   m_Layer: 0
   m_Name: LevelBounds
-  m_TagString: Untagged
+  m_TagString: BoundingBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6181,6 +6177,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstroidSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4209043890185115395, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 4209043890185115394, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6235,6 +6237,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121926570289366653, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2130480097
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121926570289366653, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}

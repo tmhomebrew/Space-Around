@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class WrapScreenHandler : MonoBehaviour
 {
-    public GameObject spaceShipBody;
+    public GameObject GO;
     [Header("Level Bounds:")]
     public GameObject Left, Right, Top, Bot;
+    List<Transform> newList = new List<Transform>();
+
+    private void Start()
+    {
+        GO = transform.gameObject;
+        if(GO.name.ToLower() == "spaceship")
+        {
+            GO = GetComponentInChildren<SpriteRenderer>().gameObject;
+        }
+        SetupBounds();
+    }
 
     void Wrap()
     {
@@ -32,10 +43,42 @@ public class WrapScreenHandler : MonoBehaviour
         }
     }
 
+    void SetupBounds()
+    {
+        //If Bounding boxes are empty..
+        if (Left == null || Right == null || Top == null || Bot == null)
+        {
+            newList.AddRange(GameObject.FindGameObjectWithTag("BoundingBox").GetComponentsInChildren<Transform>());
+            foreach (Transform go in newList)
+            {
+                if (go.name == "LevelBounds")
+                {
+                    continue;
+                }
+                if (go.name == "BoundLeft")
+                {
+                    Left = go.gameObject;
+                }
+                if (go.name == "BoundRight")
+                {
+                    Right = go.gameObject;
+                }
+                if (go.name == "BoundTop")
+                {
+                    Top = go.gameObject;
+                }
+                if (go.name == "BoundBot")
+                {
+                    Bot = go.gameObject;
+                }
+            }
+        }
+    }
+
     public IEnumerator CheckVisable()
     {
         yield return new WaitForEndOfFrame();
-        if (spaceShipBody.transform.GetComponent<Renderer>().isVisible)
+        if (GO.transform.GetComponent<Renderer>().isVisible)
         {
             Wrap();
         }

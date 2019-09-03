@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - Astroid
+  - BoundingBox
   layers:
   - Default
   - TransparentFX

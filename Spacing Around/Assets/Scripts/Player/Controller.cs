@@ -23,6 +23,7 @@ public class Controller : MonoBehaviour
         myWrap = GetComponent<WrapScreenHandler>();
         wrapChecker = myWrap.CheckVisable();
 
+        curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
         maxRotationSpeed = myShip.ShipTurnSpeed;
         maxSpeed = myShip.ShipSpeedMax;
@@ -44,7 +45,6 @@ public class Controller : MonoBehaviour
             myShip.IsMoving = true;
             forwardSpeed = (transform.up * (curSpeed + accSpeed) * Time.deltaTime); //<---
 
-            //print("CurrentSpeed: " + forwardSpeed.magnitude);
             if (curSpeed < maxSpeed)
             {
                 myRB.AddForce(forwardSpeed, ForceMode2D.Force);

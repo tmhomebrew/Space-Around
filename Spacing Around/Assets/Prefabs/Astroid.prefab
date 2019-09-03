@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7269922637996412418}
   - component: {fileID: 3927027811332286065}
   - component: {fileID: 465287256853176576}
+  - component: {fileID: 6428936727427067343}
   m_Layer: 0
   m_Name: Astroid
   m_TagString: Astroid
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 763607015
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3254846329938982734, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
+  m_Sprite: {fileID: -2367007006154059656, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,7 +123,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.49}
+    oldSize: {x: 0.19, y: 0.19}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,6 +152,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curSprite: {fileID: 0}
   mySpawner: {fileID: 0}
-  astroidHealth: 0
+  isAlive: 0
   astroidSpeed: 0
   astroidSize: 0
+--- !u!114 &6428936727427067343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951228507714319769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87fc4dc09c17f2848800dc3195d25178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GO: {fileID: 0}
+  Left: {fileID: 0}
+  Right: {fileID: 0}
+  Top: {fileID: 0}
+  Bot: {fileID: 0}

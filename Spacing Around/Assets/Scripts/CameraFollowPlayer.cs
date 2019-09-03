@@ -11,8 +11,18 @@ public class CameraFollowPlayer : MonoBehaviour
     [Range(10, 15)]
     private float startDistanceFromPlayer;
     private float maxDistanceFromPlayer;
-    private bool sizeReached;
+    bool sizeReached, zoomingIsRunning;
     private float delay = 0.1f;
+
+    public bool ZoomingIsRunning
+    {
+        get => zoomingIsRunning;
+        set
+        {
+            StopAllCoroutines();
+            zoomingIsRunning = shipStats.IsMoving;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,18 +34,20 @@ public class CameraFollowPlayer : MonoBehaviour
         transform.position = player.transform.position + offset;
 
         sizeReached = true;
+        ZoomingIsRunning = false;
         startDistanceFromPlayer = 10;
         maxDistanceFromPlayer = 15;
         myCam.orthographicSize = startDistanceFromPlayer;
-
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         transform.position = player.transform.position + offset;
         if (shipStats.ShipSpeedCur > 0 && shipStats.IsMoving)
+        {
             ChangeDistance(shipStats.IsMoving);
+        }
         if (!shipStats.IsMoving)
         {
             ChangeDistance(shipStats.IsMoving);
@@ -49,9 +61,13 @@ public class CameraFollowPlayer : MonoBehaviour
 
     IEnumerator DistChanger(bool moving)
     {
-        sizeReached = false;
+        if (myCam.orthographicSize > startDistanceFromPlayer || myCam.orthographicSize < maxDistanceFromPlayer)
+        {
+            sizeReached = false;
+        }
         if (moving)
         {
+        //print("Enumarator running");
             while (myCam.orthographicSize < maxDistanceFromPlayer && sizeReached == false)
             {
                 yield return new WaitForSeconds(delay);
@@ -60,6 +76,7 @@ public class CameraFollowPlayer : MonoBehaviour
                 {
                     myCam.orthographicSize = maxDistanceFromPlayer;
                     sizeReached = true;
+                    break;
                 }
             }
         }
@@ -73,9 +90,9 @@ public class CameraFollowPlayer : MonoBehaviour
                 {
                     myCam.orthographicSize = startDistanceFromPlayer;
                     sizeReached = true;
+                    break;
                 }
             }
         }
     }
-
 }

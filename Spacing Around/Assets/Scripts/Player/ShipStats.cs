@@ -27,9 +27,11 @@ public class ShipStats : MonoBehaviour
 
     //Movement
     float shipSpeedMax;
+    [SerializeField]
     float shipSpeedCur;
     float shipAcceleration;
     float shipTurnSpeed;
+    [SerializeField]
     bool isMoving;
 
     float shipWeight;
