@@ -478,27 +478,6 @@ MonoBehaviour:
   playerShipRef: {fileID: 766801127}
   inventoryPanelRef: {fileID: 224243214}
   slotList: []
---- !u!50 &766801131
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766801127}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 5
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &766801133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6186,12 +6165,12 @@ PrefabInstance:
     - target: {fileID: 4209043890185115394, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.8
       objectReference: {fileID: 0}
     - target: {fileID: 4209043890185115394, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 4209043890185115394, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
@@ -6253,5 +6232,10 @@ PrefabInstance:
       propertyPath: myShip
       value: 
       objectReference: {fileID: 766801128}
+    - target: {fileID: 4209043889976743171, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4a3561f9f438f49b75ef3b4b3023da, type: 3}

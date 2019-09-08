@@ -8,6 +8,7 @@ public class AstroidScript : MonoBehaviour
     WrapScreenHandler myWrap;
     [SerializeField]
     private Transform mySpawner;
+    private Rigidbody2D myRB;
 
     //Stats
     private int astroidHealth;
@@ -15,6 +16,7 @@ public class AstroidScript : MonoBehaviour
     bool isAlive;
     public float astroidSpeed;
     public float astroidSize;
+    [SerializeField]
     private float scale;
 
     public Transform MySpawner { get => mySpawner; set => mySpawner = value; }
@@ -41,7 +43,10 @@ public class AstroidScript : MonoBehaviour
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
         myWrap = GetComponent<WrapScreenHandler>();
-        scale = transform.localScale.x;
+        myRB = GetComponent<Rigidbody2D>();
+
+
+        scale = Mathf.Sqrt(Mathf.Pow(transform.localScale.x, 2) + Mathf.Pow(transform.localScale.y, 2));
 
         SetStats();
         InitialLaunch();
@@ -59,6 +64,7 @@ public class AstroidScript : MonoBehaviour
     void SetStats()
     {
         astroidSize = curSprite.rect.size.magnitude / scale / 10/*ShipScale*/;
+        myRB.mass = astroidSize;
         AstroidHealth = 1;
         astroidSpeed = 100;
         isAlive = true;
