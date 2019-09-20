@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour
 {
     Rigidbody2D myRB;
     ShipStats myShip;
+    Guns myGuns;
 
     WrapScreenHandler myWrap;
     IEnumerator wrapChecker;
@@ -21,6 +22,7 @@ public class Controller : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
         myWrap = GetComponent<WrapScreenHandler>();
+        myGuns = GetComponentInChildren<Guns>();
         wrapChecker = myWrap.CheckVisable();
 
         curSpeed = myShip.ShipSpeedCur;
@@ -35,6 +37,15 @@ public class Controller : MonoBehaviour
         {
             MoveController();
             DirectionController();
+            Actions();
+        }
+    }
+
+    private void Actions()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            myGuns.ShotLaser();
         }
     }
 

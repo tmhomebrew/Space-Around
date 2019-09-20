@@ -10,17 +10,36 @@ public class Inventory : MonoBehaviour
     public List<GameObject> slotList;
 
     int inventorySize;
+    int goldSize, kills, deaths;
 
     public int InventorySize
     {
         get { return playerShipRef.GetComponent<ShipStats>().ShipCargoSpace; }
     }
 
+    public int GoldSize
+    {
+        get => goldSize; set
+        {
+            goldSize = value;
+            if (goldSize <= 0)
+            {
+                goldSize = 0;
+            }
+        }
+    }
+
+    public int Kills { get => kills; set => kills = value; }
+    public int Deaths { get => deaths; set => deaths = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         slotList = new List<GameObject>();
         InventorySlotsAvailable();
+        GoldSize = 0;
+        Kills = 0;
+        Deaths = 0;
     }
 
     // Update is called once per frame

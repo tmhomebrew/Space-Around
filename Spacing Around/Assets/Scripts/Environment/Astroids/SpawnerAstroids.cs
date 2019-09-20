@@ -49,7 +49,7 @@ public class SpawnerAstroids : MonoBehaviour
         int astroidIndex = Random.Range(0, astroidList.Count);
 
         Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
-        if(myAstroid == null)
+        if (myAstroid == null)
         {
             myAstroid = enemyAstroid.GetComponent<AstroidScript>();
             myAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];

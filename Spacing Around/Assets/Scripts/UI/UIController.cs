@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
     {
         tempList = new List<object>();
         showUI = true;
+        ShowUI(showUI);
     }
 
     // Update is called once per frame
@@ -30,42 +31,47 @@ public class UIController : MonoBehaviour
             /* Note <---------------------------------------------------------------------
              * Disabler ikke de første childs i rækken, men kun grand-childs.. hmmm...
              */
-            if (!showUI)
+            ShowUI(showUI);
+        }
+    }
+
+    void ShowUI(bool isOn)
+    {
+        if (!isOn)
+        {
+            #region Cargo-UI Load
+            foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
             {
-                #region Cargo-UI Load
-                foreach (Image go in cargoUI_GO.GetComponentsInChildren<Image>())
-                {
-                    go.enabled = true;
-                }
-                foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
-                {
-                    go.enabled = true;
-                }
-                foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
-                {
-                    go.enabled = true;
-                }
-                #endregion
-                showUI = true;
+                go.enabled = true;
             }
-            else
+            foreach (Image go in cargoUI_GO.GetComponentsInChildren<Image>())
             {
-                #region Cargo-UI Unload
-                foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
-                {
-                    go.enabled = false;
-                }
-                foreach (Image go in cargoUI_GO.GetComponentsInChildren<Image>())
-                {
-                    go.enabled = false;
-                }
-                foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
-                {
-                    go.enabled = false;
-                }
-                #endregion
-                showUI = false;
+                go.enabled = true;
             }
+            foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
+            {
+                go.enabled = true;
+            }
+            #endregion
+            showUI = true;
+        }
+        else
+        {
+            #region Cargo-UI Unload
+            foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
+            {
+                go.enabled = false;
+            }
+            foreach (Image go in cargoUI_GO.GetComponentsInChildren<Image>())
+            {
+                go.enabled = false;
+            }
+            foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
+            {
+                go.enabled = false;
+            }
+            #endregion
+            showUI = false;
         }
     }
 }

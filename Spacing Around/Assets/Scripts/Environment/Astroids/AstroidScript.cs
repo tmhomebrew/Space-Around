@@ -9,6 +9,8 @@ public class AstroidScript : MonoBehaviour
     [SerializeField]
     private Transform mySpawner;
     private Rigidbody2D myRB;
+    private PolygonCollider2D myCol;
+    private ParticleSystem myExplosion;
 
     //Stats
     private int astroidHealth;
@@ -26,12 +28,14 @@ public class AstroidScript : MonoBehaviour
         set
         {
             astroidHealth = value;
-            if (astroidHealth < 0)
+            if (astroidHealth <= 0 && isAlive)
             {
                 StopAllCoroutines();
                 isAlive = false;
-                astroidHealth = 0;
                 print("Astroid destroyed: " + transform.name);
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<PolygonCollider2D>().enabled = false;
+                StartCoroutine(DestroySequence());
             }
         }
     }
@@ -44,7 +48,7 @@ public class AstroidScript : MonoBehaviour
         gameObject.AddComponent<PolygonCollider2D>();
         myWrap = GetComponent<WrapScreenHandler>();
         myRB = GetComponent<Rigidbody2D>();
-
+        myExplosion = GetComponent<ParticleSystem>();
 
         scale = Mathf.Sqrt(Mathf.Pow(transform.localScale.x, 2) + Mathf.Pow(transform.localScale.y, 2));
 
@@ -78,9 +82,20 @@ public class AstroidScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.tag == "Player")
+        if (col.transform.tag == "Player")
         {
-            isAlive = false;
+            col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
+            AstroidHealth = 0; //<-- Kills astroid
         }
+    }
+
+    IEnumerator DestroySequence()
+    {
+        myExplosion.Play();
+        //Animation for astroid explosion
+        //LootDrop???
+
+        yield return new WaitForSeconds(2.5f);
+        Destroy(gameObject);
     }
 }

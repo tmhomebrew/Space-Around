@@ -84,7 +84,6 @@ public class ShipStats : MonoBehaviour
             }
         }
     }
-
     public int ShipShieldMax
     {
         get { return shipShieldMax; }
@@ -111,6 +110,7 @@ public class ShipStats : MonoBehaviour
     public float ShipTurnSpeed { get => shipTurnSpeed; set => shipTurnSpeed = value; }
     public bool IsAlive { get => isAlive; set => isAlive = value; }
     public bool IsMoving { get => isMoving; set => isMoving = value; }
+    public Inventory ShipInventory { get => shipInventory; set => shipInventory = value; }
 
     //list<Loot> - Length is shipCargoSpace... List of stored cargo
 
@@ -154,7 +154,7 @@ public class ShipStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -182,14 +182,14 @@ public class ShipStats : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="i">if 'regulator' is positive adds health.. else, draws health </param>
-    void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        ShieldCalculator((int)(Mathf.Abs(damage)), true);
+        ShieldCalculator((int)damage, true);
     }
 
-    void HealDamage(int repair)
+    public void HealDamage(int repair)
     {
-        ShieldCalculator((int)(Mathf.Abs(repair)), false);
+        ShieldCalculator((int)repair, false);
     }
 
     int remainingDamage;
@@ -203,12 +203,14 @@ public class ShipStats : MonoBehaviour
                 if (ShipShieldCur > 0)
                 {
                     ShipShieldCur--;
+                    continue;
                 }
                 else
                 {
                     if (ShipMainBodyHealthCur > 0)
                     {
                         ShipMainBodyHealthCur--;
+                        continue;
                     }
                     else
                     {
@@ -243,5 +245,10 @@ public class ShipStats : MonoBehaviour
             }
             #endregion
         }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        
     }
 }
