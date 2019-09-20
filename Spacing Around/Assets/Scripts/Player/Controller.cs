@@ -23,7 +23,9 @@ public class Controller : MonoBehaviour
         myShip = GetComponent<ShipStats>();
         myWrap = GetComponent<WrapScreenHandler>();
         myGuns = GetComponentInChildren<Guns>();
-        wrapChecker = myWrap.CheckVisable();
+        myGuns.LaserShotOwner = gameObject;
+
+        wrapChecker = myWrap.CheckVisable(); //Inside Bounds on GameMap..
 
         curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
@@ -43,7 +45,7 @@ public class Controller : MonoBehaviour
 
     private void Actions()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             myGuns.ShotLaser();
         }

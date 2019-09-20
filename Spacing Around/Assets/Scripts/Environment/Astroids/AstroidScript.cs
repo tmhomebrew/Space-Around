@@ -87,6 +87,10 @@ public class AstroidScript : MonoBehaviour
             col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
             AstroidHealth = 0; //<-- Kills astroid
         }
+        if (col.transform.tag == "Fire")
+        {
+            AstroidHealth = 0; //<-- Kills astroid
+        }
     }
 
     IEnumerator DestroySequence()

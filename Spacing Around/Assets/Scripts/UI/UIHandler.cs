@@ -74,9 +74,9 @@ public class UIHandler : MonoBehaviour
         _shieldBar.GetComponent<Slider>().value = shipStatsRef.ShipShieldCur;
 
         //Cargo-UI
-        goldRef = shipStatsRef.ShipInventory.GoldSize;
-        killRef = shipStatsRef.ShipInventory.Kills;
-        deathRef = shipStatsRef.ShipInventory.Deaths;
+        //goldRef = shipStatsRef.ShipInventory.GoldSize;
+        //killRef = shipStatsRef.ShipInventory.Kills;
+        //deathRef = shipStatsRef.ShipInventory.Deaths;
 
         //Update
         UpdateHealthBarText();

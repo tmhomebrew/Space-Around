@@ -249,6 +249,10 @@ public class ShipStats : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        
+        if (col.gameObject.GetComponent<LaserShot>().LaserOwner != gameObject)
+        {
+            string attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner.name;
+            print("Should take Damage from " + attacker);
+        }
     }
 }

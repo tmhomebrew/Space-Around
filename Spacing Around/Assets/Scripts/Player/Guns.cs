@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Guns : MonoBehaviour
 {
-    public GameObject LaserShot;
+    public GameObject laserShot;
+    GameObject laserShotOwner;
+
     public GameObject spawnPoint;
-    public Transform LaserHolder;
+    public Transform laserHolder;
+
+    public GameObject LaserShotOwner { get => laserShotOwner; set => laserShotOwner = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,7 @@ public class Guns : MonoBehaviour
 
     public void ShotLaser()
     {
-       //Instantiate(LaserShot, spawnPoint.transform.position, spawnPoint.transform.rotation, LaserHolder);
+        //Instantiate(laserShot, spawnPoint.transform.position, spawnPoint.transform.rotation, laserHolder);
+        Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
     }
 }
