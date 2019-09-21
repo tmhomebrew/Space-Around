@@ -74,18 +74,13 @@ public class UIHandler : MonoBehaviour
         _shieldBar.GetComponent<Slider>().value = shipStatsRef.ShipShieldCur;
 
         //Cargo-UI
-        //goldRef = shipStatsRef.ShipInventory.GoldSize;
-        //killRef = shipStatsRef.ShipInventory.Kills;
-        //deathRef = shipStatsRef.ShipInventory.Deaths;
+        goldRef = shipStatsRef.ShipInventory.GoldSize;
+        killRef = shipStatsRef.ShipInventory.Kills;
+        deathRef = shipStatsRef.ShipInventory.Deaths;
 
         //Update
         UpdateHealthBarText();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UpdateInformationPanel();
     }
 
     public void UpdateHealthBarText()
@@ -119,8 +114,12 @@ public class UIHandler : MonoBehaviour
 
     public void UpdateInformationPanel()
     {
-        _goldGO.GetComponent<Text>().text = "Gold: " + goldRef;
-        _killsGO.GetComponent<Text>().text = "Kills: " + killRef;
-        _deathsGO.GetComponent<Text>().text = "Deaths: " + deathRef;
+        //_goldGO.GetComponent<Text>().text = "Gold: " + goldRef;
+        //_killsGO.GetComponent<Text>().text = "Kills: " + killRef;
+        //_deathsGO.GetComponent<Text>().text = "Deaths: " + deathRef;
+
+        _goldGO.GetComponent<Text>().text = "Gold: " + shipStatsRef.ShipInventory.GoldSize;
+        _killsGO.GetComponent<Text>().text = "Kills: " + shipStatsRef.ShipInventory.Kills;
+        _deathsGO.GetComponent<Text>().text = "Deaths: " + shipStatsRef.ShipInventory.Deaths;
     }
 }

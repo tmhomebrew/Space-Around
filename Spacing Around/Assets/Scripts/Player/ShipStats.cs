@@ -34,17 +34,23 @@ public class ShipStats : MonoBehaviour
     [SerializeField]
     bool isMoving;
 
+    //Ship
     float shipWeight;
     float shipWeightCapacityMax;
     float shipWeightCapacityCur;
     [SerializeField]
     int shipCargoSpace;
+
+    //Inventory
     Inventory shipInventory;
 
     //Locks
     [SerializeField]
     bool isStatsSet;
+    GameObject attacker; //Used in shipMainBodyHealthCur..
+    bool killedByPlayer;
 
+    #region Properties
     public int ShipCargoSpace
     {
         get { return shipCargoSpace; }
@@ -53,7 +59,6 @@ public class ShipStats : MonoBehaviour
             shipCargoSpace = value;
         }
     }
-
     public int ShipMainBodyHealthMax
     {
         get { return shipMainBodyHealthMax; }
@@ -79,8 +84,15 @@ public class ShipStats : MonoBehaviour
                 {
                     shipMainBodyHealthCur = 0;
                     IsAlive = false;
-                    print("Player_" + this.gameObject.name + " is dead..");
+                    if (killedByPlayer)
+                    {
+                        attacker.GetComponent<ShipStats>().ShipInventory.GoldSize += 100;
+                        attacker.GetComponent<ShipStats>().ShipInventory.Kills += 1;
+                        ShipInventory.Deaths += 1;
+                        print("Player_" + this.gameObject.name + " is dead.. Killed by: " + attacker.name);
+                    }
                 }
+                killedByPlayer = false;
             }
         }
     }
@@ -110,8 +122,9 @@ public class ShipStats : MonoBehaviour
     public float ShipTurnSpeed { get => shipTurnSpeed; set => shipTurnSpeed = value; }
     public bool IsAlive { get => isAlive; set => isAlive = value; }
     public bool IsMoving { get => isMoving; set => isMoving = value; }
-    public Inventory ShipInventory { get => shipInventory; set => shipInventory = value; }
 
+    public Inventory ShipInventory { get => shipInventory; set => shipInventory = value; }
+    #endregion
     //list<Loot> - Length is shipCargoSpace... List of stored cargo
 
     #endregion
@@ -119,6 +132,8 @@ public class ShipStats : MonoBehaviour
     void StatSetup()
     {
         isStatsSet = false;
+        ShipInventory = GetComponentInChildren<Inventory>();
+
         switch (ShipType.Standard) //Should be a playerChoice..
         {
             case ShipType.Standard:
@@ -251,7 +266,9 @@ public class ShipStats : MonoBehaviour
     {
         if (col.gameObject.GetComponent<LaserShot>().LaserOwner != gameObject)
         {
-            string attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner.name;
+            attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner;
+            killedByPlayer = true;
+            //TakeDamage(col.gameObject.GetComponent<LaserShot>().    ) //<-- Need more stuff here..
             print("Should take Damage from " + attacker);
         }
     }

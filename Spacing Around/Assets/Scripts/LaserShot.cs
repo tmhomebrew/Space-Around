@@ -18,7 +18,8 @@ public class LaserShot : MonoBehaviour
     void Start()
     {
         LaserOwner = transform.root.transform.GetComponentInChildren<ShipStats>().gameObject;
-        print("LaserShots Owner: " + LaserOwner);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), LaserOwner.GetComponentInChildren<Collider2D>());
+        //print("LaserShots Owner: " + LaserOwner);
 
         StartCoroutine(TimeAlive());
 
@@ -28,21 +29,13 @@ public class LaserShot : MonoBehaviour
         myRB.AddForce(forwardSpeed, ForceMode2D.Impulse);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject == LaserOwner)
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        if (col.gameObject != LaserOwner)
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), col.collider);
-            print("passed player");
-        }
-        else
-        {
+            //print("Hit player: " + col.gameObject.name);
             StopAllCoroutines();
             StartCoroutine(DestroySequence());
         }
@@ -52,7 +45,7 @@ public class LaserShot : MonoBehaviour
     {
         //Animation for LaserHit
 
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 

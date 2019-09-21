@@ -9,6 +9,9 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanelRef;
     public List<GameObject> slotList;
 
+    //ref
+    public UIHandler myUIHandler;
+
     int inventorySize;
     int goldSize, kills, deaths;
 
@@ -26,11 +29,30 @@ public class Inventory : MonoBehaviour
             {
                 goldSize = 0;
             }
+            myUIHandler.UpdateInformationPanel();
+        }
+    }
+    public int Kills
+    {
+        get => kills; set
+        {
+            kills = value;
+            myUIHandler.UpdateInformationPanel();
+        }
+    }
+    public int Deaths
+    {
+        get => deaths; set
+        {
+            deaths = value;
+            myUIHandler.UpdateInformationPanel();
         }
     }
 
-    public int Kills { get => kills; set => kills = value; }
-    public int Deaths { get => deaths; set => deaths = value; }
+    private void Awake()
+    {
+        myUIHandler = transform.root.GetComponentInChildren<UIHandler>();
+    }
 
     // Start is called before the first frame update
     void Start()

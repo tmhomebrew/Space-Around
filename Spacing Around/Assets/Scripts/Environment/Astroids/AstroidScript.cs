@@ -30,11 +30,11 @@ public class AstroidScript : MonoBehaviour
             astroidHealth = value;
             if (astroidHealth <= 0 && isAlive)
             {
-                StopAllCoroutines();
-                isAlive = false;
-                print("Astroid destroyed: " + transform.name);
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<PolygonCollider2D>().enabled = false;
+                StopAllCoroutines();
+                isAlive = false;
+                //print("Astroid destroyed: " + transform.name);
                 StartCoroutine(DestroySequence());
             }
         }
@@ -89,6 +89,8 @@ public class AstroidScript : MonoBehaviour
         }
         if (col.transform.tag == "Fire")
         {
+            col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+            //print("Money: " + col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             AstroidHealth = 0; //<-- Kills astroid
         }
     }
