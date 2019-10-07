@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class IBaseItem
+public abstract class BaseItem : MonoBehaviour
 {
     public enum Rarity
     {
@@ -10,12 +10,13 @@ abstract class IBaseItem
     }
     public enum ItemType
     {
-        Money, ShipPart, TechApp,
+        Money, ShipPart, TechApp, Weapon
     }
 
-    private string _BIName;
-    protected int _BIValue;
-    protected int _BIValueVendorCost;
+    protected string _BIName;
+    protected uint _BIValue;
+    protected uint _BIPriceEdit;
+    protected uint _BIValueVendorCost;
 
     protected Rarity _BIRarity;
     protected ItemType _BITypeOfItem;

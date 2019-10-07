@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour
     Rigidbody2D myRB;
     ShipStats myShip;
     Guns myGuns;
+    WeaponLaser myWL;
 
     WrapScreenHandler myWrap;
     IEnumerator wrapChecker;
@@ -24,6 +25,8 @@ public class Controller : MonoBehaviour
         myWrap = GetComponent<WrapScreenHandler>();
         myGuns = GetComponentInChildren<Guns>();
         myGuns.LaserShotOwner = gameObject;
+        myWL = GetComponentInChildren<WeaponLaser>();
+        myWL.LaserShotOwner = gameObject;
 
         wrapChecker = myWrap.CheckVisable(); //Inside Bounds on GameMap..
 
@@ -48,6 +51,7 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             myGuns.ShotLaser();
+            myWL.Shoot();
         }
     }
 
