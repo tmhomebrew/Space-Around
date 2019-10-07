@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3402900331910722474
+--- !u!114 &4991118582282541758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a7904b5f1dcf746a12abd9c74ed3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserBeamSprite:
+  - {fileID: -7181182688776095764, guid: 2107f36b1c5834344af6fc170ff83196, type: 3}
+  - {fileID: -9150954616461882458, guid: 2107f36b1c5834344af6fc170ff83196, type: 3}
+  - {fileID: 6100613402793374524, guid: 2107f36b1c5834344af6fc170ff83196, type: 3}
+  - {fileID: 6809698112737714254, guid: 2107f36b1c5834344af6fc170ff83196, type: 3}
+  - {fileID: 5877039498505239813, guid: 2107f36b1c5834344af6fc170ff83196, type: 3}
+  - {fileID: -4466639421194908512, guid: 2107f36b1c5834344af6fc170ff83196, type: 3}
   laserOwner: {fileID: 0}
   speed: 0
 --- !u!1001 &5602778150377498505
@@ -29,17 +36,17 @@ PrefabInstance:
     - target: {fileID: 4575971556871049597, guid: 52c783f5b9a800e48887280984d826cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.50531995
+      value: 780.85956
       objectReference: {fileID: 0}
     - target: {fileID: 4575971556871049597, guid: 52c783f5b9a800e48887280984d826cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.145452
+      value: 171.39676
       objectReference: {fileID: 0}
     - target: {fileID: 4575971556871049597, guid: 52c783f5b9a800e48887280984d826cf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -234.17912
       objectReference: {fileID: 0}
     - target: {fileID: 4575971556871049597, guid: 52c783f5b9a800e48887280984d826cf,
         type: 3}
