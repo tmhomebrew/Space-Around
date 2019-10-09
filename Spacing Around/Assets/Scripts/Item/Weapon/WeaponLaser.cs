@@ -68,4 +68,9 @@ public class WeaponLaser : BaseItem, IWeapon
         }
         return value;
     }
+
+    private void LaserShotType(Rarity laserWeaponQuality)
+    {
+
+    }
 }
