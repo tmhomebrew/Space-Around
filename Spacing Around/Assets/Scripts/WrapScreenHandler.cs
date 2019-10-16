@@ -82,5 +82,9 @@ public class WrapScreenHandler : MonoBehaviour
         {
             Wrap();
         }
+        else
+        {
+            Destroy(GO);
+        }
     }
 }

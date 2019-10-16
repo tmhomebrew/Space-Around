@@ -72,7 +72,7 @@ public class Controller : MonoBehaviour
         {
             myShip.IsMoving = false;
         }
-        StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
+        //StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
         curSpeed = myRB.velocity.magnitude;
         myShip.ShipSpeedCur = curSpeed;
         

@@ -33,12 +33,6 @@ public class SpawnerAstroids : MonoBehaviour
         InvokeRepeating("Spawn", spawnTimer, spawnTimer);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void Spawn()
     {
         if (!IsGameRunning)

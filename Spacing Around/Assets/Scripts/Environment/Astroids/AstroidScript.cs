@@ -59,10 +59,10 @@ public class AstroidScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAlive)
-        {
-            StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
-        }
+        //if (isAlive)
+        //{
+        //    StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
+        //}
     }
 
     void SetStats()
@@ -92,6 +92,11 @@ public class AstroidScript : MonoBehaviour
             col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
             //print("Money: " + col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             AstroidHealth = 0; //<-- Kills astroid
+        }
+        if (col.transform.tag == "BoundingBox")
+        {
+            print("Does trigger");
+            StartCoroutine(myWrap.CheckVisable());
         }
     }
 
