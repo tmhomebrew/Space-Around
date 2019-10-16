@@ -11,17 +11,15 @@ public class WeaponLaser : BaseItem, IWeapon
     [SerializeField]
     int _laserDamage;
 
-    [SerializeField]
-    public Sprite[] laserBeamSprite = new Sprite[5];
-    Sprite mySprite;
-
-
     //LaserShot - Not Implemented
     public GameObject laserShot;
     GameObject laserShotOwner;
     public GameObject spawnPoint;
     public Transform laserHolder;
+
     public GameObject LaserShotOwner { get => laserShotOwner; set => laserShotOwner = value; }
+    public Rarity LaserRarity { get => _laserRarity; set => _laserRarity = value; }
+    public int LaserDamage { get => _laserDamage; set => _laserDamage = value; }
 
     public WeaponLaser(string name, Rarity quality, ItemType weapon = ItemType.Weapon)
     {
@@ -29,6 +27,8 @@ public class WeaponLaser : BaseItem, IWeapon
         _BIRarity = quality;
         _BIValue = ValueOfLaser(_BIRarity);
         _BITypeOfItem = weapon;
+
+        //laserShot = 
     }
 
     public void Shoot()
