@@ -50,7 +50,7 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            //myGuns.ShotLaser();
+            myGuns.ShotLaser();
             myWL.Shoot();
         }
     }
