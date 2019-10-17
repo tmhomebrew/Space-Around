@@ -39,13 +39,13 @@ public class NewWrapScreenHandler : MonoBehaviour
     {
         if (col.transform.root.name == "Player")
         {
-            print("Player has been moved..");
-            Wrap(col.transform.root.transform);
+            Wrap(col.transform.root.GetComponentInChildren<ShipStats>().transform);
+            //print("Player has been moved.." + col.transform.root.GetComponentInChildren<ShipStats>().transform);
         }
         else
         {
-            print("Something entered the field");
             Wrap(col.transform);
+            //print("Something entered the field");
         }
 
     }

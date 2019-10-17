@@ -22,13 +22,13 @@ public class Controller : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
-        myWrap = GetComponent<WrapScreenHandler>();
+        //myWrap = GetComponent<WrapScreenHandler>();
         myGuns = GetComponentInChildren<Guns>();
         myGuns.LaserShotOwner = gameObject;
         myWL = GetComponentInChildren<WeaponLaser>();
         myWL.LaserShotOwner = gameObject;
 
-        wrapChecker = myWrap.CheckVisable(); //Inside Bounds on GameMap..
+        //wrapChecker = myWrap.CheckVisable(); //Inside Bounds on GameMap..
 
         curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
