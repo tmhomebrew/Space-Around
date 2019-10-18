@@ -5,7 +5,6 @@ using UnityEngine;
 public class AstroidScript : MonoBehaviour
 {
     public Sprite curSprite;
-    WrapScreenHandler myWrap;
     [SerializeField]
     private Transform mySpawner;
     private Rigidbody2D myRB;
@@ -46,9 +45,21 @@ public class AstroidScript : MonoBehaviour
         curSprite = GetComponent<SpriteRenderer>().sprite;
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
-        myWrap = GetComponent<WrapScreenHandler>();
         myRB = GetComponent<Rigidbody2D>();
         myExplosion = GetComponent<ParticleSystem>();
+        if (MySpawner == null)
+        {
+            print("My spawner is: " + MySpawner); //Testing
+            try
+            {
+                MySpawner = transform.root.GetComponentInChildren<PointRotater>().transform;
+            }
+            catch (System.Exception)
+            {
+                print("Could not find the transform");
+                throw;
+            }
+        }
 
         scale = Mathf.Sqrt(Mathf.Pow(transform.localScale.x, 2) + Mathf.Pow(transform.localScale.y, 2));
 
@@ -92,11 +103,6 @@ public class AstroidScript : MonoBehaviour
             col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
             //print("Money: " + col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             AstroidHealth = 0; //<-- Kills astroid
-        }
-        if (col.transform.tag == "BoundingBox")
-        {
-            print("Does trigger");
-            StartCoroutine(myWrap.CheckVisable());
         }
     }
 

@@ -43,6 +43,7 @@ public class ShipStats : MonoBehaviour
 
     //Inventory
     Inventory shipInventory;
+    List<BaseItem> myCargoList;
 
     //Locks
     [SerializeField]
@@ -164,12 +165,6 @@ public class ShipStats : MonoBehaviour
     private void Awake()
     {
         StatSetup();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

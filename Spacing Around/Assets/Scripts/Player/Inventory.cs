@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    #region Fields
     public GameObject playerShipRef;
     public GameObject inventoryPanelRef;
     public List<GameObject> slotList;
@@ -15,6 +16,8 @@ public class Inventory : MonoBehaviour
     int inventorySize;
     int goldSize, kills, deaths;
 
+    #endregion
+    #region Properties
     public int InventorySize
     {
         get { return playerShipRef.GetComponent<ShipStats>().ShipCargoSpace; }
@@ -48,6 +51,7 @@ public class Inventory : MonoBehaviour
             myUIHandler.UpdateInformationPanel();
         }
     }
+    #endregion
 
     private void Awake()
     {
@@ -64,13 +68,7 @@ public class Inventory : MonoBehaviour
         Deaths = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void InventorySlotsAvailable()
+    public void InventorySlotsAvailable()
     {
         foreach (RectTransform slot in inventoryPanelRef.GetComponentsInChildren<RectTransform>())
         {
@@ -78,24 +76,39 @@ public class Inventory : MonoBehaviour
             {
                 continue;
             }
-            slotList.Add(slot.gameObject);
-            //print("Slot added: " + slot.name);
+            if (!slotList.Contains(slot.gameObject))
+            {
+                slotList.Add(slot.gameObject);
+            }
         }
 
-        //print("Slotlist Count: " + slotList.Count);
-        //print("Inventory Size: " + InventorySize);
-        for (int i = 0; i < slotList.Count; i++)
+        if (slotList.Count > 0)
         {
-            if (i < InventorySize)
+            for (int i = 0; i < slotList.Count; i++)
             {
-                slotList[i].GetComponentInChildren<Text>().enabled = true;
-            }
-            else
-            {
-                slotList[i].GetComponentInChildren<Text>().enabled = true;
-                slotList[i].GetComponentInChildren<Text>().text = "Not Available";
+                if (i < InventorySize)
+                {
+                    if (!slotList[i].activeSelf)
+                    {
+                        slotList[i].SetActive(true);
+                    }
+                    slotList[i].GetComponentInChildren<Text>().enabled = false;
+                    slotList[i].GetComponentInChildren<Text>().text = (i + 1).ToString(); //Show name of object on this InventorySlot
+                }
+                else
+                {
+                    if (slotList[i].activeSelf)
+                    {
+                        slotList[i].GetComponentInChildren<Text>().enabled = false;
+                        slotList[i].GetComponentInChildren<Text>().text = "Not Available";
+                        slotList[i].SetActive(false);
+                    }
+                }
             }
         }
+        else
+        {
 
+        }
     }
 }

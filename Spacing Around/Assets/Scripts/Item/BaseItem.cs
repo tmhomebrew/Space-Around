@@ -6,17 +6,18 @@ public abstract class BaseItem : MonoBehaviour
 {
     public enum Rarity
     {
-        Common, UnCommon, Rare, Epic, Legendary, Alien, Cosmic
+        Common, UnCommon, Rare, Epic, Legendary, Alien, Cosmic, None
     }
     public enum ItemType
     {
-        Money, ShipPart, TechApp, Weapon
+        ShipPart, TechApp, Weapon
     }
 
     protected string _BIName;
     protected uint _BIValue;
     protected uint _BIPriceEdit;
     protected uint _BIValueVendorCost;
+    protected object _BIImage;
 
     protected Rarity _BIRarity;
     protected ItemType _BITypeOfItem;

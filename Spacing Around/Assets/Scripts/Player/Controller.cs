@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour
     Guns myGuns;
     WeaponLaser myWL;
 
-    WrapScreenHandler myWrap;
     IEnumerator wrapChecker;
 
     public float accSpeed;
@@ -72,7 +71,6 @@ public class Controller : MonoBehaviour
         {
             myShip.IsMoving = false;
         }
-        //StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
         curSpeed = myRB.velocity.magnitude;
         myShip.ShipSpeedCur = curSpeed;
         

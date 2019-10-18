@@ -20,6 +20,8 @@ public class SpawnerAstroids : MonoBehaviour
     [SerializeField]
     List<Sprite> astroidList = new List<Sprite>();
     List<GameObject> astroidsInGame = new List<GameObject>();
+    [SerializeField]
+    int numberOfAstroidsInGame;
 
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class SpawnerAstroids : MonoBehaviour
         {
             myShip = GameObject.FindGameObjectWithTag("Player").transform.GetComponentInChildren<ShipStats>();
         }
+        numberOfAstroidsInGame = astroidsInGame.Count;
         IsGameRunning = true;
         InvokeRepeating("Spawn", spawnTimer, spawnTimer);
     }
@@ -52,5 +55,6 @@ public class SpawnerAstroids : MonoBehaviour
         enemyAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];
 
         astroidsInGame.Add(enemyAstroid);
+        numberOfAstroidsInGame = astroidsInGame.Count;
     }
 }

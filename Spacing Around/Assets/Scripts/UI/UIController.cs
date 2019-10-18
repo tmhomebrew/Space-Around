@@ -5,21 +5,27 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    #region Fields
     public GameObject cargoUI_GO;
     public GameObject statusBarUI_GO;
+    [SerializeField]
     private bool showUI;
+
+    #endregion
+    //Refs
+    Inventory myInven;
+
     
-    public List<object> tempList;
     // Start is called before the first frame update
     void Start()
     {
-        tempList = new List<object>();
+        myInven = transform.root.GetComponentInChildren<Inventory>();
         showUI = true;
         ShowUI(showUI);
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Controller();
     }
@@ -28,18 +34,24 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            /* Note <---------------------------------------------------------------------
-             * Disabler ikke de første childs i rækken, men kun grand-childs.. hmmm...
-             */
+            myInven.InventorySlotsAvailable();
             ShowUI(showUI);
         }
     }
 
+    /// <summary>
+    /// Show UI for Players CargoPanel.
+    /// </summary>
+    /// <param name="isOn">true/false for CargoUI to be visible</param>
     void ShowUI(bool isOn)
     {
-        if (!isOn)
+        if (isOn == false)
         {
             #region Cargo-UI Load
+            foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
+            {
+                go.enabled = true;
+            }
             foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
             {
                 go.enabled = true;
@@ -48,16 +60,15 @@ public class UIController : MonoBehaviour
             {
                 go.enabled = true;
             }
-            foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
-            {
-                go.enabled = true;
-            }
             #endregion
-            showUI = true;
         }
         else
         {
             #region Cargo-UI Unload
+            foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
+            {
+                go.enabled = false;
+            }
             foreach (RawImage go in cargoUI_GO.GetComponentsInChildren<RawImage>())
             {
                 go.enabled = false;
@@ -66,12 +77,8 @@ public class UIController : MonoBehaviour
             {
                 go.enabled = false;
             }
-            foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
-            {
-                go.enabled = false;
-            }
             #endregion
-            showUI = false;
         }
+        showUI = !showUI;
     }
 }

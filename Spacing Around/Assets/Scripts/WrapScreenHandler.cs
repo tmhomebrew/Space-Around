@@ -4,87 +4,59 @@ using UnityEngine;
 
 public class WrapScreenHandler : MonoBehaviour
 {
-    public GameObject GO;
-    [Header("Level Bounds:")]
-    public GameObject Left, Right, Top, Bot;
-    List<Transform> newList = new List<Transform>();
+    BoxCollider2D myCol;
+    float boundingBoxSizeX, boundingBoxSizeY;
 
     private void Start()
     {
-        GO = transform.gameObject;
-        if(GO.name.ToLower() == "spaceship")
-        {
-            GO = GetComponentInChildren<SpriteRenderer>().gameObject;
-        }
-        SetupBounds();
+        myCol = GetComponent<BoxCollider2D>();
+        boundingBoxSizeX = myCol.size.x;
+        boundingBoxSizeY = myCol.size.y;
     }
 
-    void Wrap()
+    /// <summary>
+    /// Wrap-methoed - Teleports an objects.transform to the other side of the map, depending on the point in worldSpace, where it leaves the boundingBoxArea.
+    /// </summary>
+    /// <param name="GO">transform of the Gameobject.</param>
+    void Wrap(Transform GO)
     {
         //x-axis, Left side
-        if (transform.position.x < Left.transform.position.x)
+        if (GO.transform.position.x < (boundingBoxSizeX / 2) * -1)
         {
-            transform.position = new Vector3(Right.transform.position.x, transform.position.y, transform.position.z);
+            GO.transform.position = new Vector3((boundingBoxSizeX / 2) * 1, GO.transform.position.y, GO.transform.position.z);
         }
         //x-axis, Right side
-        if (transform.position.x > Right.transform.position.x)
+        if (GO.transform.position.x > (boundingBoxSizeX / 2) * 1)
         {
-            transform.position = new Vector3(Left.transform.position.x, transform.position.y, transform.position.z);
+            GO.transform.position = new Vector3((boundingBoxSizeX / 2) * -1, GO.transform.position.y, GO.transform.position.z);
         }
         //y-axis, Top side
-        if (transform.position.y > Top.transform.position.y)
+        if (GO.transform.position.y > (boundingBoxSizeY / 2) * 1)
         {
-            transform.position = new Vector3(transform.position.x, Bot.transform.position.y, transform.position.z);
+            GO.transform.position = new Vector3(GO.transform.position.x, (boundingBoxSizeY / 2) * -1, GO.transform.position.z);
         }
         //y-axis, Right side
-        if (transform.position.y < Bot.transform.position.y)
+        if (GO.transform.position.y < (boundingBoxSizeY / 2) * -1)
         {
-            transform.position = new Vector3(transform.position.x, Top.transform.position.y, transform.position.z);
+            GO.transform.position = new Vector3(GO.transform.position.x, (boundingBoxSizeY / 2) * 1, GO.transform.position.z);
         }
     }
 
-    void SetupBounds()
+    /// <summary>
+    /// Registres if an object leaves the boundingBox of the Level.
+    /// </summary>
+    /// <param name="col">Object.Collider leaving the boundingBoxArea</param>
+    private void OnTriggerExit2D(Collider2D col)
     {
-        //If Bounding boxes are empty..
-        if (Left == null || Right == null || Top == null || Bot == null)
+        if (col.transform.root.name == "Player")
         {
-            newList.AddRange(GameObject.FindGameObjectWithTag("BoundingBox").GetComponentsInChildren<Transform>());
-            foreach (Transform go in newList)
-            {
-                if (go.name == "LevelBounds")
-                {
-                    continue;
-                }
-                if (go.name == "BoundLeft")
-                {
-                    Left = go.gameObject;
-                }
-                if (go.name == "BoundRight")
-                {
-                    Right = go.gameObject;
-                }
-                if (go.name == "BoundTop")
-                {
-                    Top = go.gameObject;
-                }
-                if (go.name == "BoundBot")
-                {
-                    Bot = go.gameObject;
-                }
-            }
-        }
-    }
-
-    public IEnumerator CheckVisable()
-    {
-        yield return new WaitForEndOfFrame();
-        if (GO.transform.GetComponent<Renderer>().isVisible)
-        {
-            Wrap();
+            Wrap(col.transform.root.GetComponentInChildren<ShipStats>().transform); //PlayerPrefab-->SpaceShip.transform
+            //print("Player has been moved.." + col.transform.root.GetComponentInChildren<ShipStats>().transform);
         }
         else
         {
-            Destroy(GO);
+            Wrap(col.transform);
+            //print("Something entered the field");
         }
     }
 }
