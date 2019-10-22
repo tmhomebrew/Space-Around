@@ -49,7 +49,6 @@ public class AstroidScript : MonoBehaviour
         myExplosion = GetComponent<ParticleSystem>();
         if (MySpawner == null)
         {
-            print("My spawner is: " + MySpawner); //Testing
             try
             {
                 MySpawner = transform.root.GetComponentInChildren<PointRotater>().transform;
@@ -100,7 +99,10 @@ public class AstroidScript : MonoBehaviour
         }
         if (col.transform.tag == "Fire")
         {
-            col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+            if (col.transform.GetComponent<LaserShot>().LaserOwner.name == "Player")
+            {
+                col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+            }
             //print("Money: " + col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             AstroidHealth = 0; //<-- Kills astroid
         }

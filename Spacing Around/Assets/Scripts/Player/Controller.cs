@@ -9,8 +9,6 @@ public class Controller : MonoBehaviour
     Guns myGuns;
     WeaponLaser myWL;
 
-    IEnumerator wrapChecker;
-
     public float accSpeed;
     public float maxSpeed;
     public float maxRotationSpeed;
@@ -21,13 +19,10 @@ public class Controller : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
-        //myWrap = GetComponent<WrapScreenHandler>();
         myGuns = GetComponentInChildren<Guns>();
         myGuns.LaserShotOwner = gameObject;
         myWL = GetComponentInChildren<WeaponLaser>();
         myWL.LaserShotOwner = gameObject;
-
-        //wrapChecker = myWrap.CheckVisable(); //Inside Bounds on GameMap..
 
         curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
@@ -64,7 +59,6 @@ public class Controller : MonoBehaviour
             if (curSpeed < maxSpeed)
             {
                 myRB.AddForce(forwardSpeed, ForceMode2D.Force);
-                //print("adding Speed..");
             }
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -73,8 +67,6 @@ public class Controller : MonoBehaviour
         }
         curSpeed = myRB.velocity.magnitude;
         myShip.ShipSpeedCur = curSpeed;
-        
-        //print("CurrentSpeed: " + curSpeed);
     }
 
     private void DirectionController()

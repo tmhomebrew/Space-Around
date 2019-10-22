@@ -50,7 +50,14 @@ public class LaserShot : MonoBehaviour
 
     void Awake()
     {
-        LaserOwner = transform.root.transform.GetComponentInChildren<ShipStats>().gameObject;
+        if (transform.root.tag == "Player")
+        {
+            LaserOwner = transform.root.transform.GetComponentInChildren<ShipStats>().gameObject;
+        }
+        else if (transform.root.tag == "Enemy")
+        {
+            LaserOwner = transform.root.transform.GetComponentInChildren<EnemyShipStats>().gameObject;
+        }
         myWL = LaserOwner.GetComponentInChildren<WeaponLaser>();
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), LaserOwner.GetComponentInChildren<Collider2D>());
         myRB = GetComponent<Rigidbody2D>();

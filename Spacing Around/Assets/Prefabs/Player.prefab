@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 7393579672737761377}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cargoUI_GO: {fileID: 5809977033500595377}
   statusBarUI_GO: {fileID: 8980619670487801469}
+  showUI: 0
 --- !u!1 &1442054925528658499
 GameObject:
   m_ObjectHideFlags: 0
