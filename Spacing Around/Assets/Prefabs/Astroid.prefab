@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 465287256853176576}
   - component: {fileID: 6966549980331792068}
   - component: {fileID: 366037910}
+  - component: {fileID: 5921765492690169382}
   m_Layer: 0
   m_Name: Astroid
   m_TagString: Astroid
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 763607015
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6459741252113627894, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
+  m_Sprite: {fileID: -471236636671522532, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,7 +125,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.19, y: 0.22}
+    oldSize: {x: 0.35, y: 0.37}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4878,3 +4879,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5921765492690169382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951228507714319769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d857cb93bab4b59429cf85c8492ecd15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCol: {fileID: 0}
+  myRig: {fileID: 0}
+  myRend: {fileID: 0}

@@ -6206,7 +6206,7 @@ PrefabInstance:
     - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: spawnTimer
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4209043889976743171, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
@@ -6232,6 +6232,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGunShip
       objectReference: {fileID: 0}
+    - target: {fileID: 8448381802119090329, guid: 54c838d1a890188419dee342b3ca405b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311614486776273910, guid: 54c838d1a890188419dee342b3ca405b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3097216834729381990, guid: 54c838d1a890188419dee342b3ca405b,
+        type: 3}
+      propertyPath: _backgroundBlue
+      value: 
+      objectReference: {fileID: 785852455}
     - target: {fileID: 1426114798016654286, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6347,20 +6362,15 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 311614486776273910, guid: 54c838d1a890188419dee342b3ca405b,
+    - target: {fileID: 7102836191839700432, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7102836191839700432, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7102836191839700432, guid: 54c838d1a890188419dee342b3ca405b,
-        type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7102836191839700432, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
@@ -6447,11 +6457,6 @@ PrefabInstance:
       propertyPath: eUIHolder
       value: 
       objectReference: {fileID: 264942381}
-    - target: {fileID: 3097216834729381990, guid: 54c838d1a890188419dee342b3ca405b,
-        type: 3}
-      propertyPath: _backgroundBlue
-      value: 
-      objectReference: {fileID: 785852455}
     - target: {fileID: 6740758645246701815, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
       propertyPath: m_IsActive
@@ -6470,12 +6475,12 @@ PrefabInstance:
     - target: {fileID: 6890064483984846063, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6890064483984846063, guid: 54c838d1a890188419dee342b3ca405b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c838d1a890188419dee342b3ca405b, type: 3}
