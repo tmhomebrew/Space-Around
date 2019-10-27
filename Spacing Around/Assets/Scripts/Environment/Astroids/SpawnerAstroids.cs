@@ -38,10 +38,11 @@ public class SpawnerAstroids : MonoBehaviour
 
     void Spawn()
     {
-        if (!IsGameRunning)
+        if (!IsGameRunning || numberOfAstroidsInGame > 5)
         {
             return;
         }
+
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         int astroidIndex = Random.Range(0, astroidList.Count);
 

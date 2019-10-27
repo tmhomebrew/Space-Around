@@ -66,15 +66,6 @@ public class AstroidScript : MonoBehaviour
         InitialLaunch();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (isAlive)
-        //{
-        //    StartCoroutine(myWrap.CheckVisable()); //Checks position on level..
-        //}
-    }
-
     void SetStats()
     {
         astroidSize = curSprite.rect.size.magnitude / scale / 10/*ShipScale*/;
