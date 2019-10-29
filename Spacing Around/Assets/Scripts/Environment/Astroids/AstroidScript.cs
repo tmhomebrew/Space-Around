@@ -39,14 +39,18 @@ public class AstroidScript : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        curSprite = GetComponent<SpriteRenderer>().sprite;
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
         myRB = GetComponent<Rigidbody2D>();
         myExplosion = GetComponent<ParticleSystem>();
+        curSprite = GetComponent<SpriteRenderer>().sprite;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         if (MySpawner == null)
         {
             try

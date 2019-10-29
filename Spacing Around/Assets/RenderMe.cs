@@ -4,25 +4,61 @@ using UnityEngine;
 
 public class RenderMe : MonoBehaviour
 {
-    public Rigidbody2D myRig;
-    public SpriteRenderer myRend;
+    public Collider2D myParentCol;
+    public SpriteRenderer myParentRendere;
+    private Collider2D myCol;
 
     // Start is called before the first frame update
     void Start()
     {
-        myRend = GetComponent<SpriteRenderer>();
-        myRig = GetComponent<Rigidbody2D>();
+        myParentRendere = GetComponentInParent<SpriteRenderer>();
+        myCol = GetComponent<Collider2D>();
     }
 
-    void Visibility()
+    void SwitchState(bool isVisible)
     {
-        //myRig.sleepMode = RigidbodySleepMode2D.StartAsleep;
-        SwitchState();
+        if (myParentCol == null)
+        {
+            foreach (Collider2D col in GetComponentsInParent<Collider2D>())
+            {
+                if (col != myCol)
+                {
+                    myParentCol = col;
+                    print(col);
+                }
+            }
+        }
+
+        if (isVisible)
+        {
+            myParentRendere.enabled = true;
+            //myParentCol.enabled = true;
+            print("Im visible.!");
+        }
+        else
+        {
+            myParentRendere.enabled = false;
+            //myParentCol.enabled = false;
+            print("Im invisible.!");
+        }
+        
     }
 
-    void SwitchState()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        myRend.enabled = !myRend.enabled;
-        print("Im .." + myRend.enabled);
+        print("EnterStuff");
+        if (col.transform.root.tag == "Player")
+        {
+            SwitchState(true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        print("ExitStuff");
+        if (col.transform.root.tag == "Player")
+        {
+            SwitchState(false);
+        }
     }
 }

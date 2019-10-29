@@ -548,7 +548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1426114798016654286}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6154999348942061936
 GameObject:
@@ -712,6 +712,7 @@ Transform:
   - {fileID: 9076407898880371702}
   - {fileID: 2587887379467572991}
   - {fileID: 8724897132840884212}
+  - {fileID: 1888444003596224702}
   m_Father: {fileID: 1426114798016654286}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -934,6 +935,8 @@ MonoBehaviour:
   enemyShieldMax: 0
   enemyShieldCur: 0
   eUIHandlerRef: {fileID: 0}
+  eUIHolder: {fileID: 0}
+  eGuns: []
   attacker: {fileID: 0}
 --- !u!114 &3097216834729381990
 MonoBehaviour:
@@ -951,6 +954,7 @@ MonoBehaviour:
   _healthBar: {fileID: 5942487540596561116}
   _greenFill: {fileID: 3206345761798755789}
   _shieldBar: {fileID: 6740758645246701815}
+  _backgroundBlue: {fileID: 0}
   _blueFill: {fileID: 5678973003128604939}
 --- !u!1 &6489578120938144646
 GameObject:
@@ -1277,7 +1281,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4279917678190732618}
-  - {fileID: 1888444003596224702}
   - {fileID: 5840093882643383397}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1313,8 +1316,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9004653686313761276}
-  m_Father: {fileID: 1426114798016654286}
-  m_RootOrder: 1
+  m_Father: {fileID: 4279917678190732618}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
