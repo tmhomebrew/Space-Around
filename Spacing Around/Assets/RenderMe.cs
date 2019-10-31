@@ -7,12 +7,14 @@ public class RenderMe : MonoBehaviour
     public Collider2D myParentCol;
     public SpriteRenderer myParentRendere;
     private Collider2D myCol;
+    private Rigidbody2D myRig;
 
     // Start is called before the first frame update
     void Start()
     {
         myParentRendere = GetComponentInParent<SpriteRenderer>();
         myCol = GetComponent<Collider2D>();
+        myRig = GetComponentInParent<Rigidbody2D>();
     }
 
     void SwitchState(bool isVisible)
@@ -24,7 +26,8 @@ public class RenderMe : MonoBehaviour
                 if (col != myCol)
                 {
                     myParentCol = col;
-                    print(col);
+                    break;
+                    //print(col);
                 }
             }
         }
@@ -32,21 +35,23 @@ public class RenderMe : MonoBehaviour
         if (isVisible)
         {
             myParentRendere.enabled = true;
+            myRig.bodyType = RigidbodyType2D.Dynamic;
             //myParentCol.enabled = true;
-            print("Im visible.!");
+            //print("Im visible.!");
         }
         else
         {
             myParentRendere.enabled = false;
+            myRig.bodyType = RigidbodyType2D.Kinematic;
             //myParentCol.enabled = false;
-            print("Im invisible.!");
+            //print("Im invisible.!");
         }
         
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print("EnterStuff");
+        //print("EnterStuff");
         if (col.transform.root.tag == "Player")
         {
             SwitchState(true);
@@ -55,7 +60,7 @@ public class RenderMe : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        print("ExitStuff");
+        //print("ExitStuff");
         if (col.transform.root.tag == "Player")
         {
             SwitchState(false);

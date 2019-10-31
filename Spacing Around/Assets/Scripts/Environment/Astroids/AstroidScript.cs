@@ -109,7 +109,7 @@ public class AstroidScript : MonoBehaviour
         //Animation for astroid explosion
         //LootDrop???
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 }
