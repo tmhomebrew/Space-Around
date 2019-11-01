@@ -18,6 +18,7 @@ public class LaserShot : MonoBehaviour
 
     [SerializeField]
     public Sprite[] laserBeamSprite = new Sprite[5];
+    [SerializeField]
     Sprite mySprite;
     LaserType myLT;
     //Mangler reference til WeaponLaser........... Construct ? <-----
@@ -26,6 +27,7 @@ public class LaserShot : MonoBehaviour
     private GameObject laserOwner;
     [SerializeField]
     private float speed;
+    private int damage;
 
     Rigidbody2D myRB;
 
@@ -34,18 +36,57 @@ public class LaserShot : MonoBehaviour
 
     public GameObject LaserOwner { get => laserOwner; set => laserOwner = value; }
 
-    public LaserShot()
+    public LaserShot(LaserType myLT)
     {
-        //switch (myWL.LaserRarity)
-        //{
-        //    case BaseItem.Rarity.Common:
-        //        myLT = LaserType.Blue;
-        //        mySprite = laserBeamSprite[1];
-        //        break;
-        //    default:
-        //        break;
-        //}
-        
+        switch (myWL.LaserRarity)
+        {
+            case BaseItem.Rarity.Common:
+                myLT = LaserType.Blue;        
+                break;
+            default:
+                break;
+        }
+        SetupLaserStats(myLT); //<--- In progress..
+
+    }
+
+    void SetupLaserStats(LaserType typeOfLaser)
+    {
+        switch (typeOfLaser)
+        {
+            case LaserType.Green:
+                speed = 20f;
+                damage = 1;
+                mySprite = laserBeamSprite[1];
+                break;
+            case LaserType.LightBlue:
+                speed = 20f;
+                damage = 2;
+                mySprite = laserBeamSprite[1];
+                break;
+            case LaserType.Blue:
+                speed = 25f;
+                damage = 4;
+                mySprite = laserBeamSprite[1];
+                break;
+            case LaserType.Yellow:
+                speed = 25f;
+                damage = 6;
+                mySprite = laserBeamSprite[1];
+                break;
+            case LaserType.Red:
+                speed = 40f;
+                damage = 12;
+                mySprite = laserBeamSprite[1];
+                break;
+            case LaserType.Purple:
+                speed = 50f;
+                damage = 20;
+                mySprite = laserBeamSprite[1];
+                break;
+            default:
+                break;
+        }
     }
 
     void Awake()
@@ -58,27 +99,26 @@ public class LaserShot : MonoBehaviour
         {
             LaserOwner = transform.root.transform.GetComponentInChildren<EnemyShipStats>().gameObject;
         }
-        myWL = LaserOwner.GetComponentInChildren<WeaponLaser>();
+        myWL = LaserOwner.GetComponentInChildren<WeaponLaser>(); //Need this??
+
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), LaserOwner.GetComponentInChildren<Collider2D>());
+        
         myRB = GetComponent<Rigidbody2D>();
-
         mySprRend = GetComponent<SpriteRenderer>();
-        //SetStats(LaserType.Green);
-        //mySprRend.sprite = mySprite;  <---------------------------------------------
-        
-        
-        //Destroy(GetComponent<PolygonCollider2D>()); //Refreshing the Collider
-        //gameObject.AddComponent<PolygonCollider2D>(); //Refreshing the Collider
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 20f;
         StartCoroutine(TimeAlive());
-
+        
+        speed = 20f;
         myRB.AddForce(SpeedOfLaser(speed), ForceMode2D.Impulse);
+    }
+
+    private Vector3 SpeedOfLaser(float speed)
+    {
+        return transform.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -93,22 +133,18 @@ public class LaserShot : MonoBehaviour
         }
     }
 
-    private Vector3 SpeedOfLaser(float speed)
-    {
-        return transform.up * speed;
-    }
 
     IEnumerator DestroySequence()
     {
         //Animation for LaserHit
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 
     IEnumerator TimeAlive()
     { 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
 }
