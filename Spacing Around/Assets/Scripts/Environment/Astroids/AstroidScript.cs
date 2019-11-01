@@ -74,7 +74,7 @@ public class AstroidScript : MonoBehaviour
     {
         astroidSize = curSprite.rect.size.magnitude / scale / 10/*ShipScale*/;
         myRB.mass = astroidSize;
-        AstroidHealth = 1;
+        AstroidHealth = (int)(astroidSize * 2);
         astroidSpeed = 100;
         isAlive = true;
     }

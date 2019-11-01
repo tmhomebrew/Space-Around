@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class RenderMe : MonoBehaviour
 {
+    #region Fields
     public Collider2D myParentCol;
     public SpriteRenderer myParentRendere;
     private Collider2D myCol;
     private Rigidbody2D myRig;
+    
+    private float myCurVel;
+    private Vector2 myCurForce;
+    private bool isInitialized;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -15,9 +21,11 @@ public class RenderMe : MonoBehaviour
         myParentRendere = GetComponentInParent<SpriteRenderer>();
         myCol = GetComponent<Collider2D>();
         myRig = GetComponentInParent<Rigidbody2D>();
+
+        isInitialized = true;
     }
 
-    void SwitchState(bool isVisible)
+    public void SwitchState(bool isVisible)
     {
         if (myParentCol == null)
         {
@@ -27,7 +35,6 @@ public class RenderMe : MonoBehaviour
                 {
                     myParentCol = col;
                     break;
-                    //print(col);
                 }
             }
         }
@@ -35,35 +42,27 @@ public class RenderMe : MonoBehaviour
         if (isVisible)
         {
             myParentRendere.enabled = true;
-            myRig.bodyType = RigidbodyType2D.Dynamic;
+            myRig.WakeUp();
             //myParentCol.enabled = true;
+            if (!isInitialized)
+            {
+                myRig.angularVelocity = myCurVel;
+                myRig.velocity = myCurForce;
+            }
+            else
+            {
+                isInitialized = !isInitialized;
+            }
             //print("Im visible.!");
         }
         else
         {
             myParentRendere.enabled = false;
-            myRig.bodyType = RigidbodyType2D.Kinematic;
+            myCurVel = myRig.angularVelocity;
+            myCurForce = myRig.velocity;
+            myRig.Sleep();
             //myParentCol.enabled = false;
             //print("Im invisible.!");
-        }
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        //print("EnterStuff");
-        if (col.transform.root.tag == "Player")
-        {
-            SwitchState(true);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        //print("ExitStuff");
-        if (col.transform.root.tag == "Player")
-        {
-            SwitchState(false);
         }
     }
 }

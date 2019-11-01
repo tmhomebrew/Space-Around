@@ -6,6 +6,8 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     public GameObject player;
     private ShipStats shipStats;
+    private WhatToSee myWTS;
+
     private Vector3 offset;
     private Camera myCam;
     [Range(10, 15)]
@@ -29,6 +31,7 @@ public class CameraFollowPlayer : MonoBehaviour
     {
         myCam = GetComponent<Camera>();
         shipStats = player.GetComponent<ShipStats>();
+        myWTS = player.GetComponentInChildren<WhatToSee>();
 
         offset = transform.position - player.transform.position;
         transform.position = player.transform.position + offset;
@@ -72,9 +75,11 @@ public class CameraFollowPlayer : MonoBehaviour
             {
                 yield return new WaitForSeconds(delay);
                 myCam.orthographicSize += Time.deltaTime;
+                myWTS.MyColSize = myCam.orthographicSize;
                 if (myCam.orthographicSize > maxDistanceFromPlayer)
                 {
                     myCam.orthographicSize = maxDistanceFromPlayer;
+                    myWTS.MyColSize = maxDistanceFromPlayer;
                     sizeReached = true;
                     break;
                 }
@@ -86,9 +91,11 @@ public class CameraFollowPlayer : MonoBehaviour
             {
                 yield return new WaitForSeconds(delay);
                 myCam.orthographicSize -= Time.deltaTime;
+                myWTS.MyColSize = myCam.orthographicSize;
                 if (myCam.orthographicSize < startDistanceFromPlayer)
                 {
                     myCam.orthographicSize = startDistanceFromPlayer;
+                    myWTS.MyColSize = startDistanceFromPlayer;
                     sizeReached = true;
                     break;
                 }

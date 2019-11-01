@@ -38,7 +38,7 @@ public class SpawnerAstroids : MonoBehaviour
 
     void Spawn()
     {
-        if (!IsGameRunning/* || numberOfAstroidsInGame > 0*/)
+        if (!IsGameRunning || numberOfAstroidsInGame > 0)
         {
             return;
         }
