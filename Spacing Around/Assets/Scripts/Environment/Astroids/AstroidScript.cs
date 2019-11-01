@@ -12,6 +12,7 @@ public class AstroidScript : MonoBehaviour
     private ParticleSystem myExplosion;
 
     //Stats
+    [SerializeField]
     private int astroidHealth;
     [SerializeField]
     bool isAlive;

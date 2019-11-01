@@ -8,6 +8,7 @@ TagManager:
   - Astroid
   - BoundingBox
   - Enemy
+  - Interactable Object
   layers:
   - Default
   - TransparentFX
