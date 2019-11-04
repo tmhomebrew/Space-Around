@@ -4,85 +4,62 @@ using UnityEngine;
 
 public class LaserShot : MonoBehaviour
 {
-    WeaponLaser myWL;
-
-    public enum LaserType
-    {
-        Green,
-        LightBlue,
-        Blue,
-        Yellow,
-        Red,
-        Purple
-    }
-
-    [SerializeField]
-    public Sprite[] laserBeamSprite = new Sprite[5];
     [SerializeField]
     Sprite mySprite;
-    LaserType myLT;
-    //Mangler reference til WeaponLaser........... Construct ? <-----
-
+    Rigidbody2D myRB;
+    SpriteRenderer mySprRend;
+    [SerializeField]
+    Guns myGun;
+    
     [SerializeField]
     private GameObject laserOwner;
     [SerializeField]
     private float speed;
     private int damage;
 
-    Rigidbody2D myRB;
-
-    SpriteRenderer mySprRend;
 
 
     public GameObject LaserOwner { get => laserOwner; set => laserOwner = value; }
 
-    public LaserShot(LaserType myLT)
+    public void SetupLaserStats(int myGLT)
     {
-        switch (myWL.LaserRarity)
+        switch (myGLT)
         {
-            case BaseItem.Rarity.Common:
-                myLT = LaserType.Blue;        
-                break;
-            default:
-                break;
-        }
-        SetupLaserStats(myLT); //<--- In progress..
-
-    }
-
-    void SetupLaserStats(LaserType typeOfLaser)
-    {
-        switch (typeOfLaser)
-        {
-            case LaserType.Green:
+            //case Guns.LaserType.Green:
+            case 0:
                 speed = 20f;
                 damage = 1;
-                mySprite = laserBeamSprite[1];
+                mySprite = myGun.laserBeamSprite[0];
                 break;
-            case LaserType.LightBlue:
+            //case Guns.LaserType.LightBlue:
+            case 1:
                 speed = 20f;
                 damage = 2;
-                mySprite = laserBeamSprite[1];
+                mySprite = myGun.laserBeamSprite[1];
                 break;
-            case LaserType.Blue:
+            //case Guns.LaserType.Blue:
+            case 2:
                 speed = 25f;
                 damage = 4;
-                mySprite = laserBeamSprite[1];
+                mySprite = myGun.laserBeamSprite[2];
                 break;
-            case LaserType.Yellow:
+            //case Guns.LaserType.Yellow:
+            case 3:
                 speed = 25f;
                 damage = 6;
-                mySprite = laserBeamSprite[1];
+                mySprite = myGun.laserBeamSprite[3];
                 break;
-            case LaserType.Red:
+            //case Guns.LaserType.Red:
+            case 4:
                 speed = 40f;
                 damage = 12;
-                mySprite = laserBeamSprite[1];
+                mySprite = myGun.laserBeamSprite[4];
                 break;
-            case LaserType.Purple:
+           // case Guns.LaserType.Purple:
+            case 5:
                 speed = 50f;
                 damage = 20;
-                mySprite = laserBeamSprite[1];
+                mySprite = myGun.laserBeamSprite[5];
                 break;
             default:
                 break;
@@ -99,10 +76,14 @@ public class LaserShot : MonoBehaviour
         {
             LaserOwner = transform.root.transform.GetComponentInChildren<EnemyShipStats>().gameObject;
         }
-        myWL = LaserOwner.GetComponentInChildren<WeaponLaser>(); //Need this??
+        //myWL = LaserOwner.GetComponentInChildren<WeaponLaser>(); //Need this??
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), LaserOwner.GetComponentInChildren<Collider2D>());
-        
+
+        if (myGun == null)
+        {
+            myGun = GetComponent<Guns>();
+        }
         myRB = GetComponent<Rigidbody2D>();
         mySprRend = GetComponent<SpriteRenderer>();
     }
@@ -111,8 +92,8 @@ public class LaserShot : MonoBehaviour
     void Start()
     {
         StartCoroutine(TimeAlive());
-        
-        speed = 20f;
+        //SetupLaserStats();
+        //speed = 20f;
         myRB.AddForce(SpeedOfLaser(speed), ForceMode2D.Impulse);
     }
 
@@ -133,7 +114,6 @@ public class LaserShot : MonoBehaviour
         }
     }
 
-
     IEnumerator DestroySequence()
     {
         //Animation for LaserHit
@@ -144,7 +124,7 @@ public class LaserShot : MonoBehaviour
 
     IEnumerator TimeAlive()
     { 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }
