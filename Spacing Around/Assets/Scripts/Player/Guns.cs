@@ -20,7 +20,6 @@ public class Guns : MonoBehaviour
     [SerializeField]
     LaserType gunLaserType;
 
-
     public GameObject spawnPoint;
     public Transform laserHolder;
 
@@ -37,8 +36,8 @@ public class Guns : MonoBehaviour
     public void ShotLaser()
     {
         //Instantiate(laserShot, spawnPoint.transform.position, spawnPoint.transform.rotation, laserHolder);
-        GameObject currentShot = laserShot;
-        currentShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
-        Instantiate(currentShot, spawnPoint.transform.position, transform.rotation, laserHolder);
+        //GameObject currentShot = laserShot;
+        //currentShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
+        Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
     }
 }

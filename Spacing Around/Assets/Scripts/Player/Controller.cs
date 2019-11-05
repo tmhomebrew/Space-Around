@@ -7,7 +7,6 @@ public class Controller : MonoBehaviour
     Rigidbody2D myRB;
     ShipStats myShip;
     Guns myGuns;
-    //WeaponLaser myWL;
 
     public float accSpeed;
     public float maxSpeed;
@@ -21,8 +20,6 @@ public class Controller : MonoBehaviour
         myShip = GetComponent<ShipStats>();
         myGuns = GetComponentInChildren<Guns>();
         myGuns.LaserShotOwner = gameObject;
-        //myWL = GetComponentInChildren<WeaponLaser>();
-        //myWL.LaserShotOwner = gameObject;
 
         curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
