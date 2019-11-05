@@ -23,7 +23,7 @@ public class ItemHolderScript : MonoBehaviour
             //}
             //else
             string strVar = "Prefabs/Weapons";
-            Object[] weaponsArr = Resources.LoadAll(strVar, typeof(GameObject));
+            GameObject[] weaponsArr = Resources.LoadAll<GameObject>(strVar) as GameObject[];
             if (weaponsArr == null || weaponsArr.Length == 0)
             {
                 print("No Files where found");
@@ -32,9 +32,9 @@ public class ItemHolderScript : MonoBehaviour
             else
             {
                 int x = 0;
-                foreach (Object prefab in weaponsArr)
+                foreach (GameObject prefab in weaponsArr)
                 {
-                    GameObject go = (GameObject)prefab;
+                    GameObject go = prefab;
                     itemHolderList.Add(go);
                     print(itemHolderList[x]);
                     x++;

@@ -106,9 +106,5 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-        else
-        {
-
-        }
     }
 }

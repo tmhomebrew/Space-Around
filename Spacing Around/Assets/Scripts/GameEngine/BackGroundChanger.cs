@@ -26,10 +26,4 @@ public class BackGroundChanger : MonoBehaviour
             currentBackground = backgroundHolder.GetComponent<SpriteRenderer>().sprite;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

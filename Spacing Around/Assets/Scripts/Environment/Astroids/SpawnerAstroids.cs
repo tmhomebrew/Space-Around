@@ -5,24 +5,25 @@ using UnityEngine;
 public class SpawnerAstroids : MonoBehaviour
 {
     [SerializeField]
-    bool IsGameRunning;
+    private bool isGameRunning;
     [SerializeField]
     ShipStats myShip; //Test
-    public AstroidScript myAstroid;
 
     public GameObject enemyAstroid;
     //public GameObject astroidDir;
     public Transform astroidHolder;
     public float spawnTimer;
-    public Transform[] spawnPoints;
+    public List<Transform> spawnPoints;
 
     //Astroid-settings
     [SerializeField]
     List<Sprite> astroidList = new List<Sprite>();
     List<GameObject> astroidsInGame = new List<GameObject>();
     [SerializeField]
-    int numberOfAstroidsInGame;
+    private int numberOfAstroidsInGame;
 
+    public bool IsGameRunning { get => isGameRunning; set => isGameRunning = value; }
+    public int NumberOfAstroidsInGame { get => numberOfAstroidsInGame; set => numberOfAstroidsInGame = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -31,31 +32,34 @@ public class SpawnerAstroids : MonoBehaviour
         {
             myShip = GameObject.FindGameObjectWithTag("Player").transform.GetComponentInChildren<ShipStats>();
         }
-        numberOfAstroidsInGame = astroidsInGame.Count;
-        IsGameRunning = true;
+        foreach (Transform go in GetComponentsInChildren<Transform>())
+        {
+            if (go.gameObject.name.Contains("SpawnPosHolder"))
+            {
+                spawnPoints.Add(go);
+                print("im in - " + go.name);
+            }
+        }
+
+        NumberOfAstroidsInGame = astroidsInGame.Count;
         InvokeRepeating("Spawn", spawnTimer, spawnTimer);
     }
 
     void Spawn()
     {
-        if (!IsGameRunning || numberOfAstroidsInGame > 0)
+        if (!IsGameRunning || NumberOfAstroidsInGame > 10)
         {
             return;
         }
 
-        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+        int spawnPointIndex = Random.Range(0, spawnPoints.Count);
         int astroidIndex = Random.Range(0, astroidList.Count);
 
         Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
-        if (myAstroid == null)
-        {
-            myAstroid = enemyAstroid.GetComponent<AstroidScript>();
-            myAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];
-        }
         enemyAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
         enemyAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];
 
         astroidsInGame.Add(enemyAstroid);
-        numberOfAstroidsInGame = astroidsInGame.Count;
+        NumberOfAstroidsInGame++;
     }
 }

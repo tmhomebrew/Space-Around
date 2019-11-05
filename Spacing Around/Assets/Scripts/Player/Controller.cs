@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    #region Fields
     Rigidbody2D myRB;
     ShipStats myShip;
     Guns myGuns;
@@ -13,6 +14,10 @@ public class Controller : MonoBehaviour
     public float maxRotationSpeed;
     public float curSpeed;
     Vector3 forwardSpeed;
+
+    private bool newWeaponSelection = false; //Used for ChooseWeapon()
+
+    #endregion
 
     private void Start()
     {
@@ -31,6 +36,7 @@ public class Controller : MonoBehaviour
     {
         if (myShip.IsAlive)
         {
+            ChooseWeapon();
             MoveController();
             DirectionController();
             Actions();
@@ -42,7 +48,6 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             myGuns.ShotLaser();
-            //myWL.Shoot();
         }
     }
 
@@ -75,6 +80,30 @@ public class Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(new Vector3(0, 0, 1) * -maxRotationSpeed * Time.deltaTime, Space.Self);
+        }
+    }
+
+    private void ChooseWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            myGuns.GunLaserType = Guns.LaserType.Green;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            myGuns.GunLaserType = Guns.LaserType.LightBlue;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            myGuns.GunLaserType = Guns.LaserType.Blue;
+            newWeaponSelection = true;
+        }
+        if (newWeaponSelection)
+        {
+            myGuns.laserShot.GetComponent<LaserShot>().SetupLaserStats((int)myGuns.GunLaserType);
+            newWeaponSelection = false;
         }
     }
 }

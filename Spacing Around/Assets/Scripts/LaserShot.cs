@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class LaserShot : MonoBehaviour
 {
+    #region Fields
     [SerializeField]
-    Sprite mySprite;
-    Rigidbody2D myRB;
-    SpriteRenderer mySprRend;
-    [SerializeField]
-    Guns myGun;
+    private Guns myGun;
     
     [SerializeField]
     private GameObject laserOwner;
     [SerializeField]
     private float speed;
+    [SerializeField]
     private int damage;
 
-
-
+    #endregion
+    #region Properties
     public GameObject LaserOwner { get => laserOwner; set => laserOwner = value; }
+    public Guns MyGun { get => myGun; set => myGun = value; }
+
+    #endregion
 
     public void SetupLaserStats(int myGLT)
     {
@@ -29,37 +30,37 @@ public class LaserShot : MonoBehaviour
             case 0:
                 speed = 20f;
                 damage = 1;
-                mySprite = myGun.laserBeamSprite[0];
+                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
                 break;
             //case Guns.LaserType.LightBlue:
             case 1:
                 speed = 20f;
                 damage = 2;
-                mySprite = myGun.laserBeamSprite[1];
+                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[1];
                 break;
             //case Guns.LaserType.Blue:
             case 2:
                 speed = 25f;
                 damage = 4;
-                mySprite = myGun.laserBeamSprite[2];
+                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[2];
                 break;
             //case Guns.LaserType.Yellow:
             case 3:
                 speed = 25f;
                 damage = 6;
-                mySprite = myGun.laserBeamSprite[3];
+                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[3];
                 break;
             //case Guns.LaserType.Red:
             case 4:
                 speed = 40f;
                 damage = 12;
-                mySprite = myGun.laserBeamSprite[4];
+                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[4];
                 break;
            // case Guns.LaserType.Purple:
             case 5:
                 speed = 50f;
                 damage = 20;
-                mySprite = myGun.laserBeamSprite[5];
+                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[5];
                 break;
             default:
                 break;
@@ -76,30 +77,20 @@ public class LaserShot : MonoBehaviour
         {
             LaserOwner = transform.root.transform.GetComponentInChildren<EnemyShipStats>().gameObject;
         }
-        //myWL = LaserOwner.GetComponentInChildren<WeaponLaser>(); //Need this??
-
+        
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), LaserOwner.GetComponentInChildren<Collider2D>());
-
-        if (myGun == null)
-        {
-            myGun = GetComponent<Guns>();
-        }
-        myRB = GetComponent<Rigidbody2D>();
-        mySprRend = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(TimeAlive());
-        //SetupLaserStats();
-        //speed = 20f;
-        myRB.AddForce(SpeedOfLaser(speed), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(SpeedOfLaser(speed), ForceMode2D.Impulse);
     }
 
-    private Vector3 SpeedOfLaser(float speed)
+    private Vector3 SpeedOfLaser(float varSpeed)
     {
-        return transform.up * speed;
+        return transform.up * varSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D col)

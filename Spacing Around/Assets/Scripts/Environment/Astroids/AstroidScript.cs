@@ -32,6 +32,7 @@ public class AstroidScript : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<PolygonCollider2D>().enabled = false;
+                MySpawner.gameObject.GetComponent<SpawnerAstroids>().NumberOfAstroidsInGame--; //<--Referer til SpawnPos.GO skal være AstroidSpawner.GO
                 StopAllCoroutines();
                 isAlive = false;
                 //print("Astroid destroyed: " + transform.name);
@@ -52,19 +53,16 @@ public class AstroidScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (MySpawner == null)
+        try
         {
-            try
-            {
-                MySpawner = transform.root.GetComponentInChildren<PointRotater>().transform;
-            }
-            catch (System.Exception)
-            {
-                print("Could not find the transform");
-                throw;
-            }
+            MySpawner = transform.root.GetComponentInChildren<PointRotater>().transform;
         }
-
+        catch (System.Exception)
+        {
+            print("Could not find the transform");
+            throw;
+        }
+        
         scale = Mathf.Sqrt(Mathf.Pow(transform.localScale.x, 2) + Mathf.Pow(transform.localScale.y, 2));
 
         SetStats();
@@ -109,7 +107,6 @@ public class AstroidScript : MonoBehaviour
         myExplosion.Play();
         //Animation for astroid explosion
         //LootDrop???
-
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
