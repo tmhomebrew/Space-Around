@@ -57,7 +57,7 @@ public class SpawnerAstroids : MonoBehaviour
 
         Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
         enemyAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
-        enemyAstroid.GetComponent<AstroidScript>().MySpawner = spawnPoints[spawnPointIndex];
+        enemyAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
 
         astroidsInGame.Add(enemyAstroid);
         NumberOfAstroidsInGame++;

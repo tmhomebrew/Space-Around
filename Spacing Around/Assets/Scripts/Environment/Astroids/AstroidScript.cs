@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AstroidScript : MonoBehaviour
 {
+    #region Fields
     public Sprite curSprite;
     [SerializeField]
-    private Transform mySpawner;
+    private GameObject astroidSpawnerRef;
+    private Transform myLaunchDir;
     private Rigidbody2D myRB;
     private PolygonCollider2D myCol;
     private ParticleSystem myExplosion;
@@ -21,7 +23,13 @@ public class AstroidScript : MonoBehaviour
     [SerializeField]
     private float scale;
 
-    public Transform MySpawner { get => mySpawner; set => mySpawner = value; }
+    //Set by RenderMe.cs
+    private bool astroidIsWithinRange;
+
+    #endregion
+    #region Properties
+
+    public Transform MyLaunchDir { get => myLaunchDir; set => myLaunchDir = value; }
     public int AstroidHealth
     {
         get => astroidHealth;
@@ -32,7 +40,7 @@ public class AstroidScript : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<PolygonCollider2D>().enabled = false;
-                MySpawner.gameObject.GetComponent<SpawnerAstroids>().NumberOfAstroidsInGame--; //<--Referer til SpawnPos.GO skal være AstroidSpawner.GO
+                astroidSpawnerRef.GetComponent<SpawnerAstroids>().NumberOfAstroidsInGame--; //<--Referer til SpawnPos.GO skal være AstroidSpawner.GO
                 StopAllCoroutines();
                 isAlive = false;
                 //print("Astroid destroyed: " + transform.name);
@@ -41,11 +49,17 @@ public class AstroidScript : MonoBehaviour
         }
     }
 
+    public bool AstroidIsWithinRange { get => astroidIsWithinRange; set => astroidIsWithinRange = value; }
+
+    #endregion
+
     void Awake()
     {
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
+        myCol = GetComponent<PolygonCollider2D>();
         myRB = GetComponent<Rigidbody2D>();
+        astroidSpawnerRef = GetComponentInParent<SpawnerAstroids>().gameObject;
         myExplosion = GetComponent<ParticleSystem>();
         curSprite = GetComponent<SpriteRenderer>().sprite;
     }
@@ -55,7 +69,7 @@ public class AstroidScript : MonoBehaviour
     {
         try
         {
-            MySpawner = transform.root.GetComponentInChildren<PointRotater>().transform;
+            MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
         }
         catch (System.Exception)
         {
@@ -80,12 +94,16 @@ public class AstroidScript : MonoBehaviour
 
     void InitialLaunch()
     {
-        Vector2 push = MySpawner.GetComponent<PointRotater>().AstroidDir * astroidSpeed * Time.deltaTime;
+        Vector2 push = MyLaunchDir.GetComponent<PointRotater>().AstroidDir * astroidSpeed * Time.deltaTime;
         GetComponent<Rigidbody2D>().AddForce(push, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        if (!AstroidIsWithinRange)
+        {
+            return;
+        }
         if (col.transform.tag == "Player")
         {
             col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
@@ -93,11 +111,11 @@ public class AstroidScript : MonoBehaviour
         }
         if (col.transform.tag == "Fire")
         {
-            if (col.transform.GetComponent<LaserShot>().LaserOwner.name == "Player")
+            if (col.gameObject.GetComponent<LaserShot>().LaserOwner.tag == "Player")
             {
-                col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+                col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+                //print("Money: " + col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             }
-            //print("Money: " + col.transform.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             AstroidHealth = 0; //<-- Kills astroid
         }
     }

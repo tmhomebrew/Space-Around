@@ -42,12 +42,12 @@ public class RenderMe : MonoBehaviour
         if (isVisible)
         {
             myParentRendere.enabled = true;
+            myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = true;
             myRig.WakeUp();
             //myParentCol.enabled = true;
             if (!isInitialized)
             {
-                myRig.angularVelocity = myCurVel;
-                myRig.velocity = myCurForce;
+                ResetVelocity(true);
             }
             else
             {
@@ -58,11 +58,27 @@ public class RenderMe : MonoBehaviour
         else
         {
             myParentRendere.enabled = false;
-            myCurVel = myRig.angularVelocity;
-            myCurForce = myRig.velocity;
+            myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = false;
+            ResetVelocity(false);
             myRig.Sleep();
             //myParentCol.enabled = false;
             //print("Im invisible.!");
+        }
+    }
+
+    public void ResetVelocity(bool visible)
+    {
+        if (visible)
+        {
+            myParentCol.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            myRig.angularVelocity = myCurVel;
+            myRig.velocity = myCurForce;
+        }
+        else
+        {
+            myCurVel = myRig.angularVelocity;
+            myCurForce = myRig.velocity;
+            myParentCol.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 }
