@@ -44,7 +44,6 @@ public class RenderMe : MonoBehaviour
             myParentRendere.enabled = true;
             myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = true;
             myRig.WakeUp();
-            //myParentCol.enabled = true;
             if (!isInitialized)
             {
                 ResetVelocity(true);
@@ -53,7 +52,6 @@ public class RenderMe : MonoBehaviour
             {
                 isInitialized = !isInitialized;
             }
-            //print("Im visible.!");
         }
         else
         {
@@ -61,8 +59,6 @@ public class RenderMe : MonoBehaviour
             myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = false;
             ResetVelocity(false);
             myRig.Sleep();
-            //myParentCol.enabled = false;
-            //print("Im invisible.!");
         }
     }
 

@@ -5,17 +5,22 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     #region Fields
+    //References
     Rigidbody2D myRB;
     ShipStats myShip;
-    Guns myGuns;
 
+    //Gun system
+    List<GameObject> myGuns;
+    Guns.LaserType newLaserType;
+
+    //Speed variables
     public float accSpeed;
     public float maxSpeed;
     public float maxRotationSpeed;
     public float curSpeed;
     Vector3 forwardSpeed;
 
-    private bool newWeaponSelection = false; //Used for ChooseWeapon()
+    private bool newWeaponSelection = true; //Used for ChooseWeapon()
 
     #endregion
 
@@ -23,8 +28,8 @@ public class Controller : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
-        myGuns = GetComponentInChildren<Guns>();
-        myGuns.LaserShotOwner = gameObject;
+        myGuns = new List<GameObject>();
+        SetupGuns();
 
         curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
@@ -32,14 +37,44 @@ public class Controller : MonoBehaviour
         maxSpeed = myShip.ShipSpeedMax;
     }
 
+    private void SetupGuns()
+    {
+        foreach (Guns gu in GetComponentsInChildren<Guns>())
+        {
+            gu.gameObject.GetComponent<Guns>().LaserShotOwner = gameObject;
+            myGuns.Add(gu.gameObject);
+        }
+    }
+
     private void Update()
     {
         if (myShip.IsAlive)
         {
             ChooseWeapon();
+            CombinationChecker();
             MoveController();
             DirectionController();
             Actions();
+        }
+    }
+
+    #region KeyCombs
+    private KeyCombo barrolRollRight = new KeyCombo(new string[] { "left", "right" });
+    private KeyCombo barrolRollLeft = new KeyCombo(new string[] { "right", "left" });
+
+    #endregion
+
+    private void CombinationChecker()
+    {
+        if (barrolRollRight.Check())
+        {
+            // do the barrol roll to the right
+            Debug.Log("BarrolRollRight has been executed.!");
+        }
+        if (barrolRollLeft.Check())
+        {
+            // do the barrol roll to the left
+            Debug.Log("BarrolRollLeft has been executed.!");
         }
     }
 
@@ -47,7 +82,10 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            myGuns.ShotLaser();
+            foreach (GameObject gu in myGuns)
+            {
+                gu.GetComponent<Guns>().ShotLaser();
+            }
         }
     }
 
@@ -87,22 +125,41 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            myGuns.GunLaserType = Guns.LaserType.Green;
+            newLaserType = Guns.LaserType.Green;
             newWeaponSelection = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            myGuns.GunLaserType = Guns.LaserType.LightBlue;
+            newLaserType = Guns.LaserType.LightBlue;
             newWeaponSelection = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            myGuns.GunLaserType = Guns.LaserType.Blue;
+            newLaserType = Guns.LaserType.Blue;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            newLaserType = Guns.LaserType.Yellow;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            newLaserType = Guns.LaserType.Red;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            newLaserType = Guns.LaserType.Purple;
             newWeaponSelection = true;
         }
         if (newWeaponSelection)
         {
-            myGuns.laserShot.GetComponent<LaserShot>().SetupLaserStats((int)myGuns.GunLaserType);
+            //myGuns.laserShot.GetComponent<LaserShot>().SetupLaserStats((int)myGuns.GunLaserType);
+            foreach (GameObject go in myGuns)
+            {
+                go.GetComponent<Guns>().GunLaserType = newLaserType;
+            }
             newWeaponSelection = false;
         }
     }

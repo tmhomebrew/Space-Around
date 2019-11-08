@@ -37,7 +37,6 @@ public class SpawnerAstroids : MonoBehaviour
             if (go.gameObject.name.Contains("SpawnPosHolder"))
             {
                 spawnPoints.Add(go);
-                print("im in - " + go.name);
             }
         }
 

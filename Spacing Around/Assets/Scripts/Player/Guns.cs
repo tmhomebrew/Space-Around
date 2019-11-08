@@ -30,6 +30,25 @@ public class Guns : MonoBehaviour
 
     public void Start()
     {
+        if (laserHolder == null)
+        {
+            try
+            {
+                foreach (Transform go in transform.root.GetComponentInChildren<Transform>())
+                {
+                    if (go.gameObject.name.Contains("LaserShotHolder"))
+                    {
+                        laserHolder = go;
+                        break;
+                    }
+                }
+            }
+            catch (System.Exception)
+            {
+                print("Could not find 'LaserShotHolder'..");
+                throw;
+            }
+        }
         GunLaserType = LaserType.Purple;
     }
 

@@ -19,6 +19,7 @@ public class LaserShot : MonoBehaviour
     #region Properties
     public GameObject LaserOwner { get => laserOwner; set => laserOwner = value; }
     public Guns MyGun { get => myGun; set => myGun = value; }
+    public int Damage { get => damage; set => damage = value; }
 
     #endregion
 
@@ -29,37 +30,37 @@ public class LaserShot : MonoBehaviour
             //case Guns.LaserType.Green:
             case 0:
                 speed = 20f;
-                damage = 1;
+                Damage = 1;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
                 break;
             //case Guns.LaserType.LightBlue:
             case 1:
                 speed = 20f;
-                damage = 2;
+                Damage = 2;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[1];
                 break;
             //case Guns.LaserType.Blue:
             case 2:
                 speed = 25f;
-                damage = 4;
+                Damage = 4;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[2];
                 break;
             //case Guns.LaserType.Yellow:
             case 3:
                 speed = 25f;
-                damage = 6;
+                Damage = 6;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[3];
                 break;
             //case Guns.LaserType.Red:
             case 4:
                 speed = 40f;
-                damage = 12;
+                Damage = 12;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[4];
                 break;
            // case Guns.LaserType.Purple:
             case 5:
                 speed = 50f;
-                damage = 20;
+                Damage = 20;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[5];
                 break;
             default:
