@@ -116,7 +116,8 @@ public class AstroidScript : MonoBehaviour
                 col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
                 //print("Money: " + col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             }
-            AstroidHealth = 0; //<-- Kills astroid
+            AstroidHealth -= col.gameObject.GetComponent<LaserShot>().Damage;
+            //AstroidHealth = 0; //<-- Kills astroid
         }
     }
 

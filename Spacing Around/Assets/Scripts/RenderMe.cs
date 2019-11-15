@@ -13,7 +13,6 @@ public class RenderMe : MonoBehaviour
     private float myCurVel;
     private Vector2 myCurForce;
     private bool isInitialized;
-
     #endregion
 
     // Start is called before the first frame update
@@ -24,36 +23,6 @@ public class RenderMe : MonoBehaviour
         myRig = GetComponentInParent<Rigidbody2D>();
 
         isInitialized = true;
-    }
-
-    private IEnumerator VisibleState(bool isVisible)
-    {
-        if (isVisible)
-        {
-            myParentRendere.enabled = true;
-            myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = true;
-            myRig.WakeUp();
-            //myParentCol.enabled = true;
-            if (!isInitialized)
-            {
-                ResetVelocity(true);
-            }
-            else
-            {
-                isInitialized = !isInitialized;
-            }
-            //print("Im visible.!");
-        }
-        else
-        {
-            myParentRendere.enabled = false;
-            myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = false;
-            ResetVelocity(false);
-            myRig.Sleep();
-            //myParentCol.enabled = false;
-            //print("Im invisible.!");
-        }
-        yield return null;
     }
 
     public void SwitchState(bool isVisible)
@@ -69,7 +38,28 @@ public class RenderMe : MonoBehaviour
                 }
             }
         }
-        StartCoroutine(VisibleState(isVisible));
+
+        if (isVisible)
+        {
+            myParentRendere.enabled = true;
+            myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = true;
+            myRig.WakeUp();
+            if (!isInitialized)
+            {
+                ResetVelocity(true);
+            }
+            else
+            {
+                isInitialized = !isInitialized;
+            }
+        }
+        else
+        {
+            myParentRendere.enabled = false;
+            myParentCol.gameObject.GetComponent<AstroidScript>().AstroidIsWithinRange = false;
+            ResetVelocity(false);
+            myRig.Sleep();
+        }
     }
 
     public void ResetVelocity(bool visible)

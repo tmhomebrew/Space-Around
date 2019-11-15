@@ -5,29 +5,22 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     #region Fields
+    //References
     Rigidbody2D myRB;
     ShipStats myShip;
-<<<<<<< HEAD
-    Animation myAni;
-    Animator myAniTor;
-=======
-    Guns myGuns;
->>>>>>> parent of 73fd045... Small fixes + KeyCombos!
 
+    //Gun system
+    List<GameObject> myGuns;
+    Guns.LaserType newLaserType;
+
+    //Speed variables
     public float accSpeed;
     public float maxSpeed;
     public float maxRotationSpeed;
     public float curSpeed;
     Vector3 forwardSpeed;
 
-<<<<<<< HEAD
-    //Animation
-    //private bool aniIsPlaying;
-
     private bool newWeaponSelection = true; //Used for ChooseWeapon()
-=======
-    private bool newWeaponSelection = false; //Used for ChooseWeapon()
->>>>>>> parent of 73fd045... Small fixes + KeyCombos!
 
     #endregion
 
@@ -35,22 +28,22 @@ public class Controller : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
-<<<<<<< HEAD
         myGuns = new List<GameObject>();
-        //myAni = GetComponentInParent<Animation>();
-        //myAniTor = GetComponentInParent<Animator>();
         SetupGuns();
-=======
-        myGuns = GetComponentInChildren<Guns>();
-        myGuns.LaserShotOwner = gameObject;
->>>>>>> parent of 73fd045... Small fixes + KeyCombos!
 
         curSpeed = myShip.ShipSpeedCur;
         accSpeed = myShip.ShipAcceleration;
         maxRotationSpeed = myShip.ShipTurnSpeed;
         maxSpeed = myShip.ShipSpeedMax;
+    }
 
-        //aniIsPlaying = false;
+    private void SetupGuns()
+    {
+        foreach (Guns gu in GetComponentsInChildren<Guns>())
+        {
+            gu.gameObject.GetComponent<Guns>().LaserShotOwner = gameObject;
+            myGuns.Add(gu.gameObject);
+        }
     }
 
     private void Update()
@@ -58,26 +51,16 @@ public class Controller : MonoBehaviour
         if (myShip.IsAlive)
         {
             ChooseWeapon();
-<<<<<<< HEAD
-            //if (aniIsPlaying == false)
-            //{
-                CombinationChecker();
-            //}
-=======
->>>>>>> parent of 73fd045... Small fixes + KeyCombos!
+            CombinationChecker();
             MoveController();
-            //if (aniIsPlaying == false)
-            //{
-                DirectionController();
-            //}
+            DirectionController();
             Actions();
         }
     }
 
-<<<<<<< HEAD
     #region KeyCombs
-    private KeyCombo barrolRollRight = new KeyCombo(new string[] { "left", "right" }, 0.2f);
-    private KeyCombo barrolRollLeft = new KeyCombo(new string[] { "right", "left" }, 0.2f);
+    private KeyCombo barrolRollRight = new KeyCombo(new string[] { "left", "right" });
+    private KeyCombo barrolRollLeft = new KeyCombo(new string[] { "right", "left" });
 
     #endregion
 
@@ -85,25 +68,24 @@ public class Controller : MonoBehaviour
     {
         if (barrolRollRight.Check())
         {
-            //StartCoroutine( RunAnimation(false) );
             // do the barrol roll to the right
             Debug.Log("BarrolRollRight has been executed.!");
         }
         if (barrolRollLeft.Check())
         {
-            //StartCoroutine( RunAnimation(true) );
             // do the barrol roll to the left
             Debug.Log("BarrolRollLeft has been executed.!");
         }
     }
 
-=======
->>>>>>> parent of 73fd045... Small fixes + KeyCombos!
     private void Actions()
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            myGuns.ShotLaser();
+            foreach (GameObject gu in myGuns)
+            {
+                gu.GetComponent<Guns>().ShotLaser();
+            }
         }
     }
 
@@ -143,34 +125,42 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            myGuns.GunLaserType = Guns.LaserType.Green;
+            newLaserType = Guns.LaserType.Green;
             newWeaponSelection = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            myGuns.GunLaserType = Guns.LaserType.LightBlue;
+            newLaserType = Guns.LaserType.LightBlue;
             newWeaponSelection = true;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            myGuns.GunLaserType = Guns.LaserType.Blue;
+            newLaserType = Guns.LaserType.Blue;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            newLaserType = Guns.LaserType.Yellow;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            newLaserType = Guns.LaserType.Red;
+            newWeaponSelection = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            newLaserType = Guns.LaserType.Purple;
             newWeaponSelection = true;
         }
         if (newWeaponSelection)
         {
-            myGuns.laserShot.GetComponent<LaserShot>().SetupLaserStats((int)myGuns.GunLaserType);
+            //myGuns.laserShot.GetComponent<LaserShot>().SetupLaserStats((int)myGuns.GunLaserType);
+            foreach (GameObject go in myGuns)
+            {
+                go.GetComponent<Guns>().GunLaserType = newLaserType;
+            }
             newWeaponSelection = false;
         }
     }
-    
-    //private IEnumerator RunAnimation(bool leftSide)
-    //{
-    //    aniIsPlaying = true;
-    //    myAniTor.SetBool("DirIsLeft", leftSide);
-    //    myAniTor.SetTrigger("RunAnimation");
-
-    //    yield return new WaitForSeconds(1);
-
-    //    aniIsPlaying = false;
-    //}
 }

@@ -11,11 +11,6 @@ public class KeyCombo
     {
         buttons = b;
     }
-    public KeyCombo(string[] b, float _allowedtimeBetweenButtons = 0.2f)
-    {
-        buttons = b;
-        allowedTimeBetweenButtons = _allowedtimeBetweenButtons;
-    }
 
     //usage: call this once a frame. when the combo has been completed, it will return true
     public bool Check()
