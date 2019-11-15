@@ -6,13 +6,14 @@ public class SpawnerAstroids : MonoBehaviour
 {
     [SerializeField]
     private bool isGameRunning;
-    
+    [SerializeField]
+    ShipStats myShip; //Test
+
     public GameObject enemyAstroid;
     //public GameObject astroidDir;
     public Transform astroidHolder;
     public float spawnTimer;
     public List<Transform> spawnPoints;
-    public int numberOfAstroidsMax;
 
     //Astroid-settings
     [SerializeField]
@@ -27,7 +28,10 @@ public class SpawnerAstroids : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numberOfAstroidsMax = 20; //<--- For Test purpose..
+        if (myShip == null)
+        {
+            myShip = GameObject.FindGameObjectWithTag("Player").transform.GetComponentInChildren<ShipStats>();
+        }
         foreach (Transform go in GetComponentsInChildren<Transform>())
         {
             if (go.gameObject.name.Contains("SpawnPosHolder"))
@@ -42,7 +46,7 @@ public class SpawnerAstroids : MonoBehaviour
 
     void Spawn()
     {
-        if (!IsGameRunning || NumberOfAstroidsInGame > numberOfAstroidsMax)
+        if (!IsGameRunning || NumberOfAstroidsInGame > 10)
         {
             return;
         }

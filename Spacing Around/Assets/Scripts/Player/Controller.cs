@@ -8,7 +8,6 @@ public class Controller : MonoBehaviour
     //References
     Rigidbody2D myRB;
     ShipStats myShip;
-    Animation myAni;
 
     //Gun system
     List<GameObject> myGuns;
@@ -22,7 +21,6 @@ public class Controller : MonoBehaviour
     Vector3 forwardSpeed;
 
     private bool newWeaponSelection = true; //Used for ChooseWeapon()
-    public bool canMove = true;
 
     #endregion
 
@@ -31,7 +29,6 @@ public class Controller : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         myShip = GetComponent<ShipStats>();
         myGuns = new List<GameObject>();
-        myAni = GetComponentInChildren<Animation>();
         SetupGuns();
 
         curSpeed = myShip.ShipSpeedCur;
@@ -55,12 +52,29 @@ public class Controller : MonoBehaviour
         {
             ChooseWeapon();
             CombinationChecker();
-            if (canMove)
-            {
-                MoveController();
-                DirectionController();
-            }
+            MoveController();
+            DirectionController();
             Actions();
+        }
+    }
+
+    #region KeyCombs
+    private KeyCombo barrolRollRight = new KeyCombo(new string[] { "left", "right" });
+    private KeyCombo barrolRollLeft = new KeyCombo(new string[] { "right", "left" });
+
+    #endregion
+
+    private void CombinationChecker()
+    {
+        if (barrolRollRight.Check())
+        {
+            // do the barrol roll to the right
+            Debug.Log("BarrolRollRight has been executed.!");
+        }
+        if (barrolRollLeft.Check())
+        {
+            // do the barrol roll to the left
+            Debug.Log("BarrolRollLeft has been executed.!");
         }
     }
 
@@ -149,64 +163,4 @@ public class Controller : MonoBehaviour
             newWeaponSelection = false;
         }
     }
-
-    #region KeyCombs
-    private KeyCombo barrolRollRight = new KeyCombo(new string[] { "left", "right" });
-    private KeyCombo barrolRollLeft = new KeyCombo(new string[] { "right", "left" });
-    private float barralRollLength = 3;
-    private bool canUseCombo = true;
-
-    #endregion
-    private void CombinationChecker()
-    {
-        if (canUseCombo)
-        {
-            if (barrolRollRight.Check())
-            {
-                StartCoroutine(CombinationDelay());
-                //StartCoroutine(MoveTo(transform, transform.TransformDirection(transform.position + (Vector3.left * barralRollLength)), myAni["BarrolRollRight"].length));
-                //Vector3.Lerp(transform.position, transform.TransformDirection(Vector3.right * barralRollLength), 1f);
-                //transform.position += transform.TransformDirection(Vector3.right * barralRollLength);
-                myAni.Play("BarrolRollRight");
-                // do the barrol roll to the right
-                Debug.Log("BarrolRollRight has been executed.!");
-            }
-            if (barrolRollLeft.Check())
-            {
-                StartCoroutine(CombinationDelay());
-                //transform.position += transform.TransformDirection(Vector3.left * barralRollLength);
-                //StartCoroutine(BarralRollAnimation(false));
-                //Vector3.Lerp(transform.position, transform.position + transform.TransformDirection(Vector3.left * barralRollLength), 1f);
-                myAni.Play("BarrolRollLeft");
-                // do the barrol roll to the left
-                Debug.Log("BarrolRollLeft has been executed.!");
-            }
-        }
-    }
-
-    IEnumerator CombinationDelay()
-    {
-        canUseCombo = false;
-        yield return new WaitForSeconds(1f);
-        canUseCombo = true;
-    }
-
-    //IEnumerator MoveTo(Transform objectToMove, Vector3 targetPosition, float timeToTake)
-    //{
-    //    canMove = false;
-    //    float t = 0;
-    //    Vector3 originalPosition = objectToMove.position;
-    //    while (t < 1)
-    //    {
-    //        // putting the increment of t before the lerp, will make it so that by the end of the loop our object would reach 
-    //        // its target position with 100% because t is clampped between 0 to 1 in the lerp.
-    //        // but if we but the increment after it - in the last run - t would become something like 0.99942 or something
-    //        // we'd lerp to that - and then t would go beyond 1 and the loop would exit - and we'd end up with our object sitting at 0.99942
-    //        // of the road - not 1
-    //        t += Time.deltaTime / timeToTake;
-    //        objectToMove.position = Vector3.Lerp(originalPosition, targetPosition, t);
-    //        yield return null;
-    //    }
-    //    canMove = true;
-    //}
-}    
+}
