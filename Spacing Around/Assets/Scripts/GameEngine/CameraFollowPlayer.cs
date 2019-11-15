@@ -30,7 +30,7 @@ public class CameraFollowPlayer : MonoBehaviour
     void Start()
     {
         myCam = GetComponent<Camera>();
-        shipStats = player.GetComponent<ShipStats>();
+        shipStats = player.GetComponentInChildren<ShipStats>();
         myWTS = player.GetComponentInChildren<WhatToSee>();
 
         offset = transform.position - player.transform.position;
