@@ -36,8 +36,8 @@ public class ShipStats : MonoBehaviour
 
     //Ship
     float shipWeight;
-    float shipWeightCapacityMax;
-    float shipWeightCapacityCur;
+    float shipCargoWeightCapacityMax;
+    float shipCargoWeightCapacityCur;
     [SerializeField]
     int shipCargoSpace;
 
@@ -153,8 +153,8 @@ public class ShipStats : MonoBehaviour
                 ShipTurnSpeed = 200;
 
                 shipWeight = 450;
-                shipWeightCapacityMax = 200;
-                shipWeightCapacityCur = 0;
+                shipCargoWeightCapacityMax = 200;
+                shipCargoWeightCapacityCur = 0;
                 ShipCargoSpace = 4;
                 break;
         }
@@ -188,10 +188,6 @@ public class ShipStats : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="i">if 'regulator' is positive adds health.. else, draws health </param>
     public void TakeDamage(float damage)
     {
         ShieldCalculator((int)damage, true);
@@ -202,7 +198,6 @@ public class ShipStats : MonoBehaviour
         ShieldCalculator((int)repair, false);
     }
 
-    int remainingDamage;
     void ShieldCalculator(int incDamage, bool isDamage)
     {
         if (isDamage)
@@ -259,12 +254,15 @@ public class ShipStats : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.GetComponent<LaserShot>().LaserOwner != gameObject)
+        if (IsAlive)
         {
-            attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner;
-            killedByPlayer = true;
-            //TakeDamage(col.gameObject.GetComponent<LaserShot>().    ) //<-- Need more stuff here..
-            print("Should take Damage from " + attacker);
+            if (col.gameObject.GetComponent<LaserShot>().LaserOwner != gameObject)
+            {
+                attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner;
+                killedByPlayer = true;
+                //TakeDamage(col.gameObject.GetComponent<LaserShot>().    ) //<-- Need more stuff here..
+                print("Should take Damage from " + attacker);
+            }
         }
     }
 }

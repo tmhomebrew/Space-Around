@@ -28,6 +28,11 @@ public class Guns : MonoBehaviour
     public LaserType GunLaserType { get => gunLaserType; set => gunLaserType = value; }
     public Sprite[] LaserBeamSprite { get => laserBeamSprite; set => laserBeamSprite = value; }
 
+    public void Awake()
+    {
+        GunLaserType = LaserType.Purple;        
+    }
+
     public void Start()
     {
         if (laserHolder == null)
@@ -36,7 +41,7 @@ public class Guns : MonoBehaviour
             {
                 foreach (Transform go in transform.root.GetComponentInChildren<Transform>())
                 {
-                    if (go.gameObject.name.Contains("LaserShotHolder"))
+                    if (go.gameObject.name.ToLower().Contains("lasershotholder"))
                     {
                         laserHolder = go;
                         break;
@@ -49,13 +54,12 @@ public class Guns : MonoBehaviour
                 throw;
             }
         }
-        GunLaserType = LaserType.Purple;
     }
 
     public void ShotLaser()
     {
         Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
-        laserShot.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
-        laserShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
+        //laserShot.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
+        //laserShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
     }
 }

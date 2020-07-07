@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponLaser : BaseItem, IWeapon
+public class WeaponLaser : BaseItem, IWeaponShoot
 {
     [SerializeField]
     string _laserName;
@@ -27,6 +27,8 @@ public class WeaponLaser : BaseItem, IWeapon
         _BIRarity = quality;
         _BIValue = ValueOfLaser(_BIRarity);
         _BITypeOfItem = weapon;
+        
+        _BIWeight = 0; //Not set
 
         //laserShot = 
     }
@@ -43,19 +45,19 @@ public class WeaponLaser : BaseItem, IWeapon
         switch (quality)
         {
             case Rarity.Common:
-                value *= 10;
+                value *= 2;
                 break;
             case Rarity.UnCommon:
-                value *= 20;
+                value *= 10;
                 break;
             case Rarity.Rare:
                 value *= 50;
                 break;
             case Rarity.Epic:
-                value *= 70;
+                value *= 200;
                 break;
             case Rarity.Legendary:
-                value *= 100;
+                value *= 2500;
                 break;
             case Rarity.Alien:
                 value *= 5000;

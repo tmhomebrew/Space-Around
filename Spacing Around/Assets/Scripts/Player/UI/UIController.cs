@@ -45,7 +45,8 @@ public class UIController : MonoBehaviour
     /// <param name="isOn">true/false for CargoUI to be visible</param>
     void ShowUI(bool isOn)
     {
-        if (isOn == false)
+        showUI = !showUI;
+        if (!isOn)
         {
             #region Cargo-UI Load
             foreach (Text go in cargoUI_GO.GetComponentsInChildren<Text>())
@@ -79,6 +80,5 @@ public class UIController : MonoBehaviour
             }
             #endregion
         }
-        showUI = !showUI;
     }
 }

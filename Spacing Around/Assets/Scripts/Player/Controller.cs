@@ -20,7 +20,7 @@ public class Controller : MonoBehaviour
     public float curSpeed;
     Vector3 forwardSpeed;
 
-    private bool newWeaponSelection = true; //Used for ChooseWeapon()
+    private bool newWeaponSelection = false; //Used for ChooseWeapon()
 
     #endregion
 
@@ -159,6 +159,7 @@ public class Controller : MonoBehaviour
             foreach (GameObject go in myGuns)
             {
                 go.GetComponent<Guns>().GunLaserType = newLaserType;
+                //print("Gun is.: " + go.GetComponent<Guns>().GunLaserType);
             }
             newWeaponSelection = false;
         }
