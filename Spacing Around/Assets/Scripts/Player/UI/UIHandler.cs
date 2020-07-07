@@ -36,7 +36,7 @@ public class UIHandler : MonoBehaviour
         {
             healthVarPlayerRef = value;
             _healthBar.GetComponent<Slider>().value = healthVarPlayerRef;
-            UpdateHealthBarText();
+            UpdateBarText();
         }
     }
     public float ShieldVarPlayerRef
@@ -58,7 +58,7 @@ public class UIHandler : MonoBehaviour
                 shieldUp = false;
             }
             _shieldBar.GetComponent<Slider>().value = shieldVarPlayerRef;
-            UpdateHealthBarText();
+            UpdateBarText();
         }
     }
 
@@ -79,25 +79,12 @@ public class UIHandler : MonoBehaviour
         deathRef = shipStatsRef.ShipInventory.Deaths;
 
         //Update
-        UpdateHealthBarText();
+        UpdateBarText();
         UpdateInformationPanel();
     }
 
-    public void UpdateHealthBarText()
+    public void UpdateBarText()
     {
-        #region Health
-        if (_healthBar.GetComponent<Slider>().value >= 0 && _greenFill.GetComponent<Image>().enabled == false)
-        {
-            _greenFill.GetComponent<Image>().enabled = true;
-        }
-        if(_healthBar.GetComponentInChildren<Slider>().value == 0)
-        {
-            _greenFill.GetComponent<Image>().enabled = false;
-        }
-        healthInText = _healthBar.GetComponent<Slider>().value.ToString();
-        _healthText.GetComponent<Text>().text = "Health: " + healthInText + "/" + _healthBar.GetComponent<Slider>().maxValue;
-        #endregion
-
         #region Shield
         if (_shieldBar.GetComponent<Slider>().value >= 0 && _blueFill.GetComponent<Image>().enabled == false)
         {
@@ -109,6 +96,19 @@ public class UIHandler : MonoBehaviour
         }
         shieldInText = _shieldBar.GetComponent<Slider>().value.ToString();
         _shieldText.GetComponent<Text>().text = "Shield: " + shieldInText + "/" + _shieldBar.GetComponentInChildren<Slider>().maxValue;
+        #endregion
+
+        #region Health
+        if (_healthBar.GetComponent<Slider>().value >= 0 && _greenFill.GetComponent<Image>().enabled == false)
+        {
+            _greenFill.GetComponent<Image>().enabled = true;
+        }
+        if(_healthBar.GetComponentInChildren<Slider>().value == 0)
+        {
+            _greenFill.GetComponent<Image>().enabled = false;
+        }
+        healthInText = _healthBar.GetComponent<Slider>().value.ToString();
+        _healthText.GetComponent<Text>().text = "Health: " + healthInText + "/" + _healthBar.GetComponent<Slider>().maxValue;
         #endregion
     }
 

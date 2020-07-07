@@ -46,6 +46,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -201,11 +202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdeb20908941c24ab1e3006c22588a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useECS: 0
   isGameRunning: 0
-  myShip: {fileID: 0}
-  myAstroid: {fileID: 0}
   enemyAstroid: {fileID: 1951228507714319769, guid: 079721dfed2c4694896f1ef188a06ba4,
     type: 3}
+  prefabForECS: {fileID: 0}
   astroidHolder: {fileID: 4209043889929631788}
   spawnTimer: 1
   spawnPoints:
@@ -317,6 +318,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -376,6 +378,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPos
       objectReference: {fileID: 0}
+    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8990147808299155003, guid: f9ef03c2444b8c84488f773e7b542ce8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -429,16 +441,6 @@ PrefabInstance:
     - target: {fileID: 8990147808299155003, guid: f9ef03c2444b8c84488f773e7b542ce8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -461,6 +463,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPos
       objectReference: {fileID: 0}
+    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8990147808299155003, guid: f9ef03c2444b8c84488f773e7b542ce8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -514,16 +526,6 @@ PrefabInstance:
     - target: {fileID: 8990147808299155003, guid: f9ef03c2444b8c84488f773e7b542ce8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3478356668153046384, guid: f9ef03c2444b8c84488f773e7b542ce8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

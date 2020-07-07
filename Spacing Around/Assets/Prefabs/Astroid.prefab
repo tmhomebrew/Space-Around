@@ -51,6 +51,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 763607015
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7347920074892127947, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
+  m_Sprite: {fileID: 8472032605490900527, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,7 +126,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.51}
+    oldSize: {x: 0.19, y: 0.19}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,8 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f27317e991792f43a2ff0c224418931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curSprite: {fileID: 0}
-  astroidSpawnerRef: {fileID: 0}
+  curSprite: {fileID: -6894395955471022273, guid: fecabe0ac19ea2a438d36a9cc71dbea9,
+    type: 3}
+  astroidSpawnerRef: {fileID: 4209043890185115395, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+    type: 3}
   astroidHealth: 0
   isAlive: 0
   astroidSpeed: 0
@@ -4832,6 +4835,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

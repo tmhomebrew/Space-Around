@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 
 public class SpawnerAstroids : MonoBehaviour
 {
+    #region ECS - Dots
+    //[SerializeField]
+    //bool useECS;
+
+    //EntityManager ecsManager;
+    //Entity astroidEntityPrefab;
+    #endregion
+
     [SerializeField]
     private bool isGameRunning;
-    [SerializeField]
-    ShipStats myShip; //Test
-
+    
     public GameObject enemyAstroid;
-    //public GameObject astroidDir;
+    public GameObject prefabForECS;
     public Transform astroidHolder;
     public float spawnTimer;
     public List<Transform> spawnPoints;
@@ -28,10 +35,13 @@ public class SpawnerAstroids : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (myShip == null)
-        {
-            myShip = GameObject.FindGameObjectWithTag("Player").transform.GetComponentInChildren<ShipStats>();
-        }
+        //if(useECS)
+        //{
+        //    ecsManager = World.Active.EntityManager;
+
+        //    astroidEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(prefabForECS, World.Active);
+        //}
+
         foreach (Transform go in GetComponentsInChildren<Transform>())
         {
             if (go.gameObject.name.Contains("SpawnPosHolder"))
@@ -46,19 +56,29 @@ public class SpawnerAstroids : MonoBehaviour
 
     void Spawn()
     {
-        if (!IsGameRunning || NumberOfAstroidsInGame > 10)
+        if (!IsGameRunning || NumberOfAstroidsInGame > 1000)
         {
             return;
         }
-
+        
         int spawnPointIndex = Random.Range(0, spawnPoints.Count);
         int astroidIndex = Random.Range(0, astroidList.Count);
 
-        Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
-        enemyAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
-        enemyAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
+        //if (!useECS)
+        //{
+        GameObject eAstroid = Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder) as GameObject;
+        eAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
+        eAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
 
         astroidsInGame.Add(enemyAstroid);
         NumberOfAstroidsInGame++;
+        //}
+        //else
+        //{
+        //Entity astroidEnt = ecsManager.Instantiate(astroidEntityPrefab);
+
+        //ecsManager.SetComponentData(astroidEnt, new Rotation { Value = spawnPoints[spawnPointIndex].rotation });
+        //ecsManager.SetComponentData(astroidEnt, new Translation { Value = spawnPoints[spawnPointIndex].position });
+        //}
     }
 }
