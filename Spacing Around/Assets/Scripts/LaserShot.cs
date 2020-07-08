@@ -20,52 +20,68 @@ public class LaserShot : MonoBehaviour
     public GameObject LaserOwner { get => laserOwner; set => laserOwner = value; }
     public Guns MyGun { get => myGun; set => myGun = value; }
     public int Damage { get => damage; set => damage = value; }
+    public float Speed { get => speed; set => speed = value; }
 
     #endregion
 
+    public LaserShot()
+    {
+        //speed
+        //damage
+        //GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
+    }
+
+    public void SetupLaserStats()
+    {
+
+    }
     public void SetupLaserStats(int myGLT)
     {
-        switch (myGLT)
-        {
-            //case Guns.LaserType.Green:
-            case 0:
-                speed = 20f;
-                Damage = 1;
-                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
-                break;
-            //case Guns.LaserType.LightBlue:
-            case 1:
-                speed = 20f;
-                Damage = 2;
-                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[1];
-                break;
-            //case Guns.LaserType.Blue:
-            case 2:
-                speed = 25f;
-                Damage = 4;
-                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[2];
-                break;
-            //case Guns.LaserType.Yellow:
-            case 3:
-                speed = 25f;
-                Damage = 6;
-                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[3];
-                break;
-            //case Guns.LaserType.Red:
-            case 4:
-                speed = 40f;
-                Damage = 12;
-                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[4];
-                break;
-           // case Guns.LaserType.Purple:
-            case 5:
-                speed = 50f;
-                Damage = 20;
-                GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[5];
-                break;
-            default:
-                break;
-        }
+
+
+        #region Old
+        //switch (myGLT)
+        //{
+        //    //case Guns.LaserType.Green:
+        //    case 0:
+        //        speed = 20f;
+        //        Damage = 1;
+        //        GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
+        //        break;
+        //    //case Guns.LaserType.LightBlue:
+        //    case 1:
+        //        speed = 20f;
+        //        Damage = 2;
+        //        GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[1];
+        //        break;
+        //    //case Guns.LaserType.Blue:
+        //    case 2:
+        //        speed = 25f;
+        //        Damage = 4;
+        //        GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[2];
+        //        break;
+        //    //case Guns.LaserType.Yellow:
+        //    case 3:
+        //        speed = 25f;
+        //        Damage = 6;
+        //        GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[3];
+        //        break;
+        //    //case Guns.LaserType.Red:
+        //    case 4:
+        //        speed = 40f;
+        //        Damage = 12;
+        //        GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[4];
+        //        break;
+        //   // case Guns.LaserType.Purple:
+        //    case 5:
+        //        speed = 50f;
+        //        Damage = 20;
+        //        GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[5];
+        //        break;
+        //    default:
+        //        break;
+        //}
+        #endregion
     }
 
     void Awake()
@@ -86,7 +102,7 @@ public class LaserShot : MonoBehaviour
     void Start()
     {
         StartCoroutine(TimeAlive());
-        GetComponent<Rigidbody2D>().AddForce(SpeedOfLaser(speed), ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(SpeedOfLaser(Speed), ForceMode2D.Impulse);
     }
 
     private Vector3 SpeedOfLaser(float varSpeed)

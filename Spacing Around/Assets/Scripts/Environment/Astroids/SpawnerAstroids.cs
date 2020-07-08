@@ -1,18 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Entities;
 
 public class SpawnerAstroids : MonoBehaviour
 {
-    #region ECS - Dots
-    //[SerializeField]
-    //bool useECS;
-
-    //EntityManager ecsManager;
-    //Entity astroidEntityPrefab;
-    #endregion
-
     [SerializeField]
     private bool isGameRunning;
     

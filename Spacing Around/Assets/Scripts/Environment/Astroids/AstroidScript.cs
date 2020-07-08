@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Entities;
 
-public class AstroidScript : MonoBehaviour, IConvertGameObjectToEntity
+public class AstroidScript : MonoBehaviour
 {
     #region Fields
     public Sprite curSprite;
@@ -129,11 +128,5 @@ public class AstroidScript : MonoBehaviour, IConvertGameObjectToEntity
         //LootDrop???
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
-    }
-
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
-    {
-        dstManager.AddComponent(entity, typeof(Translation));
-        dstManager.AddComponent(entity, typeof(Rotation));
     }
 }

@@ -7,7 +7,7 @@ public class WeaponLaser : BaseItem, IWeaponShoot
     [SerializeField]
     string _laserName;
     [SerializeField]
-    Rarity _laserRarity;
+    Equipment.Rarity _laserRarity;
     [SerializeField]
     int _laserDamage;
 
@@ -18,14 +18,14 @@ public class WeaponLaser : BaseItem, IWeaponShoot
     public Transform laserHolder;
 
     public GameObject LaserShotOwner { get => laserShotOwner; set => laserShotOwner = value; }
-    public Rarity LaserRarity { get => _laserRarity; set => _laserRarity = value; }
+    public Equipment.Rarity LaserRarity { get => _laserRarity; set => _laserRarity = value; }
     public int LaserDamage { get => _laserDamage; set => _laserDamage = value; }
 
-    public WeaponLaser(string name, Rarity quality, ItemType weapon = ItemType.Weapon)
+    public WeaponLaser(string name, Equipment.Rarity quality, ItemType weapon = ItemType.Weapon)
     {
-        _BIName = name;
+        BIName = name;
         _BIRarity = quality;
-        _BIValue = ValueOfLaser(_BIRarity);
+        BIValue = ValueOfLaser(_BIRarity);
         _BITypeOfItem = weapon;
         
         _BIWeight = 0; //Not set
