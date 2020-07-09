@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemWeapon : Equipment
+public class ItemLaserWeapon : Equipment
 {
-    //Fields
-    [SerializeField]
-    public Sprite[] laserBeamSprites = new Sprite[5];
-
     public enum LaserType
     {
         Green,
@@ -16,15 +12,20 @@ public class ItemWeapon : Equipment
         Red,
         Purple
     }
+
+    //Fields
+    [SerializeField]
+    public Sprite[] laserBeamSprites = new Sprite[5];
+
     //Properties
 
     /// <summary>
     /// Laser Weapon
     /// </summary>
     /// <param name="laserType">What type of laser it is, on a range from 'Green' to 'Purple'.</param>
-    public ItemWeapon(LaserType laserType) 
+    public ItemLaserWeapon(LaserType laserType) 
         : base(ItemType.Weapon,
-            "LaserWeapon",
+            "LaserWeapon " + laserType,
             1, 
             "This is a weapon that shoots lasers. Damage is depended on rarity, and can be seen by the color.",
             1)
@@ -103,7 +104,6 @@ public class ItemWeapon : Equipment
                 BIValue = 1;
                 BIDescription =
                     "Most common laser, Green.";
-
                 break;
         }
 
@@ -111,5 +111,13 @@ public class ItemWeapon : Equipment
         laserShot.AddComponent<LaserShot>();
         laserShot.GetComponent<LaserShot>().Damage = item_stats["Damage"];
         laserShot.GetComponent<LaserShot>().Speed = item_stats["Speed"];
+        laserShot.GetComponent<LaserShot>().Image = BIImage;
+    }
+
+    public GameObject MakeNewLaserWeapon(LaserType type)
+    {
+        GameObject newLaser = new GameObject();
+        newLaser.AddComponent<ItemLaserWeapon>(); //<---- This code...
+        return newLaser;
     }
 }

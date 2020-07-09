@@ -70,8 +70,6 @@ public abstract class BaseItem : MonoBehaviour
         }
     }
     public virtual Sprite GetImage => BIImage;
-
-
     public override string ToString()
     {
         return base.ToString() +
@@ -105,6 +103,7 @@ public abstract class Equipment : BaseItem
         BIImage = image;
         item_stats = stats;
     }
+
     public Equipment(ItemType typeOfItem, string title, uint value, string description, uint sizeInInventory)
     {
         BIItem_type = typeOfItem;

@@ -5,8 +5,8 @@ using UnityEngine;
 public class LaserShot : MonoBehaviour
 {
     #region Fields
-    [SerializeField]
-    private Guns myGun;
+    //[SerializeField]
+    //private Guns myGun;
     
     [SerializeField]
     private GameObject laserOwner;
@@ -14,13 +14,16 @@ public class LaserShot : MonoBehaviour
     private float speed;
     [SerializeField]
     private int damage;
+    [SerializeField]
+    private Sprite image;
 
     #endregion
     #region Properties
     public GameObject LaserOwner { get => laserOwner; set => laserOwner = value; }
-    public Guns MyGun { get => myGun; set => myGun = value; }
+    //public Guns MyGun { get => myGun; set => myGun = value; }
     public int Damage { get => damage; set => damage = value; }
     public float Speed { get => speed; set => speed = value; }
+    public Sprite Image { get => image; set => image = value; }
 
     #endregion
 

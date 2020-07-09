@@ -14,7 +14,8 @@ public class Guns : MonoBehaviour
         Purple
     }
 
-    public GameObject laserShot;
+    private GameObject laserShot, lasershotNew;
+    GameObject laserShotOwner;
     [SerializeField]
     private Sprite[] laserBeamSprite = new Sprite[5];
     [SerializeField]
@@ -23,14 +24,15 @@ public class Guns : MonoBehaviour
     public GameObject spawnPoint;
     public Transform laserHolder;
 
-    GameObject laserShotOwner;
     public GameObject LaserShotOwner { get => laserShotOwner; set => laserShotOwner = value; }
     public LaserType GunLaserType { get => gunLaserType; set => gunLaserType = value; }
     public Sprite[] LaserBeamSprite { get => laserBeamSprite; set => laserBeamSprite = value; }
+    public GameObject LasershotNew { get => lasershotNew; set => lasershotNew = value; }
 
     public void Awake()
     {
-        GunLaserType = LaserType.Purple;        
+        //GunLaserType = LaserType.Purple;
+        LasershotNew = new GameObject();
     }
 
     public void Start()
@@ -58,8 +60,13 @@ public class Guns : MonoBehaviour
 
     public void ShotLaser()
     {
-        Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
+        Instantiate(LasershotNew, spawnPoint.transform.position, transform.rotation, laserHolder);
+
+        #region Old
+        //Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
+
         //laserShot.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
         //laserShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
+        #endregion
     }
 }
