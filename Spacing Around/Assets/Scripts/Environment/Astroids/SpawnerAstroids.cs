@@ -25,6 +25,9 @@ public class SpawnerAstroids : MonoBehaviour
     public bool IsGameRunning { get => isGameRunning; set => isGameRunning = value; }
     public int NumberOfAstroidsInGame { get => numberOfAstroidsInGame; set => numberOfAstroidsInGame = value; }
 
+    //Object Pool
+    private AstroidPooling myPool;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,25 +43,51 @@ public class SpawnerAstroids : MonoBehaviour
             }
         }
 
+        //Object Pool
+        myPool = GetComponent<AstroidPooling>();
+
         NumberOfAstroidsInGame = astroidsInGame.Count;
-        InvokeRepeating("Spawn", spawnTimer, spawnTimer);
+        //InvokeRepeating("Spawn", spawnTimer, spawnTimer);
+
+        StartCoroutine(Spawn());
     }
 
-    void Spawn()
+    int spawnPointIndex, astroidIndex;
+    IEnumerator Spawn()
     {
-        if (!IsGameRunning || NumberOfAstroidsInGame > 10)
+        while (true)
         {
-            return;
+            spawnPointIndex = Random.Range(0, spawnPoints.Count);
+            astroidIndex = Random.Range(0, astroidList.Count);
+            GameObject newAstroid = myPool.GetAvailableObject(); //Object
+            newAstroid.transform.position = spawnPoints[spawnPointIndex].position; //Position
+            newAstroid.transform.rotation = spawnPoints[spawnPointIndex].rotation; //Rotation
+            newAstroid.transform.SetParent(astroidHolder); //Parent
+            newAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
+            newAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
+
+            astroidsInGame.Add(newAstroid);
+            NumberOfAstroidsInGame++;
+            newAstroid.SetActive(true);
+            yield return new WaitForSeconds(spawnTimer);
         }
-
-        int spawnPointIndex = Random.Range(0, spawnPoints.Count);
-        int astroidIndex = Random.Range(0, astroidList.Count);
-
-        Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
-        enemyAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
-        enemyAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
-
-        astroidsInGame.Add(enemyAstroid);
-        NumberOfAstroidsInGame++;
     }
+
+    //void Spawn()
+    //{
+    //    //if (!IsGameRunning || NumberOfAstroidsInGame > 10)
+    //    //{
+    //    //    return;
+    //    //}
+
+    //    int spawnPointIndex = Random.Range(0, spawnPoints.Count);
+    //    int astroidIndex = Random.Range(0, astroidList.Count);
+
+    //    Instantiate(enemyAstroid, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation, astroidHolder);
+    //    enemyAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
+    //    enemyAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
+
+    //    astroidsInGame.Add(enemyAstroid);
+    //    NumberOfAstroidsInGame++;
+    //}
 }
