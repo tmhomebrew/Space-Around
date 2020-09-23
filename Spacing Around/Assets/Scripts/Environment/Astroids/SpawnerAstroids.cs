@@ -39,7 +39,7 @@ public class SpawnerAstroids : MonoBehaviour
         {
             if (go.gameObject.name.Contains("SpawnPosHolder"))
             {
-                spawnPoints.Add(go);
+                spawnPoints.Add(go.GetChild(0));
             }
         }
 
@@ -53,23 +53,29 @@ public class SpawnerAstroids : MonoBehaviour
     }
 
     int spawnPointIndex, astroidIndex;
+    GameObject newAstroid;
     IEnumerator Spawn()
     {
         while (true)
         {
-            spawnPointIndex = Random.Range(0, spawnPoints.Count);
-            astroidIndex = Random.Range(0, astroidList.Count);
-            GameObject newAstroid = myPool.GetAvailableObject(); //Object
-            newAstroid.transform.position = spawnPoints[spawnPointIndex].position; //Position
-            newAstroid.transform.rotation = spawnPoints[spawnPointIndex].rotation; //Rotation
-            newAstroid.transform.SetParent(astroidHolder); //Parent
-            newAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
-            newAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
-
-            astroidsInGame.Add(newAstroid);
-            NumberOfAstroidsInGame++;
-            newAstroid.SetActive(true);
             yield return new WaitForSeconds(spawnTimer);
+            if (myPool.GetAvailableObject() != null)
+            {
+                spawnPointIndex = Random.Range(0, spawnPoints.Count);
+                astroidIndex = Random.Range(0, astroidList.Count);
+                newAstroid = myPool.GetAvailableObject(); //Object
+                newAstroid.transform.position = spawnPoints[spawnPointIndex].position; //Position
+                newAstroid.transform.rotation = spawnPoints[spawnPointIndex].rotation; //Rotation
+                newAstroid.transform.SetParent(astroidHolder); //Parent
+                newAstroid.GetComponent<SpriteRenderer>().sprite = astroidList[astroidIndex];
+                Destroy(newAstroid.GetComponent<PolygonCollider2D>());
+                newAstroid.AddComponent<PolygonCollider2D>();
+                newAstroid.GetComponent<AstroidScript>().MyLaunchDir = spawnPoints[spawnPointIndex];
+
+                astroidsInGame.Add(newAstroid);
+                NumberOfAstroidsInGame++;
+                newAstroid.SetActive(true);
+            }
         }
     }
 

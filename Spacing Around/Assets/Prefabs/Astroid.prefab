@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 465287256853176576}
   - component: {fileID: 6966549980331792068}
   - component: {fileID: 366037910}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Astroid
   m_TagString: Astroid
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
@@ -4896,7 +4896,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 81bce806e16f343459ddded565cea2c5, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4953,13 +4952,13 @@ GameObject:
   - component: {fileID: 5338594877835571976}
   - component: {fileID: 1441672282094476316}
   - component: {fileID: 6802636113931683753}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RenderMeGO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5338594877835571976
 Transform:
   m_ObjectHideFlags: 0

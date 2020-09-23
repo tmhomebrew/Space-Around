@@ -5,11 +5,11 @@ using UnityEngine;
 public class AstroidPooling : MonoBehaviour
 {
     [SerializeField]
-    private GameObject prefabAstroid;
+    private GameObject prefabAstroid, pooledObj;
     [SerializeField]
     private int poolSize;
     [SerializeField]
-    private bool canGrow = true;
+    private bool canGrow = false;
 
     private readonly List<GameObject> poolOfAstroid = new List<GameObject>();
 
@@ -17,9 +17,9 @@ public class AstroidPooling : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject pooledObject = Instantiate(prefabAstroid);
-            pooledObject.SetActive(false);
-            poolOfAstroid.Add(pooledObject);
+            pooledObj = Instantiate(prefabAstroid, this.transform.GetChild(0));
+            pooledObj.SetActive(false);
+            poolOfAstroid.Add(pooledObj);
         }
     }
 
@@ -34,11 +34,11 @@ public class AstroidPooling : MonoBehaviour
         }
         if (canGrow)
         {
-            GameObject pooledObject = Instantiate(prefabAstroid);
-            pooledObject.SetActive(false);
-            poolOfAstroid.Add(pooledObject);
+            pooledObj = Instantiate(prefabAstroid, this.transform.GetChild(0));
+            pooledObj.SetActive(false);
+            poolOfAstroid.Add(pooledObj);
             
-            return pooledObject;
+            return pooledObj;
         }
         else
         {

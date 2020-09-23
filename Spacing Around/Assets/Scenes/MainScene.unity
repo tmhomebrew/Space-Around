@@ -235,8 +235,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
+      propertyPath: spawnPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+        type: 3}
       propertyPath: spawnTimer
-      value: 0.1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4209043890185115394, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
@@ -507,8 +517,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabAstroid: {fileID: 1951228507714319769, guid: 079721dfed2c4694896f1ef188a06ba4,
     type: 3}
-  poolSize: 500
-  canGrow: 1
+  pooledObj: {fileID: 0}
+  poolSize: 5
+  canGrow: 0
+  listOfAstroids:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1377215367
 GameObject:
   m_ObjectHideFlags: 0
@@ -5725,6 +5764,11 @@ PrefabInstance:
     - target: {fileID: 1883107790205785631, guid: d392d62ad59ca4445928c0ad31e62dbc,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906637652452712624, guid: d392d62ad59ca4445928c0ad31e62dbc,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3157490023374969252, guid: d392d62ad59ca4445928c0ad31e62dbc,

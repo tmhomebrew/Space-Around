@@ -40,7 +40,7 @@ public class AstroidScript : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<PolygonCollider2D>().enabled = false;
-                //astroidSpawnerRef.GetComponent<SpawnerAstroids>().NumberOfAstroidsInGame--; //<--Referer til SpawnPos.GO skal være AstroidSpawner.GO
+                astroidSpawnerRef.GetComponent<SpawnerAstroids>().NumberOfAstroidsInGame--; //<--Referer til SpawnPos.GO skal være AstroidSpawner.GO
                 StopAllCoroutines();
                 isAlive = false;
                 //print("Astroid destroyed: " + transform.name);
@@ -59,7 +59,7 @@ public class AstroidScript : MonoBehaviour
         gameObject.AddComponent<PolygonCollider2D>();
         myCol = GetComponent<PolygonCollider2D>();
         myRB = GetComponent<Rigidbody2D>();
-        //astroidSpawnerRef = GetComponentInParent<SpawnerAstroids>().gameObject;
+        astroidSpawnerRef = GetComponentInParent<SpawnerAstroids>().gameObject;
         myExplosion = GetComponent<ParticleSystem>();
         curSprite = GetComponent<SpriteRenderer>().sprite;
     }
@@ -68,10 +68,10 @@ public class AstroidScript : MonoBehaviour
     {
         try
         {
-            //if (myLaunchDir == null)
-            //{
-            //    MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
-            //}
+            if (myLaunchDir == null)
+            {
+                MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
+            }
         }
         catch (System.Exception)
         {
@@ -90,10 +90,10 @@ public class AstroidScript : MonoBehaviour
     {
         try
         {
-            //if (myLaunchDir == null)
-            //{
-            //    MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
-            //}
+            if (myLaunchDir == null)
+            {
+                MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
+            }
         }
         catch (System.Exception)
         {
@@ -120,23 +120,27 @@ public class AstroidScript : MonoBehaviour
 
     void InitialLaunch()
     {
-        //Vector2 push = MyLaunchDir.GetComponent<PointRotater>().AstroidDir * astroidSpeed * Time.deltaTime;
-        push = Vector2.one * astroidSpeed * Time.deltaTime;
+        push = MyLaunchDir.GetComponent<PointRotater>().AstroidDir * astroidSpeed * Time.deltaTime;
         GetComponent<Rigidbody2D>().AddForce(push, ForceMode2D.Impulse);
+
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<PolygonCollider2D>().enabled = true;
     }
 
+    string collisionTag;
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (!AstroidIsWithinRange)
-        {
-            return;
-        }
-        if (col.transform.tag == "Player")
+        collisionTag = col.transform.tag;
+        //if (!AstroidIsWithinRange)
+        //{
+        //    return;
+        //}
+        if (collisionTag == "Player")
         {
             //col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
             AstroidHealth = 0; //<-- Kills astroid
         }
-        if (col.transform.tag == "Fire")
+        if (collisionTag == "Fire")
         {
             if (col.gameObject.GetComponent<LaserShot>().LaserOwner.tag == "Player")
             {
@@ -144,7 +148,7 @@ public class AstroidScript : MonoBehaviour
                 //print("Money: " + col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize);
             }
             AstroidHealth -= col.gameObject.GetComponent<LaserShot>().Damage;
-            //AstroidHealth = 0; //<-- Kills astroid
+            AstroidHealth = 0; //<-- Kills astroid
         }
     }
 
@@ -153,8 +157,8 @@ public class AstroidScript : MonoBehaviour
         myExplosion.Play();
         //Animation for astroid explosion
         //LootDrop???
-        yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false); //Object Pooling
+        yield return new WaitForSeconds(1.5f);
         //Destroy(gameObject);
     }
 }
