@@ -24,7 +24,6 @@ namespace UnityStandardAssets.Utility
         public int triggerCount = 1;
         public bool repeatTrigger = false;
 
-
         private void DoActivateTrigger()
         {
             triggerCount--;
@@ -54,7 +53,7 @@ namespace UnityStandardAssets.Utility
                             {
                                 Instantiate(source, targetGameObject.transform.position,
                                             targetGameObject.transform.rotation);
-                                DestroyObject(targetGameObject);
+                                Destroy(targetGameObject);
                             }
                         }
                         break;

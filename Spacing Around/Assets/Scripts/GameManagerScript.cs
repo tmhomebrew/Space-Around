@@ -7,14 +7,17 @@ public class GameManagerScript : MonoBehaviour
 {
     private static Rotater backgroundHandler;
     private static SpawnerAstroids astroidsSpawnerHandler;
-    
+
+    [SerializeField]
+    bool gameIsActive = true;
+
     // Start is called before the first frame update
     void Start()
     {
         backgroundHandler = FindObjectOfType<Rotater>();
         astroidsSpawnerHandler = FindObjectOfType<SpawnerAstroids>();
 
-        SetupLevel(true);
+        SetupLevel(gameIsActive);
     }
 
     static void SetupLevel(bool isGameActive)

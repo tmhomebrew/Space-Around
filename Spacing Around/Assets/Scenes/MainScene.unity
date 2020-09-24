@@ -440,11 +440,35 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1111820539509994618}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &766801133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766801127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e8083ebc2486648ac4f3f9bfacd931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabObj: {fileID: 4575971556871049596, guid: 52c783f5b9a800e48887280984d826cf,
+    type: 3}
+  pooledObj: {fileID: 0}
+  parentTransform: {fileID: 850812762}
+  poolSize: 40
+  canGrow: 1
 --- !u!1 &785852455 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2402140615280446885, guid: 54c838d1a890188419dee342b3ca405b,
     type: 3}
   m_PrefabInstance: {fileID: 7179431785880295787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &850812762 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3170673798521730390, guid: d392d62ad59ca4445928c0ad31e62dbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1111820539509994618}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &951511634 stripped
 Transform:
@@ -497,6 +521,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73dc3f051fb49e0428d7f012c22e19ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameIsActive: 1
+--- !u!4 &1126206629 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4209043889929631788, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
+    type: 3}
+  m_PrefabInstance: {fileID: 418873340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1338949680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4209043890185115395, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
@@ -515,39 +546,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e8083ebc2486648ac4f3f9bfacd931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabAstroid: {fileID: 1951228507714319769, guid: 079721dfed2c4694896f1ef188a06ba4,
+  prefabObj: {fileID: 1951228507714319769, guid: 079721dfed2c4694896f1ef188a06ba4,
     type: 3}
   pooledObj: {fileID: 0}
-  poolSize: 5
+  parentTransform: {fileID: 1126206629}
+  poolSize: 50
   canGrow: 0
-  listOfAstroids:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1377215367
 GameObject:
   m_ObjectHideFlags: 0

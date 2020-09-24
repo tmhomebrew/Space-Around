@@ -7,12 +7,15 @@ public class BlackHoleRotater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Rotater());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Rotater()
     {
-        transform.RotateAround(transform.position, Vector3.forward, 0.05f);
+        while (true)
+        {
+            transform.RotateAround(transform.position, Vector3.forward, 0.05f);
+            yield return null;
+        }
     }
 }

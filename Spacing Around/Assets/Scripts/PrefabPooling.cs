@@ -2,41 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AstroidPooling : MonoBehaviour
+public class PrefabPooling : MonoBehaviour
 {
     [SerializeField]
-    private GameObject prefabAstroid, pooledObj;
+    private GameObject prefabObj, pooledObj;
+    [SerializeField]
+    private Transform parentTransform;
     [SerializeField]
     private int poolSize;
     [SerializeField]
     private bool canGrow = false;
 
-    private readonly List<GameObject> poolOfAstroid = new List<GameObject>();
+    private readonly List<GameObject> poolOfPrefabs = new List<GameObject>();
 
     private void Awake()
     {
         for (int i = 0; i < poolSize; i++)
         {
-            pooledObj = Instantiate(prefabAstroid, this.transform.GetChild(0));
+            pooledObj = Instantiate(prefabObj, parentTransform);
             pooledObj.SetActive(false);
-            poolOfAstroid.Add(pooledObj);
+            poolOfPrefabs.Add(pooledObj);
         }
     }
 
     public GameObject GetAvailableObject()
     {
-        for (int i = 0; i < poolOfAstroid.Count; i++)
+        for (int i = 0; i < poolOfPrefabs.Count; i++)
         {
-            if (poolOfAstroid[i].activeInHierarchy == false)
+            if (poolOfPrefabs[i].activeInHierarchy == false)
             {
-                return poolOfAstroid[i];
+                return poolOfPrefabs[i];
             }
         }
         if (canGrow)
         {
-            pooledObj = Instantiate(prefabAstroid, this.transform.GetChild(0));
+            pooledObj = Instantiate(prefabObj, parentTransform);
             pooledObj.SetActive(false);
-            poolOfAstroid.Add(pooledObj);
+            poolOfPrefabs.Add(pooledObj);
+            poolSize++;
             
             return pooledObj;
         }

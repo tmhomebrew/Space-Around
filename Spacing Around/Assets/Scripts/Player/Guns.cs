@@ -23,10 +23,23 @@ public class Guns : MonoBehaviour
     public GameObject spawnPoint;
     public Transform laserHolder;
 
+    //Object pool
+    [SerializeField]
+    private PrefabPooling laserPool;
+    GameObject newLaserObj;
+
     GameObject laserShotOwner;
     public GameObject LaserShotOwner { get => laserShotOwner; set => laserShotOwner = value; }
     public LaserType GunLaserType { get => gunLaserType; set => gunLaserType = value; }
     public Sprite[] LaserBeamSprite { get => laserBeamSprite; set => laserBeamSprite = value; }
+
+    public void Awake()
+    {
+        if (laserPool == null)
+        {
+            laserPool = transform.root.GetComponentInChildren<PrefabPooling>();
+        }
+    }
 
     public void Start()
     {
@@ -54,8 +67,19 @@ public class Guns : MonoBehaviour
 
     public void ShotLaser()
     {
-        Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
-        laserShot.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
-        laserShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
+        if (laserPool.GetAvailableObject() != null)
+        {
+            newLaserObj = laserPool.GetAvailableObject();
+            newLaserObj.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
+            newLaserObj.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
+            newLaserObj.transform.SetParent(laserHolder);
+            newLaserObj.transform.position = spawnPoint.transform.position;
+            newLaserObj.transform.rotation = transform.rotation;
+            newLaserObj.SetActive(true);
+        }
+
+        //Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
+        //laserShot.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
+        //laserShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
     }
 }

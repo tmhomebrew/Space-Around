@@ -11,7 +11,7 @@ public class LaserShot : MonoBehaviour
     [SerializeField]
     private GameObject laserOwner;
     [SerializeField]
-    private float speed;
+    private float flySpeed, timeAlive;
     [SerializeField]
     private int damage;
 
@@ -29,37 +29,37 @@ public class LaserShot : MonoBehaviour
         {
             //case Guns.LaserType.Green:
             case 0:
-                speed = 20f;
+                flySpeed = 20f;
                 Damage = 1;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
                 break;
             //case Guns.LaserType.LightBlue:
             case 1:
-                speed = 20f;
+                flySpeed = 20f;
                 Damage = 2;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[1];
                 break;
             //case Guns.LaserType.Blue:
             case 2:
-                speed = 25f;
+                flySpeed = 25f;
                 Damage = 4;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[2];
                 break;
             //case Guns.LaserType.Yellow:
             case 3:
-                speed = 25f;
+                flySpeed = 25f;
                 Damage = 6;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[3];
                 break;
             //case Guns.LaserType.Red:
             case 4:
-                speed = 40f;
+                flySpeed = 40f;
                 Damage = 12;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[4];
                 break;
            // case Guns.LaserType.Purple:
             case 5:
-                speed = 50f;
+                flySpeed = 50f;
                 Damage = 20;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[5];
                 break;
@@ -68,25 +68,28 @@ public class LaserShot : MonoBehaviour
         }
     }
 
-    void Awake()
+    private void SetOwnerOfShot()
     {
-        if (transform.root.tag == "Player")
+        if (transform.root.CompareTag("Player"))
         {
             LaserOwner = transform.root.transform.GetComponentInChildren<ShipStats>().gameObject;
         }
-        else if (transform.root.tag == "Enemy")
+        else if (transform.root.CompareTag("Enemy"))
         {
             LaserOwner = transform.root.transform.GetComponentInChildren<EnemyShipStats>().gameObject;
         }
-        
+
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), LaserOwner.GetComponentInChildren<Collider2D>());
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        StartCoroutine(TimeAlive());
-        GetComponent<Rigidbody2D>().AddForce(SpeedOfLaser(speed), ForceMode2D.Impulse);
+        SetOwnerOfShot();
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<SpriteRenderer>().enabled = true;
+        timeAlive = 1.5f;
+        StartCoroutine(TimeAlive(timeAlive));
+        GetComponent<Rigidbody2D>().AddForce(SpeedOfLaser(flySpeed), ForceMode2D.Impulse);
     }
 
     private Vector3 SpeedOfLaser(float varSpeed)
@@ -100,7 +103,6 @@ public class LaserShot : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         if (col.gameObject != LaserOwner)
         {
-            //print("Hit player: " + col.gameObject.name);
             StopAllCoroutines();
             StartCoroutine(DestroySequence());
         }
@@ -109,14 +111,14 @@ public class LaserShot : MonoBehaviour
     IEnumerator DestroySequence()
     {
         //Animation for LaserHit
-
-        yield return new WaitForSeconds(0.1f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(0.01f);
+        gameObject.SetActive(false);
     }
 
-    IEnumerator TimeAlive()
+    IEnumerator TimeAlive(float time)
     { 
-        yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        //Animation for LaserRunOutOfTime?
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 }

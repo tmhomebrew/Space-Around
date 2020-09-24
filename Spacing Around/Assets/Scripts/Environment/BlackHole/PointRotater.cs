@@ -12,12 +12,8 @@ public class PointRotater : MonoBehaviour
     {
         get
         {
-            //print("transformPos: " + transform.position);
-            //print("PointerPos: " + astroidPointer.GetComponent<Transform>().position);
-            //print("RetningsDir: " + astroidDir);
             return astroidDir = astroidPointer.GetComponent<Transform>().position - transform.position;
         }
-
         set
         {
             astroidDir = value;
@@ -27,12 +23,15 @@ public class PointRotater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(RotatePointer());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator RotatePointer()
     {
-        astroidPointer.transform.RotateAround(transform.position, Vector3.forward, 1f);
+        while (true)
+        {
+            astroidPointer.transform.RotateAround(transform.position, Vector3.forward, 1f);
+            yield return null;
+        }
     }
 }

@@ -62,7 +62,6 @@ public class Controller : MonoBehaviour
     private KeyCombo barrolRollRight = new KeyCombo(new string[] { "left", "right" });
     private KeyCombo barrolRollLeft = new KeyCombo(new string[] { "right", "left" });
 
-    #endregion
 
     private void CombinationChecker()
     {
@@ -77,6 +76,7 @@ public class Controller : MonoBehaviour
             Debug.Log("BarrolRollLeft has been executed.!");
         }
     }
+    #endregion
 
     private void Actions()
     {
@@ -155,7 +155,6 @@ public class Controller : MonoBehaviour
         }
         if (newWeaponSelection)
         {
-            //myGuns.laserShot.GetComponent<LaserShot>().SetupLaserStats((int)myGuns.GunLaserType);
             foreach (GameObject go in myGuns)
             {
                 go.GetComponent<Guns>().GunLaserType = newLaserType;
