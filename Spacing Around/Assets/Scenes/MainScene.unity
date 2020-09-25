@@ -236,12 +236,12 @@ PrefabInstance:
     - target: {fileID: 4209043889976743170, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.9
+      value: -23.8
       objectReference: {fileID: 0}
     - target: {fileID: 4209043889976743170, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8
+      value: 20.5
       objectReference: {fileID: 0}
     - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
@@ -251,7 +251,7 @@ PrefabInstance:
     - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
       propertyPath: spawnTimer
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4209043890185115393, guid: 6a4a3561f9f438f49b75ef3b4b3023da,
         type: 3}
@@ -543,7 +543,7 @@ MonoBehaviour:
     type: 3}
   pooledObj: {fileID: 0}
   parentTransform: {fileID: 1126206629}
-  poolSize: 50
+  poolSize: 200
   canGrow: 0
 --- !u!1 &1377215367
 GameObject:

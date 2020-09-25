@@ -26,6 +26,7 @@ public class AstroidScript : MonoBehaviour
     //For InitialLaunch()
     Vector2 push;
     string collisionTag;
+    GameObject colObj;
 
     #endregion
     #region Properties
@@ -65,7 +66,7 @@ public class AstroidScript : MonoBehaviour
         astroidSize = curSprite.rect.size.magnitude / (scale * 10) /*/ ShipScale*/;
         myRB.mass = astroidSize * scale;
         AstroidHealth = (int)(astroidSize * 2);
-        astroidSpeed = 200;
+        astroidSpeed = 500;
         isAlive = true;
     }
 
@@ -78,17 +79,19 @@ public class AstroidScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         collisionTag = col.transform.tag;
+        colObj = col.gameObject;
 
         if (collisionTag == "Player")
         {
-            //col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
+            colObj.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
             AstroidHealth = 0; //<-- Kills astroid
         }
         if (collisionTag == "Fire")
         {
-            if (col.gameObject.GetComponent<LaserShot>().LaserOwner.CompareTag("Player"))
+            if (colObj.GetComponent<LaserShot>().LaserOwner.CompareTag("Player"))
             {
-                col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+                colObj.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+                colObj.GetComponent<LaserShot>().LaserOwner.GetComponent<ShipStats>().HealDamage(2);
             }
             AstroidHealth -= col.gameObject.GetComponent<LaserShot>().Damage;
             AstroidHealth = 0; //<-- Kills astroid

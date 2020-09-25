@@ -93,6 +93,10 @@ public class ShipStats : MonoBehaviour
                         print("Player_" + this.gameObject.name + " is dead.. Killed by: " + attacker.name);
                     }
                 }
+                if (!IsAlive && shipMainBodyHealthCur > 0)
+                {
+                    IsAlive = true;
+                }
                 killedByPlayer = false;
             }
         }
@@ -264,7 +268,7 @@ public class ShipStats : MonoBehaviour
             attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner;
             killedByPlayer = true;
             //TakeDamage(col.gameObject.GetComponent<LaserShot>().    ) //<-- Need more stuff here..
-            print("Should take Damage from " + attacker);
+            //print("Should take Damage from " + attacker);
         }
     }
 }
