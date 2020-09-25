@@ -5,9 +5,16 @@ using UnityEngine;
 public class Rotater : MonoBehaviour
 {
     public float rotationSpeed;
+    [SerializeField]
     private bool isGameRunning;
 
-    public bool IsGameRunning { get => isGameRunning; set => isGameRunning = value; }
+    public bool IsGameRunning
+    {
+        get => isGameRunning; set
+        {
+            isGameRunning = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

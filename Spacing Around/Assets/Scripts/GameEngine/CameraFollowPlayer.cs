@@ -12,18 +12,8 @@ public class CameraFollowPlayer : MonoBehaviour
     [Range(10, 15)]
     private float startDistanceFromPlayer;
     private float maxDistanceFromPlayer;
-    bool sizeReached, zoomingIsRunning;
+    bool sizeReached;
     private float delay = 0.1f;
-
-    public bool ZoomingIsRunning
-    {
-        get => zoomingIsRunning;
-        set
-        {
-            StopAllCoroutines();
-            zoomingIsRunning = shipStats.IsMoving;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +25,6 @@ public class CameraFollowPlayer : MonoBehaviour
         transform.position = player.transform.position + offset;
 
         sizeReached = true;
-        ZoomingIsRunning = false;
         startDistanceFromPlayer = 10;
         maxDistanceFromPlayer = 15;
         myCam.orthographicSize = startDistanceFromPlayer;
@@ -71,7 +60,6 @@ public class CameraFollowPlayer : MonoBehaviour
         }
         if (moving)
         {
-        //print("Enumarator running");
             while (myCam.orthographicSize < maxDistanceFromPlayer && sizeReached == false)
             {
                 yield return new WaitForSeconds(delay);

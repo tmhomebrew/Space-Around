@@ -10,8 +10,8 @@ public class AstroidScript : MonoBehaviour
     private GameObject astroidSpawnerRef;
     private Transform myLaunchDir;
     private Rigidbody2D myRB;
-    private PolygonCollider2D myCol;
-    private ParticleSystem myExplosion;
+    [SerializeField]
+    private GameObject myExplosionObj;
 
     //Stats
     [SerializeField]
@@ -23,6 +23,7 @@ public class AstroidScript : MonoBehaviour
     [SerializeField]
     private float scale;
 
+    //For InitialLaunch()
     Vector2 push;
     string collisionTag;
 
@@ -47,12 +48,6 @@ public class AstroidScript : MonoBehaviour
     }
     #endregion
 
-    void Awake()
-    {
-        Setup();
-        InitialLaunch();
-    }
-
     void OnEnable()
     {
         Setup();
@@ -61,14 +56,9 @@ public class AstroidScript : MonoBehaviour
 
     void Setup()
     {
-        Destroy(GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>();
         MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
-        myCol = GetComponent<PolygonCollider2D>();
         myRB = GetComponent<Rigidbody2D>();
         astroidSpawnerRef = GetComponentInParent<SpawnerAstroids>().gameObject;
-        myExplosion = GetComponent<ParticleSystem>();
-
         curSprite = GetComponent<SpriteRenderer>().sprite;
         scale = Mathf.Sqrt(curSprite.rect.width + curSprite.rect.height) / 10f;
 
@@ -107,10 +97,11 @@ public class AstroidScript : MonoBehaviour
 
     IEnumerator DestroySequence()
     {
-        myExplosion.Play();
-        //Animation for astroid explosion
+        GameObject temp = Instantiate(myExplosionObj, transform.position, transform.rotation, astroidSpawnerRef.transform.GetChild(0));
+        temp.GetComponent<AstroidExplosion>().OnExplosion(scale);
         //LootDrop???
+        yield return new WaitForSeconds(0.01f);
         gameObject.SetActive(false); //Object Pooling
-        yield return new WaitForSeconds(1.5f);
+        yield return null;
     }
 }
