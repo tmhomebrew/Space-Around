@@ -50,7 +50,9 @@ public class ShipStats : MonoBehaviour
     bool isStatsSet;
     GameObject attacker; //Used in shipMainBodyHealthCur..
     bool killedByPlayer;
+    //list<Loot> - Length is shipCargoSpace... List of stored cargo
 
+    #endregion
     #region Properties
     public int ShipCargoSpace
     {
@@ -93,6 +95,13 @@ public class ShipStats : MonoBehaviour
                         print("Player_" + this.gameObject.name + " is dead.. Killed by: " + attacker.name);
                     }
                 }
+                else
+                {
+                    if (!IsAlive)
+                    {
+                        IsAlive = true;
+                    }
+                }
                 killedByPlayer = false;
             }
         }
@@ -116,18 +125,13 @@ public class ShipStats : MonoBehaviour
             UIHandlerRef.ShieldVarPlayerRef = shipShieldCur;
         }
     }
-
     public float ShipSpeedCur { get => shipSpeedCur; set => shipSpeedCur = value; }
     public float ShipSpeedMax { get => shipSpeedMax; set => shipSpeedMax = value; }
     public float ShipAcceleration { get => shipAcceleration; set => shipAcceleration = value; }
     public float ShipTurnSpeed { get => shipTurnSpeed; set => shipTurnSpeed = value; }
     public bool IsAlive { get => isAlive; set => isAlive = value; }
     public bool IsMoving { get => isMoving; set => isMoving = value; }
-
     public Inventory ShipInventory { get => shipInventory; set => shipInventory = value; }
-    #endregion
-    //list<Loot> - Length is shipCargoSpace... List of stored cargo
-
     #endregion
 
     void StatSetup()

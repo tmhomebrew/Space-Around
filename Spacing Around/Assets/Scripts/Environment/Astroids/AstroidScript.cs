@@ -16,16 +16,14 @@ public class AstroidScript : MonoBehaviour
     //Stats
     [SerializeField]
     private int astroidHealth;
-    [SerializeField]
-    bool isAlive;
     public float astroidSpeed;
     public float astroidSize;
     [SerializeField]
     private float scale;
 
     //For InitialLaunch()
-    Vector2 push;
-    string collisionTag;
+    private Vector2 push;
+    private string collisionTag;
 
     #endregion
     #region Properties
@@ -37,11 +35,10 @@ public class AstroidScript : MonoBehaviour
         set
         {
             astroidHealth = value;
-            if (astroidHealth <= 0 && isAlive)
+            if (astroidHealth <= 0)
             {
                 astroidSpawnerRef.GetComponent<SpawnerAstroids>().NumberOfAstroidsInGame--; //<--Referer til SpawnPos.GO skal være AstroidSpawner.GO
                 StopAllCoroutines();
-                isAlive = false;
                 StartCoroutine(DestroySequence());
             }
         }
@@ -56,19 +53,25 @@ public class AstroidScript : MonoBehaviour
 
     void Setup()
     {
-        MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform;
-        myRB = GetComponent<Rigidbody2D>();
+        if (myRB == null || myRB != GetComponent<Rigidbody2D>())
+        {
+            myRB = GetComponent<Rigidbody2D>();
+        }
+        MyLaunchDir = transform.root.GetComponentInChildren<PointRotater>().transform; //
         astroidSpawnerRef = GetComponentInParent<SpawnerAstroids>().gameObject;
         curSprite = GetComponent<SpriteRenderer>().sprite;
         scale = Mathf.Sqrt(curSprite.rect.width + curSprite.rect.height) / 10f;
 
-        astroidSize = curSprite.rect.size.magnitude / (scale * 10) /*/ ShipScale*/;
-        myRB.mass = astroidSize * scale;
-        AstroidHealth = (int)(astroidSize * 2);
-        astroidSpeed = 200;
-        isAlive = true;
+        astroidSize = curSprite.rect.size.magnitude / (scale * 10); //Size of Astroid, Used for AstroidHP and Mass(Speed, RigBody)
+        myRB.mass = astroidSize * scale; //Adds new mass for Astroid
+        AstroidHealth = (int)(astroidSize * 2); //Astroids HP
+        astroidSpeed = 200; //Astroids Speed
     }
 
+    /// <summary>
+    /// Sets and adds a force, depending on the 'AstroidDir' and 'AstroidSpeed'.
+    /// The force applied is an *Impulse*.
+    /// </summary>
     void InitialLaunch()
     {
         push = MyLaunchDir.GetComponent<PointRotater>().AstroidDir * astroidSpeed * Time.deltaTime;
@@ -81,20 +84,28 @@ public class AstroidScript : MonoBehaviour
 
         if (collisionTag == "Player")
         {
-            //col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
+            col.gameObject.GetComponent<ShipStats>().TakeDamage(astroidSize * 10); //Damage to Player
             AstroidHealth = 0; //<-- Kills astroid
         }
         if (collisionTag == "Fire")
         {
-            if (col.gameObject.GetComponent<LaserShot>().LaserOwner.CompareTag("Player"))
+            AstroidHealth -= col.gameObject.GetComponent<LaserShot>().Damage; //Damage to Astroid
+            //AstroidHealth = 0; //<-- Kills astroid
+            if (AstroidHealth <= 0)
             {
-                col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+                if (col.gameObject.GetComponent<LaserShot>().LaserOwner.CompareTag("Player"))
+                {
+                    col.gameObject.GetComponent<LaserShot>().LaserOwner.GetComponent<Inventory>().GoldSize += 10;
+                }
             }
-            AstroidHealth -= col.gameObject.GetComponent<LaserShot>().Damage;
-            AstroidHealth = 0; //<-- Kills astroid
         }
     }
 
+    /// <summary>
+    /// When an Astroid is reduced to 0 HP, it will spawn a seperat new GameObject (An Explosion) with its parameters
+    /// applied to the Explosion-GameObj.
+    /// </summary>
+    /// <returns>Makes the Astroid Inactive, returning it to the AstroidPool.</returns>
     IEnumerator DestroySequence()
     {
         GameObject temp = Instantiate(myExplosionObj, transform.position, transform.rotation, astroidSpawnerRef.transform.GetChild(0));

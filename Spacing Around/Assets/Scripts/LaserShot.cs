@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserShot : MonoBehaviour
@@ -30,31 +29,31 @@ public class LaserShot : MonoBehaviour
             //case Guns.LaserType.Green:
             case 0:
                 flySpeed = 20f;
-                Damage = 1;
+                Damage = 3;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[0];
                 break;
             //case Guns.LaserType.LightBlue:
             case 1:
                 flySpeed = 20f;
-                Damage = 2;
+                Damage = 5;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[1];
                 break;
             //case Guns.LaserType.Blue:
             case 2:
                 flySpeed = 25f;
-                Damage = 4;
+                Damage = 8;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[2];
                 break;
             //case Guns.LaserType.Yellow:
             case 3:
                 flySpeed = 25f;
-                Damage = 6;
+                Damage = 10;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[3];
                 break;
             //case Guns.LaserType.Red:
             case 4:
                 flySpeed = 40f;
-                Damage = 12;
+                Damage = 15;
                 GetComponent<SpriteRenderer>().sprite = MyGun.LaserBeamSprite[4];
                 break;
            // case Guns.LaserType.Purple:
