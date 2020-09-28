@@ -77,9 +77,5 @@ public class Guns : MonoBehaviour
             newLaserObj.transform.rotation = transform.rotation;
             newLaserObj.SetActive(true);
         }
-
-        //Instantiate(laserShot, spawnPoint.transform.position, transform.rotation, laserHolder);
-        //laserShot.GetComponent<LaserShot>().MyGun = GetComponent<Guns>();
-        //laserShot.GetComponent<LaserShot>().SetupLaserStats((int)GunLaserType);
     }
 }

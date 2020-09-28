@@ -174,6 +174,11 @@ public class ShipStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheatsAndChecks();
+    }
+
+    void CheatsAndChecks()
+    {
         if (Input.GetKeyDown(KeyCode.W))
         {
             HealDamage(1);
@@ -195,7 +200,7 @@ public class ShipStats : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="i">if 'regulator' is positive adds health.. else, draws health </param>
+    /// <param name="i">if 'regulator' is positive adds health.. else, subtracts health </param>
     public void TakeDamage(float damage)
     {
         ShieldCalculator((int)damage, true);

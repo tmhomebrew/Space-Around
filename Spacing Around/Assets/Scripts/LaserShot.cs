@@ -67,6 +67,10 @@ public class LaserShot : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets owner of LaserShot, each time a new GameObj is enabled.
+    /// Shot ignores collision with its owner.
+    /// </summary>
     private void SetOwnerOfShot()
     {
         if (transform.root.CompareTag("Player"))
@@ -91,6 +95,11 @@ public class LaserShot : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(SpeedOfLaser(flySpeed), ForceMode2D.Impulse);
     }
 
+    /// <summary>
+    /// Multiplies speed of Lasershot and transform.up.
+    /// </summary>
+    /// <param name="varSpeed">Speed of laserShot.</param>
+    /// <returns>Vector3 dir and speed multiplied.</returns>
     private Vector3 SpeedOfLaser(float varSpeed)
     {
         return transform.up * varSpeed;
