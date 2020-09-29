@@ -17,15 +17,16 @@ public class ShipSelector : MonoBehaviour
     Material matInvisible, matNotselected, matSelected;
     [SerializeField]
     List<GameObject> shipList = new List<GameObject>();
+    [SerializeField]
     List<GameObject> showList;
-
-    private int selectionIndex = 0;
-
+    [SerializeField]
+    private int selectionIndex = 2;
 
     private void Awake()
     {
-        showList = new List<GameObject>() { placePrevPrev, placePrev, selectedShip, placeNext, placeNextNext };
+        showList = new List<GameObject>()/* { placePrevPrev, placePrev, selectedShip, placeNext, placeNextNext }*/;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +34,11 @@ public class ShipSelector : MonoBehaviour
         {
             if (go.name.Contains("Placement"))
             {
-                shipList.Add(go.gameObject);
+                shipList.Add(go.GetChild(0).gameObject);
+                showList.Add(go.GetChild(0).gameObject);
             }
         }
+        AvailableChoiseButtons();
 
         if (preSelectedShipGO == null)
         {
@@ -49,91 +52,67 @@ public class ShipSelector : MonoBehaviour
         SetMatsForShowList();
     }
 
-    void NextShip()
+    public void RightButton()
     {
-        if (butRight.GetComponent<TextMeshPro>().text.ToLower() != "right")
+        Selecter(-1);
+    }
+
+    public void LeftButton()
+    {
+        Selecter(+1);
+    }
+
+    void Selecter(int i)
+    {
+        selectionIndex += i;
+        if (selectionIndex <= 2 && selectionIndex >= 0)
         {
-            //NewPreset()
+            showList[4] = shipList[selectionIndex + 2];
         }
         else
-        { 
-            selectionIndex++;
-            if (selectionIndex > shipList.Count)
-            {
-                selectionIndex = shipList.Count;
-            }
-
-            for (int i = 0; i <= 4; i++)
-            {
-                if (shipList[selectionIndex - (i - 2)] == null)
-                {
-                    showList[i] = null;
-                }
-                else
-                {
-                    showList[i] = shipList[selectionIndex - (i - 2)];
-                }
-            }
-            
-            //placePrevPrev = placePrev;
-            //placePrevPrev.GetComponent<MeshRenderer>().material = matInvisible;
-            //placePrev = selectedShip;
-            //placePrev.GetComponent<MeshRenderer>().material = matNotselected;
-            //selectedShip = placeNext; //Selected Ship
-            //selectedShip.GetComponent<MeshRenderer>().material = matSelected;
-            //placeNext = placeNextNext;
-            //placeNext.GetComponent<MeshRenderer>().material = matNotselected;
-            //placeNextNext.GetComponent<MeshRenderer>().material = matInvisible;
+        {
+            showList[4] = null;
+        }
+        if (selectionIndex <= 3 && selectionIndex >= 0)
+        {
+            showList[3] = shipList[selectionIndex + 1];
+        }
+        else
+        {
+            showList[3] = null;
+        }
+        if (selectionIndex > 1 && selectionIndex <= shipList.Count)
+        {
+            showList[0] = shipList[selectionIndex - 2];
+        }
+        else
+        {
+            showList[0] = null;
+        }
+        if (selectionIndex > 0 && selectionIndex <= shipList.Count)
+        {
+            showList[1] = shipList[selectionIndex - 1];
+        }
+        else
+        {
+            showList[1] = null;
         }
 
+        showList[2] = shipList[selectionIndex];
         AvailableChoiseButtons();
     }
 
-    void PrevShiP()
-    {
-        selectionIndex--;
-        if (selectionIndex < 0)
-        {
-            selectionIndex = 0;
-        }
-
-        for (int i = 0; i <= 4; i++)
-        {
-            if (shipList[selectionIndex - (i - 2)] == null)
-            {
-                showList[i] = null;
-            }
-            else
-            {
-                showList[i] = shipList[selectionIndex - (i - 2)];
-            }
-        }
-
-        //placePrevPrev = placePrev;
-        //placePrevPrev.GetComponent<MeshRenderer>().material = matInvisible;
-        //placePrev = selectedShip;
-        //placePrev.GetComponent<MeshRenderer>().material = matNotselected;
-        //selectedShip = placeNext; //Selected Ship
-        //selectedShip.GetComponent<MeshRenderer>().material = matSelected;
-        //placeNext = placeNextNext;
-        //placeNext.GetComponent<MeshRenderer>().material = matNotselected;
-        //placeNextNext.GetComponent<MeshRenderer>().material = matInvisible;
-
-        AvailableChoiseButtons();
-    }
-
-    void SetMatsForShowList()
-    {
-        showList[0].GetComponentInChildren<MeshRenderer>().material = matInvisible;
-        showList[1].GetComponentInChildren<MeshRenderer>().material = matNotselected;
-        showList[2].GetComponentInChildren<MeshRenderer>().material = matSelected;
-        showList[3].GetComponentInChildren<MeshRenderer>().material = matNotselected;
-        showList[4].GetComponentInChildren<MeshRenderer>().material = matInvisible;
-    }
-    
     void AvailableChoiseButtons()
     {
         if (shipList.First() == showList[2])
+        {
+            butRight.interactable = false;
+        }
+        else
+        {
+            butRight.interactable = true;
+        }
+        if (shipList.Last() == showList[2])
         {
             butLeft.interactable = false;
         }
@@ -141,14 +120,29 @@ public class ShipSelector : MonoBehaviour
         {
             butLeft.interactable = true;
         }
-        if (shipList.Last() == showList[2])
-        {
-            butRight.GetComponent<TextMeshPro>().text = "New preset";
-        }
-        else
-        {
-            butRight.GetComponent<TextMeshPro>().text = "Right";
-        }
         SetMatsForShowList();
+    }
+
+    void SetMatsForShowList()
+    {
+        //Skal ændres så det kun er midlertidigt
+        for (int i = 0; i < showList.Count; i++)
+        {
+            if (showList[i] != null)
+            {
+                if (i == 1 || i == 3)
+                {
+                    showList[i].GetComponentInChildren<MeshRenderer>().material = matNotselected;
+                }
+                if (i == 0 || i == 4)
+                {
+                    showList[i].GetComponentInChildren<MeshRenderer>().material = matInvisible;
+                }
+                if (i == 2)
+                {
+                    showList[i].GetComponentInChildren<MeshRenderer>().material = matSelected;
+                }
+            }
+        }
     }
 }
