@@ -20,6 +20,7 @@ public class Rotater : MonoBehaviour
     void Start()
     {
         rotationSpeed = 1f;
+        RotationController(IsGameRunning);
     }
 
     public void RotationController(bool run)

@@ -6,8 +6,6 @@ public class PresetController : MonoBehaviour
 {
     [SerializeField]
     GameObject selectedShip, refShipSelector;
-    List<Button> selectButtons = new List<Button>();
-    List<GameObject> presetObjs = new List<GameObject>();
 
     private void Awake()
     {

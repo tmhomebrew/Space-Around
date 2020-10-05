@@ -10,19 +10,19 @@ public class ShipSelector : MonoBehaviour
     [SerializeField]
     GameObject selectedShip, preSelectedShipGO;
     GameObject newShip; //For Customise button
-    //[SerializeField]
-    //GameObject placePrevPrev, placePrev, , placeNext, placeNextNext;
     [SerializeField]
     Button butLeft, butRight;
     [SerializeField]
     Material matInvisible, matNotselected, matSelected;
     [SerializeField]
     List<GameObject> shipList = new List<GameObject>();
-    public List<GameObject> placementList;
+    List<GameObject> nonPrefabList, placementList;
     [SerializeField]
-    List<GameObject> nonPrefabList, showList;
+    private int selectionIndex;
     [SerializeField]
-    private int selectionIndex = 0;
+    List<GameObject> showList;
+
+    public GameObject SelectedShip { get => selectedShip; set => selectedShip = value; }
 
     private void Awake()
     {
@@ -34,70 +34,66 @@ public class ShipSelector : MonoBehaviour
             if (go.name.Contains("Placement"))
             {
                 placementList.Add(go.gameObject);
-                //showList.Add(go.GetChild(go.childCount - 1).gameObject);
-                //if (go.childCount > 0)
-                //{
-                //    shipList.Add(go.GetChild(go.childCount - 1).gameObject);
-                //}
             }
         }
         SetupShips(selectionIndex);
+        ArrangeAvailableShips(selectionIndex);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        AvailableChoiseButtons();
         if (preSelectedShipGO == null)
         {
-            selectedShip = nonPrefabList[selectionIndex];
-            preSelectedShipGO = selectedShip;
+            SelectedShip = nonPrefabList[selectionIndex];
+            preSelectedShipGO = SelectedShip;
         }
         else
         {
-            selectedShip = preSelectedShipGO;
+            SelectedShip = preSelectedShipGO;
         }
     }
 
     #region Right And Left Button System
     public void RightButton()
     {
-        Selecter(1);
+        ArrangeAvailableShips(1);
     }
 
     public void LeftButton()
     {
-        Selecter(-1);
+        ArrangeAvailableShips(-1);
     }
 
-    void Selecter(int i)
+    void ArrangeAvailableShips(int i)
     {
         selectionIndex += i;
-        if (selectionIndex <= 2 && selectionIndex >= 0)
+
+        if (selectionIndex < nonPrefabList.Count -2)
         {
-            showList[4] = nonPrefabList[selectionIndex + 2];
+            showList[4] = nonPrefabList[selectionIndex +2];
         }
         else
         {
             showList[4] = null;
         }
-        if (selectionIndex <= 3 && selectionIndex >= 0)
+        if (selectionIndex < nonPrefabList.Count -1)
         {
-            showList[3] = nonPrefabList[selectionIndex + 1];
+            showList[3] = nonPrefabList[selectionIndex +1];
         }
         else
         {
             showList[3] = null;
         }
-        if (selectionIndex > 1 && selectionIndex <= shipList.Count)
+        if (selectionIndex - 2 >= 0)
         {
-            showList[0] = nonPrefabList[selectionIndex - 2];
+            showList[0] = nonPrefabList[selectionIndex -2];
         }
         else
         {
             showList[0] = null;
         }
-        if (selectionIndex > 0 && selectionIndex <= shipList.Count)
+        if (selectionIndex - 1 >= 0)
         {
             showList[1] = nonPrefabList[selectionIndex - 1];
         }
@@ -107,14 +103,14 @@ public class ShipSelector : MonoBehaviour
         }
 
         showList[2] = nonPrefabList[selectionIndex];
-        selectedShip = nonPrefabList[selectionIndex];
+        SelectedShip = nonPrefabList[selectionIndex];
         AvailableChoiseButtons();
     }
     #endregion
 
     void AvailableChoiseButtons()
     {
-        if (nonPrefabList.Last() == placementList[2])
+        if (selectionIndex == nonPrefabList.Count - 1)
         {
             butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
             butRight.interactable = false;
@@ -126,11 +122,11 @@ public class ShipSelector : MonoBehaviour
             butRight.interactable = true;
             butRight.image.enabled = true;
         }
-        if (nonPrefabList.First() == placementList[2])
+        if (selectionIndex == 0)
         {
             butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
             butLeft.interactable = false;
-            butLeft.image.enabled = false; 
+            butLeft.image.enabled = false;
         }
         else
         {
@@ -138,6 +134,7 @@ public class ShipSelector : MonoBehaviour
             butLeft.interactable = true;
             butLeft.image.enabled = true;
         }
+
         SetMatsForShowList();
         SetNewPlacements();
     }
@@ -146,8 +143,7 @@ public class ShipSelector : MonoBehaviour
     {
         for (int i = 0; i < placementList.Count; i++)
         {
-            placementList[i].transform.DetachChildren();
-            if (showList[i] != null) //<--- Her er fejlen med listerne, måske.??
+            if (showList[i] != null)
             {
                 showList[i].transform.SetParent(placementList[i].transform);
                 showList[i].transform.position = placementList[i].transform.position;
@@ -156,20 +152,6 @@ public class ShipSelector : MonoBehaviour
             }
         }
     }
-
-    void SetupShips(int index)
-    {
-        for (int i = index; i < placementList.Count; i++)
-        {
-            GameObject temp = Instantiate(shipList[i], placementList[i].transform.position, placementList[i].transform.rotation, placementList[i].transform);
-            nonPrefabList.Add(temp);
-            //shipTemp.transform.SetParent(placementList[i].transform);
-            //shipTemp.transform.position = placementList[i].transform.position;
-            //shipTemp.transform.localScale = placementList[i].transform.localScale;
-            //shipTemp.transform.rotation = placementList[i].transform.rotation;
-        }
-    }
-
     void SetMatsForShowList()
     {
         for (int i = 0; i < showList.Count; i++)
@@ -189,6 +171,25 @@ public class ShipSelector : MonoBehaviour
                     showList[i].GetComponent<MeshRenderer>().material = matSelected;
                 }
             }
+        }
+    }
+
+    void SetupShips(int index)
+    {
+        GameObject temp;
+        for (int i = 0; i < shipList.Count; i++)
+        {
+            if (i < placementList.Count)
+            {
+                temp = Instantiate(shipList[i], placementList[i].transform.position, placementList[i].transform.rotation, placementList[i].transform);
+                showList.Add(temp);
+            }
+            else
+            {
+                temp = Instantiate(shipList[i], transform);
+            }
+            nonPrefabList.Add(temp);
+            temp = null;
         }
     }
 }
