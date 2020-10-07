@@ -23,17 +23,18 @@ public class ShipSelector : MonoBehaviour
     List<GameObject> showList;
 
     public GameObject SelectedShip { get => selectedShip; set => selectedShip = value; }
+    public List<GameObject> PlacementList { get => placementList; set => placementList = value; }
 
     private void Awake()
     {
-        placementList = new List<GameObject>();
+        PlacementList = new List<GameObject>();
         nonPrefabList = new List<GameObject>();
         showList = new List<GameObject>();
         foreach (Transform go in GetComponentsInChildren<Transform>())
         {
             if (go.name.Contains("Placement"))
             {
-                placementList.Add(go.gameObject);
+                PlacementList.Add(go.gameObject);
             }
         }
         SetupShips(selectionIndex);
@@ -65,7 +66,7 @@ public class ShipSelector : MonoBehaviour
         ArrangeAvailableShips(-1);
     }
 
-    void ArrangeAvailableShips(int i)
+    public void ArrangeAvailableShips(int i = 0)
     {
         selectionIndex += i;
 
@@ -141,14 +142,14 @@ public class ShipSelector : MonoBehaviour
 
     void SetNewPlacements()
     {
-        for (int i = 0; i < placementList.Count; i++)
+        for (int i = 0; i < PlacementList.Count; i++)
         {
             if (showList[i] != null)
             {
-                showList[i].transform.SetParent(placementList[i].transform);
-                showList[i].transform.position = placementList[i].transform.position;
-                showList[i].transform.localScale = placementList[i].transform.localScale;
-                showList[i].transform.rotation = placementList[i].transform.rotation;
+                showList[i].transform.SetParent(PlacementList[i].transform);
+                showList[i].transform.position = PlacementList[i].transform.position;
+                showList[i].transform.localScale = PlacementList[i].transform.localScale;
+                showList[i].transform.rotation = PlacementList[i].transform.rotation;
             }
         }
     }
@@ -179,9 +180,9 @@ public class ShipSelector : MonoBehaviour
         GameObject temp;
         for (int i = 0; i < shipList.Count; i++)
         {
-            if (i < placementList.Count)
+            if (i < PlacementList.Count)
             {
-                temp = Instantiate(shipList[i], placementList[i].transform.position, placementList[i].transform.rotation, placementList[i].transform);
+                temp = Instantiate(shipList[i], PlacementList[i].transform.position, PlacementList[i].transform.rotation, PlacementList[i].transform);
                 showList.Add(temp);
             }
             else
@@ -190,6 +191,25 @@ public class ShipSelector : MonoBehaviour
             }
             nonPrefabList.Add(temp);
             temp = null;
+        }
+    }
+
+    public void AddShipToList(GameObject newShip)
+    {
+        shipList.Add(newShip);
+        print("Ship added to shipList..: + " + newShip.transform.name);
+    }
+
+    public void RemoveShipFromList(GameObject shipToRemove)
+    {
+        foreach (GameObject go in shipList)
+        {
+            if (go.transform.name.ToLower() == shipToRemove.transform.name.ToLower())
+            {
+                print("Ship removed from shipList..: " + go.transform.name);
+                shipList.Remove(go);
+                break;
+            }
         }
     }
 }

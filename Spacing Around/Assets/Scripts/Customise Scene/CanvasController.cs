@@ -16,14 +16,23 @@ public class CanvasController : MonoBehaviour
     [SerializeField]
     private bool changeScene;
 
-    public bool ChangeScene { get => changeScene; set => changeScene = value; }
+    public bool ChangeScene
+    {
+        get => changeScene; set
+        {
+            changeScene = value;
+            ChangeCanvas(value);
+        }
+    }
+
+    public ShipSelector MySS { get => mySS; set => mySS = value; }
 
     #endregion
 
     private void Awake()
     {
         myPES = GetComponentInChildren<PresetEditorScript>();
-        mySS = GetComponentInChildren<ShipSelector>();
+        MySS = GetComponentInChildren<ShipSelector>();
 
         ChangeScene = false;
     }
@@ -35,13 +44,9 @@ public class CanvasController : MonoBehaviour
         ShipRoomSelector.enabled = true;
     }
 
-    public void ChangeCanvas()
+    public void ChangeCanvas(bool input)
     {
-        if (!ChangeScene)
-        {
-
-        }
-        else
+        if (input)
         {
             PresetRoomEditor.enabled = !PresetRoomEditor.enabled;
             ShipRoomSelector.enabled = !ShipRoomSelector.enabled;
@@ -49,17 +54,29 @@ public class CanvasController : MonoBehaviour
             {
                 SetShip();
             }
+            else
+            {
+                SaveShipAndReturn();
+            }
         }
     }
 
     void SetShip()
     {
-        myPES.ShipHolder = mySS.SelectedShip;
+        MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform);
     }
 
-    public void ChangeSceneSafety(bool value)
+    void SaveShipAndReturn()
     {
-        ChangeScene = value;
-        ChangeCanvas();
+        if (myPES.ShipHolder.transform.GetChild(0).gameObject != null)
+        {
+            myPES.ShipHolder.transform.GetChild(0).transform.SetParent(MySS.PlacementList[2].transform);
+        }
+        else
+        {
+            MySS.ArrangeAvailableShips();
+            //Kommet hertil..
+        }
     }
+
 }

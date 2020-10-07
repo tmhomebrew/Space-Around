@@ -39,6 +39,9 @@ public class RotateObj : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
             if (transform.localRotation != startRot)
             {
                 StartCoroutine(RotateTowardsStartingPoint());

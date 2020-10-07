@@ -5,7 +5,8 @@ using UnityEngine;
 public class PresetEditorScript : MonoBehaviour
 {
     CanvasController myCanvasCont;
-
+    ChooseUI myConfirm;
+    [SerializeField]
     private GameObject shipHolder, changedShip;
 
     public GameObject ShipHolder { get => shipHolder; set => shipHolder = value; }
@@ -13,104 +14,87 @@ public class PresetEditorScript : MonoBehaviour
     private void Awake()
     {
         myCanvasCont = GetComponentInParent<CanvasController>();
+        myConfirm = GetComponentInChildren<ChooseUI>();
     }
 
-    bool UponChangesToShip()
+    public void OnOpenShipEditor()
     {
-        if (shipHolder != changedShip)
+        changedShip = ShipHolder.transform.GetChild(0).gameObject;
+    }
+
+    void UponChangesToShip()
+    {
+        myConfirm.OpenAskUI();
+        
+    }
+
+    //Save-button
+    public void SavePreset()
+    {
+        UponChangesToShip();
+
+        if (myConfirm.SetQuestion)
         {
-            myCanvasCont.ChangeScene = false;
+            ShipHolder.GetComponent<TestScript>().HasChanged = changedShip.GetComponent<TestScript>().HasChanged;
+        }
+    }
+
+    //Cancel and Back-buttons
+    public void Back()
+    {
+        if (!CompareShips())
+        {
+            UponChangesToShip();
+            if (!myConfirm.SetQuestion)
+            {
+                myCanvasCont.ChangeScene = false;
+            }
+            else
+            {
+                changedShip.GetComponent<TestScript>().HasChanged = ShipHolder.GetComponent<TestScript>().HasChanged;
+                myCanvasCont.ChangeScene = true;
+            }
         }
         else
         {
             myCanvasCont.ChangeScene = true;
         }
-        return myCanvasCont.ChangeScene;
     }
 
-    public void SavePreset()
+    //Redo-button
+    public void ResetPreset()
     {
         UponChangesToShip();
 
+        if (myConfirm.SetQuestion)
+        {
+            changedShip.GetComponent<TestScript>().HasChanged = ShipHolder.GetComponent<TestScript>().HasChanged;
+        }
     }
 
-    public void CancelPreset()
-    {
-        UponChangesToShip();
-
-    }
-
-    public void RedoPreset()
-    {
-        UponChangesToShip();
-
-    }
-
+    //Delete-button
     public void DeletePreset()
     {
         UponChangesToShip();
-
+        if (myConfirm.SetQuestion)
+        {
+            //Delete current preset
+            myCanvasCont.MySS.RemoveShipFromList(ShipHolder.transform.GetChild(0).gameObject);
+            Destroy(ShipHolder.transform.GetChild(0).gameObject);
+            //Return to ShipSelector, ChangeScene..
+            myCanvasCont.ChangeScene = true;
+        }
     }
 
-    /*      
-     // Use this for initialization
-         private void Awake()
-         {
-             //disable the quit confirmation panel
-             DoConfirmQuitNo();
-         }
- 
-         /// <summary>
-         /// Called if clicked on No (confirmation)
-         /// </summary>
-         public void DoConfirmQuitNo()
-         {
-             Debug.Log("Back to the game");
- 
-             //enable the normal ui
-             uiCanvasGroup.alpha = 1;
-             uiCanvasGroup.interactable = true;
-             uiCanvasGroup.blocksRaycasts = true;
- 
-             //disable the confirmation quit ui
-             confirmQuitCanvasGroup.alpha = 0;
-             confirmQuitCanvasGroup.interactable = false;
-             confirmQuitCanvasGroup.blocksRaycasts = false;
-         }
- 
-         /// <summary>
-         /// Called if clicked on Yes (confirmation)
-         /// </summary>
-         public void DoConfirmQuitYes()
-         {
-             Debug.Log("Ok bye bye");
-             Application.Quit();
-         }
- 
-         /// <summary>
-         /// Called if clicked on Quit
-         /// </summary>
-         public void DoQuit()
-         {
-             Debug.Log("Check form quit confirmation");
- 
-             //reduce the visibility of normal UI, and disable all interraction
-             uiCanvasGroup.alpha = 0.5f;
-             uiCanvasGroup.interactable = false;
-             uiCanvasGroup.blocksRaycasts = false;
- 
-             //enable interraction with confirmation gui and make visible
-             confirmQuitCanvasGroup.alpha = 1;
-             confirmQuitCanvasGroup.interactable = true;
-             confirmQuitCanvasGroup.blocksRaycasts = true;
-         }
- 
-         /// <summary>
-         /// Called if clicked on new game (example)
-         /// </summary>
-         public void DoNewGame()
-         {
-             Debug.Log("Launch a new game");
-         }
-*/
+    public bool CompareShips()
+    {
+        if (ShipHolder.transform.GetChild(0).GetComponent<TestScript>().HasChanged != changedShip.GetComponent<TestScript>().HasChanged)
+        {
+            print("Its not the same!!");
+            return false;
+        }
+
+        print("Its the same!!");
+        return true;
+    }
 }
