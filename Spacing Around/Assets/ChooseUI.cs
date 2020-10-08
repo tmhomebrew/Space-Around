@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,12 @@ public class ChooseUI : MonoBehaviour
     private CanvasGroup optionsCanvas, askCanvas, backButton;
     [SerializeField]
     private Button noButton, yesButton;
+    [SerializeField]
+    TextMeshProUGUI questionTextObj;
     private bool setQuestion;
+
+    //Reference
+    public RotateObj myRotateobject;
 
     public bool SetQuestion
     {
@@ -18,11 +24,13 @@ public class ChooseUI : MonoBehaviour
 
     private void OnEnable()
     {
+        questionTextObj = GetComponentInChildren<TextMeshProUGUI>();
         CloseAskUI();
     }
 
-    public void OpenAskUI()
+    public void OpenAskUI(string questionText)
     {
+        questionTextObj.text = questionText;
         askCanvas.alpha = 1;
         askCanvas.interactable = true;
         askCanvas.blocksRaycasts = true;
@@ -37,6 +45,7 @@ public class ChooseUI : MonoBehaviour
 
         StartCoroutine(WaitForResponse());
     }
+
     private void CloseAskUI()
     {
         optionsCanvas.alpha = 1;
@@ -61,6 +70,7 @@ public class ChooseUI : MonoBehaviour
     IEnumerator WaitForResponse()
     {
         WaitForUIButtons waitForButton = new WaitForUIButtons(yesButton, noButton);
+        myRotateobject.enabled = false; //Hard coded
         yield return waitForButton.Reset();
         if (waitForButton.PressedButton == yesButton)
         {
@@ -72,5 +82,6 @@ public class ChooseUI : MonoBehaviour
             // no was pressed
             YesNoButton(false);
         }
+        myRotateobject.enabled = true; //Hard coded
     }
 }

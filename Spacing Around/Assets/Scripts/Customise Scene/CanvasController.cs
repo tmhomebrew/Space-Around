@@ -63,7 +63,8 @@ public class CanvasController : MonoBehaviour
 
     void SetShip()
     {
-        MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform);
+        //MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform); //<-------
+        myPES.OnOpenShipEditor();
     }
 
     void SaveShipAndReturn()
