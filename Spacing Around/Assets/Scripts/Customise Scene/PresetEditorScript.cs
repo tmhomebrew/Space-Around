@@ -8,7 +8,7 @@ public class PresetEditorScript : MonoBehaviour
     CanvasController myCanvasCont;
     ChooseUI myConfirm;
     [SerializeField]
-    private GameObject shipHolder, changedShip;
+    private GameObject shipHolder, changedShip, curShip;
     [SerializeField]
     private Button changeValue;
 
@@ -22,13 +22,31 @@ public class PresetEditorScript : MonoBehaviour
 
     public void OnOpenShipEditor()
     {
-        changedShip = Instantiate(ShipHolder.transform.GetChild(0).gameObject); //<------
+        if (changedShip == null)
+        {
+            curShip = ShipHolder.transform.GetChild(0).gameObject; //<------
+            changedShip = Instantiate(curShip, ShipHolder.transform);
+        }
+        LoadValuesOfShip();
     }
 
     void UponChangesToShip(string text)
     {
         myConfirm.OpenAskUI(text);
-        
+
+    }
+
+    void LoadValuesOfShip()
+    {
+        //Temp-test.. Is on, is of..
+        if (changedShip.GetComponent<TestScript>().HasChanged)
+        {
+            changeValue.image.color = new Color(0, 255, 0);
+        }
+        else
+        {
+            changeValue.image.color = new Color(255, 0, 0);
+        }
     }
 
     //Save-button
@@ -38,7 +56,10 @@ public class PresetEditorScript : MonoBehaviour
 
         if (myConfirm.SetQuestion)
         {
-            ShipHolder.GetComponent<TestScript>().HasChanged = changedShip.GetComponent<TestScript>().HasChanged;
+            //Should set every value (changedShip/TempShip to Shipholder)..
+            curShip.GetComponent<TestScript>().HasChanged = changedShip.GetComponent<TestScript>().HasChanged;
+
+            //
         }
     }
 
@@ -50,7 +71,7 @@ public class PresetEditorScript : MonoBehaviour
             UponChangesToShip("You have unsaved changes, do you want to skip them.?");
             if (myConfirm.SetQuestion)
             {
-                changedShip.GetComponent<TestScript>().HasChanged = ShipHolder.GetComponent<TestScript>().HasChanged;
+                changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
                 myCanvasCont.ChangeScene = true;
             }
             else
@@ -63,6 +84,13 @@ public class PresetEditorScript : MonoBehaviour
         {
             myCanvasCont.ChangeScene = true;
         }
+        if (changedShip != null && myCanvasCont.ChangeScene)
+        {
+            foreach (Transform child in ShipHolder.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 
     //Redo-button
@@ -72,7 +100,7 @@ public class PresetEditorScript : MonoBehaviour
 
         if (myConfirm.SetQuestion)
         {
-            changedShip.GetComponent<TestScript>().HasChanged = ShipHolder.GetComponent<TestScript>().HasChanged;
+            changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
         }
     }
 
@@ -83,8 +111,9 @@ public class PresetEditorScript : MonoBehaviour
         if (myConfirm.SetQuestion)
         {
             //Delete current preset
-            myCanvasCont.MySS.RemoveShipFromList(ShipHolder.transform.GetChild(0).gameObject);
-            Destroy(ShipHolder.transform.GetChild(0).gameObject);
+            myCanvasCont.MySS.RemoveShipFromList(curShip);
+            Destroy(curShip);
+            Destroy(changedShip);
             //Return to ShipSelector, ChangeScene..
             myCanvasCont.ChangeScene = true;
         }
@@ -92,8 +121,7 @@ public class PresetEditorScript : MonoBehaviour
 
     public void ChangeValue()
     {
-        changedShip.GetComponent<TestScript>().HasChanged = !changedShip.GetComponent<TestScript>().HasChanged;
-        if (changedShip.GetComponent<TestScript>().HasChanged)
+        if (!changedShip.GetComponent<TestScript>().HasChanged)
         {
             changeValue.image.color = new Color(0, 255, 0);
         }
@@ -101,11 +129,12 @@ public class PresetEditorScript : MonoBehaviour
         {
             changeValue.image.color = new Color(255, 0, 0);
         }
+        changedShip.GetComponent<TestScript>().HasChanged = !changedShip.GetComponent<TestScript>().HasChanged;
     }
 
     public bool CompareShips()
     {
-        if (ShipHolder.transform.GetChild(0).GetComponent<TestScript>().HasChanged != changedShip.GetComponent<TestScript>().HasChanged)
+        if (curShip.GetComponent<TestScript>().HasChanged != changedShip.GetComponent<TestScript>().HasChanged)
         {
             print("Its not the same!!");
             return false;

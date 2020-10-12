@@ -626,10 +626,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 622490408}
-        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
-        m_MethodName: ChangeCanvas
-        m_Mode: 6
+      - m_Target: {fileID: 651439165}
+        m_TargetAssemblyTypeName: PresetEditorScript, Assembly-CSharp
+        m_MethodName: Back
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1510,6 +1510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipHolder: {fileID: 1901537816}
   changedShip: {fileID: 0}
+  curShip: {fileID: 0}
   changeValue: {fileID: 1381522740}
 --- !u!1 &690533869
 GameObject:

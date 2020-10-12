@@ -63,7 +63,7 @@ public class CanvasController : MonoBehaviour
 
     void SetShip()
     {
-        //MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform); //<-------
+        MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform); //<-------
         myPES.OnOpenShipEditor();
     }
 
@@ -75,9 +75,9 @@ public class CanvasController : MonoBehaviour
         }
         else
         {
-            MySS.ArrangeAvailableShips();
             //Kommet hertil..
         }
+        MySS.ArrangeAvailableShips();
     }
 
 }

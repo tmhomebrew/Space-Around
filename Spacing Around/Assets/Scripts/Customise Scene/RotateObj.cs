@@ -37,9 +37,6 @@ public class RotateObj : MonoBehaviour
                 Space.World
             );
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-        }
         if (Input.GetMouseButtonUp(1))
         {
             if (transform.localRotation != startRot)
@@ -52,7 +49,7 @@ public class RotateObj : MonoBehaviour
     IEnumerator RotateTowardsStartingPoint()
     {
         isRunning = true;
-        while (transform.localRotation != startRot)
+        while (transform.localRotation != startRot && isRunning == true)
         {
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, startRot, RotationSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.01f);
