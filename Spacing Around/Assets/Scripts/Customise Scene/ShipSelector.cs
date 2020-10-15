@@ -16,6 +16,7 @@ public class ShipSelector : MonoBehaviour
     Material matInvisible, matNotselected, matSelected;
     [SerializeField]
     List<GameObject> shipList = new List<GameObject>();
+    [SerializeField]
     List<GameObject> nonPrefabList, placementList;
     [SerializeField]
     private int selectionIndex;
@@ -70,48 +71,94 @@ public class ShipSelector : MonoBehaviour
     {
         selectionIndex += i;
 
-        if (selectionIndex < nonPrefabList.Count -2)
-        {
-            showList[4] = nonPrefabList[selectionIndex +2];
-        }
-        else
-        {
-            showList[4] = null;
-        }
-        if (selectionIndex < nonPrefabList.Count -1)
-        {
-            showList[3] = nonPrefabList[selectionIndex +1];
-        }
-        else
-        {
-            showList[3] = null;
-        }
-        if (selectionIndex - 2 >= 0)
-        {
-            showList[0] = nonPrefabList[selectionIndex -2];
-        }
-        else
-        {
-            showList[0] = null;
-        }
-        if (selectionIndex - 1 >= 0)
-        {
-            showList[1] = nonPrefabList[selectionIndex - 1];
-        }
-        else
-        {
-            showList[1] = null;
-        }
 
-        showList[2] = nonPrefabList[selectionIndex];
-        SelectedShip = nonPrefabList[selectionIndex];
+        #region Old System
+        //if (selectionIndex < nonPrefabList.Count - 2)
+        //{
+        //    showList[4] = nonPrefabList[selectionIndex + 2];
+        //}
+        //else
+        //{
+        //    showList[4] = null;
+        //}
+        //if (selectionIndex < nonPrefabList.Count - 1)
+        //{
+        //    showList[3] = nonPrefabList[selectionIndex + 1];
+        //}
+        //else
+        //{
+        //    showList[3] = null;
+        //}
+        //if (selectionIndex - 2 >= 0)
+        //{
+        //    showList[0] = nonPrefabList[selectionIndex - 2];
+        //}
+        //else
+        //{
+        //    showList[0] = null;
+        //}
+        //if (selectionIndex - 1 >= 0)
+        //{
+        //    showList[1] = nonPrefabList[selectionIndex - 1];
+        //}
+        //else
+        //{
+        //    showList[1] = null;
+        //}
+        #endregion
+        
+        //NEW TEST
+        for (int x = 0; x < PlacementList.Count; x++)
+        {
+            if (x + selectionIndex < showList.Count)
+            {
+                PlacementList[x].GetComponent<ShowShipScript>().ShipToShow = showList[x + selectionIndex];
+                showList[x + selectionIndex].transform.SetParent(PlacementList[x].transform);
+            }
+            else
+            {
+                PlacementList[x].GetComponent<ShowShipScript>().ShipToShow = null;
+                //showList[x + selectionIndex].transform.SetParent(transform);
+            }
+        }
+        //SelectedShip = PlacementList[2].transform.GetChild(0).gameObject;
+        //showList[2] = nonPrefabList[selectionIndex];
+        //SelectedShip = nonPrefabList[selectionIndex];
+
         AvailableChoiseButtons();
     }
     #endregion
 
     void AvailableChoiseButtons()
     {
-        if (selectionIndex == nonPrefabList.Count - 1)
+        #region Old System
+        //if (selectionIndex == nonPrefabList.Count - 1)
+        //{
+        //    butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        //    butRight.interactable = false;
+        //    butRight.image.enabled = false;
+        //}
+        //else
+        //{
+        //    butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+        //    butRight.interactable = true;
+        //    butRight.image.enabled = true;
+        //}
+        //if (selectionIndex == 0)
+        //{
+        //    butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        //    butLeft.interactable = false;
+        //    butLeft.image.enabled = false;
+        //}
+        //else
+        //{
+        //    butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+        //    butLeft.interactable = true;
+        //    butLeft.image.enabled = true;
+        //}
+        #endregion
+
+        if (PlacementList[3].transform.childCount == 0)
         {
             butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
             butRight.interactable = false;
@@ -123,7 +170,7 @@ public class ShipSelector : MonoBehaviour
             butRight.interactable = true;
             butRight.image.enabled = true;
         }
-        if (selectionIndex == 0)
+        if (PlacementList[1].transform.childCount == 0)
         {
             butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
             butLeft.interactable = false;
@@ -135,42 +182,47 @@ public class ShipSelector : MonoBehaviour
             butLeft.interactable = true;
             butLeft.image.enabled = true;
         }
-
         SetMatsForShowList();
-        SetNewPlacements();
+        //SetNewPlacements();
     }
 
     void SetNewPlacements()
     {
         for (int i = 0; i < PlacementList.Count; i++)
         {
-            if (showList[i] != null)
+            if (PlacementList[i].transform.childCount > 0)
             {
-                showList[i].transform.SetParent(PlacementList[i].transform);
-                showList[i].transform.position = PlacementList[i].transform.position;
-                showList[i].transform.localScale = PlacementList[i].transform.localScale;
-                showList[i].transform.rotation = PlacementList[i].transform.rotation;
+                PlacementList[i].transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+                PlacementList[i].transform.GetChild(0).transform.SetParent(transform);
+            }
+            if (showList.Count > i) //Test
+            {
+                if (showList[i] != null)
+                {
+                    showList[i].transform.SetParent(PlacementList[i].transform);
+                    showList[i].transform.position = PlacementList[i].transform.position;
+                    showList[i].transform.localScale = PlacementList[i].transform.localScale;
+                    showList[i].transform.rotation = PlacementList[i].transform.rotation;
+                    PlacementList[i].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+                }
             }
         }
     }
     void SetMatsForShowList()
     {
         for (int i = 0; i < showList.Count; i++)
-        {
-            if (showList[i] != null)
-            {   
-                if (i == 1 || i == 3)
-                {
-                    showList[i].GetComponent<MeshRenderer>().material = matNotselected;
-                }
-                if (i == 0 || i == 4)
-                {
-                    showList[i].GetComponent<MeshRenderer>().material = matInvisible;
-                }
-                if (i == 2)
-                {
-                    showList[i].GetComponent<MeshRenderer>().material = matSelected;
-                }
+        {   
+            if (i == 1 || i == 3)
+            {
+                showList[i].GetComponent<MeshRenderer>().material = matNotselected;
+            }
+            if (i == 0 || i == 4)
+            {
+                showList[i].GetComponent<MeshRenderer>().material = matInvisible;
+            }
+            if (i == 2)
+            {
+                showList[i].GetComponent<MeshRenderer>().material = matSelected;
             }
         }
     }
