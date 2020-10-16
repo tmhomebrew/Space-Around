@@ -106,25 +106,52 @@ public class ShipSelector : MonoBehaviour
         //    showList[1] = null;
         //}
         #endregion
-        
+
         //NEW TEST
+        //for (int x = 0; x < showList.Count; x++)
+        //{
+        //    //Arrangerer mod venstre
+        //    if (selectionIndex < showList.Count)
+        //    {
+
+        //    }
+        //}
+
         for (int x = 0; x < PlacementList.Count; x++)
         {
             if (x + selectionIndex < showList.Count)
             {
-                PlacementList[x].GetComponent<ShowShipScript>().ShipToShow = showList[x + selectionIndex];
                 showList[x + selectionIndex].transform.SetParent(PlacementList[x].transform);
             }
-            else
-            {
-                PlacementList[x].GetComponent<ShowShipScript>().ShipToShow = null;
-                //showList[x + selectionIndex].transform.SetParent(transform);
+        //    if (i >= 0)
+        //    {
+        //        if (PlacementList[x + i].transform.childCount > 0)
+        //        {
+        //            PlacementList[x].GetComponent<ShowShipScript>().ShipToShow = showList[x + i];
+        //            showList[x + i].transform.SetParent(PlacementList[x].transform);
+
+        //            //showList[x].transform.position = PlacementList[x].transform.position;
+        //            //showList[x].transform.localScale = PlacementList[x].transform.localScale;
+        //            //showList[x].transform.rotation = PlacementList[x].transform.rotation;
+        //        }
+        //        else
+        //        {
+        //            PlacementList[x].GetComponent<ShowShipScript>().ShipToShow = null;
+        //            //showList[x].transform.SetParent(transform);
+        //        }
             }
-        }
-        //SelectedShip = PlacementList[2].transform.GetChild(0).gameObject;
+        //    else
+        //    {
+
+        //    }
+        //}
+
         //showList[2] = nonPrefabList[selectionIndex];
         //SelectedShip = nonPrefabList[selectionIndex];
 
+        
+        SetNewPlacements();
+        SetMatsForShowList();
         AvailableChoiseButtons();
     }
     #endregion
@@ -182,18 +209,22 @@ public class ShipSelector : MonoBehaviour
             butLeft.interactable = true;
             butLeft.image.enabled = true;
         }
-        SetMatsForShowList();
-        //SetNewPlacements();
     }
 
     void SetNewPlacements()
     {
         for (int i = 0; i < PlacementList.Count; i++)
         {
+            if (i == 2)
+            {
+                SelectedShip = PlacementList[2].transform.GetChild(0).gameObject;
+            }
+
             if (PlacementList[i].transform.childCount > 0)
             {
-                PlacementList[i].transform.GetChild(0).GetComponent<Renderer>().enabled = false;
-                PlacementList[i].transform.GetChild(0).transform.SetParent(transform);
+                PlacementList[i].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+                //PlacementList[i].transform.GetChild(0).transform.SetParent(transform);
+                PlacementList[i].GetComponent<ShowShipScript>().ShipToShow = PlacementList[i].transform.GetChild(0).gameObject;
             }
             if (showList.Count > i) //Test
             {
