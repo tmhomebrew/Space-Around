@@ -892,6 +892,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 1514527773}
+        m_TargetAssemblyTypeName: ShipSelector, Assembly-CSharp
+        m_MethodName: ChangeShip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &397882232
 MonoBehaviour:
@@ -2864,6 +2876,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 1514527773}
+        m_TargetAssemblyTypeName: ShipSelector, Assembly-CSharp
+        m_MethodName: ChangeShip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1233135633
 MonoBehaviour:
@@ -3891,15 +3915,18 @@ MonoBehaviour:
   preSelectedShipGO: {fileID: 0}
   butLeft: {fileID: 397882231}
   butRight: {fileID: 1233135632}
-  matInvisible: {fileID: 2100000, guid: e82c862bf3040d74782f191b53e987eb, type: 2}
-  matNotselected: {fileID: 2100000, guid: 40781bf5ae8b36d47b57710bdbfb2ede, type: 2}
+  matInvisible: {fileID: 2100000, guid: 82f0cdd036ff04547956eed2e85c34d9, type: 2}
+  matOuterSelected: {fileID: 2100000, guid: e82c862bf3040d74782f191b53e987eb, type: 2}
+  matNotSelected: {fileID: 2100000, guid: 40781bf5ae8b36d47b57710bdbfb2ede, type: 2}
   matSelected: {fileID: 2100000, guid: bbcc8a2130e1ad24cb87fea0a25723d0, type: 2}
   shipList:
   - {fileID: 1342467049992699149, guid: 2e53065c5da787d47bff7ddac68f7e7b, type: 3}
   - {fileID: 1788368677982296307, guid: ab6f99c8fedae4b40a1c696ff47f2640, type: 3}
   - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
-  - {fileID: 9052570630755994668, guid: 6918cf49e78746b4a8b2508345173c82, type: 3}
-  - {fileID: 4608062981896730081, guid: 07d26221d2e93d24dbf6df46f4ec9cda, type: 3}
+  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
+  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
+  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
+  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
   nonPrefabList: []
   placementList: []
   selectionIndex: 0
