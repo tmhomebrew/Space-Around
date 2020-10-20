@@ -17,11 +17,10 @@ public class ShipSelector : MonoBehaviour
     [SerializeField]
     List<GameObject> shipList = new List<GameObject>();
     [SerializeField]
-    List<GameObject> nonPrefabList, placementList;
-    [SerializeField]
     private int selectionIndex;
     [SerializeField]
     List<GameObject> showList;
+    List<GameObject> placementList;
 
     public GameObject SelectedShip { get => selectedShip; set => selectedShip = value; }
     public List<GameObject> PlacementList { get => placementList; set => placementList = value; }
@@ -29,7 +28,6 @@ public class ShipSelector : MonoBehaviour
     private void Awake()
     {
         PlacementList = new List<GameObject>();
-        nonPrefabList = new List<GameObject>();
         showList = new List<GameObject>();
         foreach (Transform go in GetComponentsInChildren<Transform>())
         {
@@ -41,7 +39,11 @@ public class ShipSelector : MonoBehaviour
         SetupShips(selectionIndex);
 
         ChangeShip(0);
-        //ArrangeAvailableShips(selectionIndex);
+    }
+
+    private void OnEnable()
+    {
+        ChangeShip(0);
     }
 
     // Start is called before the first frame update
@@ -49,7 +51,7 @@ public class ShipSelector : MonoBehaviour
     {
         if (preSelectedShipGO == null)
         {
-            SelectedShip = nonPrefabList[selectionIndex];
+            SelectedShip = showList[selectionIndex];
             preSelectedShipGO = SelectedShip;
         }
         else
@@ -59,16 +61,6 @@ public class ShipSelector : MonoBehaviour
     }
 
     #region Right And Left Button System
-    public void RightButton()
-    {
-        ArrangeAvailableShips(1);
-    }
-
-    public void LeftButton()
-    {
-        ArrangeAvailableShips(-1);
-    }
-
     public void ChangeShip(int _index)
     {
         selectionIndex += _index;
@@ -82,6 +74,8 @@ public class ShipSelector : MonoBehaviour
 
         for (int i = 0; i < showList.Count; i++)
         {
+            showList[i].GetComponent<Renderer>().enabled = true;
+            //PlacementCurrent
             if (i == shipNumb)
             {
                 selectedShip = showList[i];
@@ -91,8 +85,8 @@ public class ShipSelector : MonoBehaviour
                 showList[i].transform.rotation = PlacementList[2].transform.rotation;
 
                 showList[i].GetComponent<MeshRenderer>().material = matSelected;
-                showList[i].GetComponent<Renderer>().enabled = true;
             }
+            //PlacementPrevPrev
             else if (i == shipNumb - 2)
             {
                 showList[i].transform.SetParent(PlacementList[0].transform);
@@ -101,8 +95,8 @@ public class ShipSelector : MonoBehaviour
                 showList[i].transform.rotation = PlacementList[0].transform.rotation;
 
                 showList[i].GetComponent<MeshRenderer>().material = matOuterSelected;
-                showList[i].GetComponent<Renderer>().enabled = true;
             }
+            //PlacementPrev
             else if (i == shipNumb -1)
             {
                 showList[i].transform.SetParent(PlacementList[1].transform);
@@ -111,8 +105,8 @@ public class ShipSelector : MonoBehaviour
                 showList[i].transform.rotation = PlacementList[1].transform.rotation;
 
                 showList[i].GetComponent<MeshRenderer>().material = matNotSelected;
-                showList[i].GetComponent<Renderer>().enabled = true;
             }
+            //PlacementNext
             else if (i == shipNumb + 1)
             {
                 showList[i].transform.SetParent(PlacementList[3].transform);
@@ -121,8 +115,8 @@ public class ShipSelector : MonoBehaviour
                 showList[i].transform.rotation = PlacementList[3].transform.rotation;
 
                 showList[i].GetComponent<MeshRenderer>().material = matNotSelected;
-                showList[i].GetComponent<Renderer>().enabled = true;
             }
+            //PlacementNextNext
             else if (i == shipNumb + 2)
             {
                 showList[i].transform.SetParent(PlacementList[4].transform);
@@ -131,7 +125,6 @@ public class ShipSelector : MonoBehaviour
                 showList[i].transform.rotation = PlacementList[4].transform.rotation;
                 
                 showList[i].GetComponent<MeshRenderer>().material = matOuterSelected;
-                showList[i].GetComponent<Renderer>().enabled = true;
             }
             else
             {
@@ -139,185 +132,27 @@ public class ShipSelector : MonoBehaviour
                 showList[i].GetComponent<Renderer>().enabled = (i == shipNumb);
             }
         }
-        //SetMatsForShowList();
-    }
-
-    public void ArrangeAvailableShips(int i = 0)
-    {
-        selectionIndex += i;
-
-        #region Old System
-        //if (selectionIndex < nonPrefabList.Count - 2)
-        //{
-        //    showList[4] = nonPrefabList[selectionIndex + 2];
-        //}
-        //else
-        //{
-        //    showList[4] = null;
-        //}
-        //if (selectionIndex < nonPrefabList.Count - 1)
-        //{
-        //    showList[3] = nonPrefabList[selectionIndex + 1];
-        //}
-        //else
-        //{
-        //    showList[3] = null;
-        //}
-        //if (selectionIndex - 2 >= 0)
-        //{
-        //    showList[0] = nonPrefabList[selectionIndex - 2];
-        //}
-        //else
-        //{
-        //    showList[0] = null;
-        //}
-        //if (selectionIndex - 1 >= 0)
-        //{
-        //    showList[1] = nonPrefabList[selectionIndex - 1];
-        //}
-        //else
-        //{
-        //    showList[1] = null;
-        //}
-        #endregion
-
-        //NEW TEST
-        
-        //showList[2] = nonPrefabList[selectionIndex];
-        //SelectedShip = nonPrefabList[selectionIndex];
-
-
-        //SetNewPlacements();
-        //SetMatsForShowList();
-        //AvailableChoiseButtons();
     }
     #endregion
-
-    void AvailableChoiseButtons()
-    {
-        #region Old System
-        //if (selectionIndex == nonPrefabList.Count - 1)
-        //{
-        //    butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-        //    butRight.interactable = false;
-        //    butRight.image.enabled = false;
-        //}
-        //else
-        //{
-        //    butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-        //    butRight.interactable = true;
-        //    butRight.image.enabled = true;
-        //}
-        //if (selectionIndex == 0)
-        //{
-        //    butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-        //    butLeft.interactable = false;
-        //    butLeft.image.enabled = false;
-        //}
-        //else
-        //{
-        //    butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-        //    butLeft.interactable = true;
-        //    butLeft.image.enabled = true;
-        //}
-        #endregion
-
-        if (PlacementList[3].transform.childCount == 0)
-        {
-            butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-            butRight.interactable = false;
-            butRight.image.enabled = false;
-        }
-        else
-        {
-            butRight.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-            butRight.interactable = true;
-            butRight.image.enabled = true;
-        }
-        if (PlacementList[1].transform.childCount == 0)
-        {
-            butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-            butLeft.interactable = false;
-            butLeft.image.enabled = false;
-        }
-        else
-        {
-            butLeft.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
-            butLeft.interactable = true;
-            butLeft.image.enabled = true;
-        }
-    }
-
-    void SetNewPlacements()
-    {
-        for (int i = 0; i < PlacementList.Count; i++)
-        {
-            if (i == 2)
-            {
-                SelectedShip = PlacementList[2].transform.GetChild(0).gameObject;
-            }
-
-            if (PlacementList[i].transform.childCount > 0)
-            {
-                PlacementList[i].transform.GetChild(0).GetComponent<Renderer>().enabled = true;
-                //PlacementList[i].transform.GetChild(0).transform.SetParent(transform);
-                PlacementList[i].GetComponent<ShowShipScript>().ShipToShow = PlacementList[i].transform.GetChild(0).gameObject;
-            }
-            if (showList.Count > i) //Test
-            {
-                if (showList[i] != null)
-                {
-                    showList[i].transform.SetParent(PlacementList[i].transform);
-                    showList[i].transform.position = PlacementList[i].transform.position;
-                    showList[i].transform.localScale = PlacementList[i].transform.localScale;
-                    showList[i].transform.rotation = PlacementList[i].transform.rotation;
-                    PlacementList[i].transform.GetChild(0).GetComponent<Renderer>().enabled = false;
-                }
-            }
-        }
-    }
-    void SetMatsForShowList()
-    {
-        for (int i = 0; i < showList.Count; i++)
-        {   
-            if (i == 1 || i == 3)
-            {
-                showList[i].GetComponent<MeshRenderer>().material = matNotSelected;
-            }
-            if (i == 0 || i == 4)
-            {
-                showList[i].GetComponent<MeshRenderer>().material = matOuterSelected;
-            }
-            if (i == 2)
-            {
-                showList[i].GetComponent<MeshRenderer>().material = matSelected;
-            }
-            if (i > 4)
-            {
-                showList[i].GetComponent<MeshRenderer>().material = matInvisible;
-            }
-        }
-    }
 
     void SetupShips(int index)
     {
         GameObject temp;
         for (int i = 0; i < shipList.Count; i++)
         {
-            if (i < PlacementList.Count)
+            //i + 2, To start placement at 'PlacementCurrent'
+            if (i + 2 < PlacementList.Count)
             {
                 temp = Instantiate(shipList[i], 
                     PlacementList[i].transform.position,
                     PlacementList[i].transform.rotation, 
                     PlacementList[i].transform);
-                showList.Add(temp);
             }
             else
             {
                 temp = Instantiate(shipList[i], transform);
-                showList.Add(temp);
             }
-            nonPrefabList.Add(temp);
+            showList.Add(temp);
             temp = null;
         }
     }

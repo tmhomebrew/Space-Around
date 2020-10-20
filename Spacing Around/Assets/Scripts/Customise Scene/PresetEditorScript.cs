@@ -22,18 +22,20 @@ public class PresetEditorScript : MonoBehaviour
 
     public void OnOpenShipEditor()
     {
-        if (changedShip == null)
-        {
+        //if (changedShip == null)
+        //{
             curShip = ShipHolder.transform.GetChild(0).gameObject; //<------
-            changedShip = Instantiate(curShip, ShipHolder.transform);
-        }
+            //changedShip = curShip;
+            changedShip = Instantiate(curShip, ShipHolder.transform.position, ShipHolder.transform.rotation, ShipHolder.transform);
+            curShip.GetComponent<Renderer>().enabled = false;
+            changedShip.name = "TempShip";
+        //}
         LoadValuesOfShip();
     }
 
     void UponChangesToShip(string text)
     {
         myConfirm.OpenAskUI(text);
-
     }
 
     void LoadValuesOfShip()
@@ -53,24 +55,28 @@ public class PresetEditorScript : MonoBehaviour
     public void SavePreset()
     {
         UponChangesToShip("You have made changes to your current preset, do you want to overwrite last save.?");
-
+        print("1 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
         if (myConfirm.SetQuestion)
         {
+            print("2 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
             //Should set every value (changedShip/TempShip to Shipholder)..
             curShip.GetComponent<TestScript>().HasChanged = changedShip.GetComponent<TestScript>().HasChanged;
-
+            print("3 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
             //
         }
+        print("4 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
     }
 
     //Cancel and Back-buttons
     public void Back()
     {
+        //If currentShip and TempShip are note the same (Meaning changes have been made)
         if (!CompareShips())
         {
             UponChangesToShip("You have unsaved changes, do you want to skip them.?");
-            if (myConfirm.SetQuestion)
+            if(myConfirm.SetQuestion)
             {
+                curShip.GetComponent<Renderer>().enabled = true;
                 changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
                 myCanvasCont.ChangeScene = true;
             }
@@ -80,10 +86,13 @@ public class PresetEditorScript : MonoBehaviour
                 myCanvasCont.ChangeScene = false;
             }
         }
+        //If no changes to ships
         else
         {
+            curShip.GetComponent<Renderer>().enabled = true;
             myCanvasCont.ChangeScene = true;
         }
+
         if (changedShip != null && myCanvasCont.ChangeScene)
         {
             foreach (Transform child in ShipHolder.transform)

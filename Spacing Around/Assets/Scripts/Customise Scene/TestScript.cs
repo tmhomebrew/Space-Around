@@ -8,9 +8,4 @@ public class TestScript : MonoBehaviour
     private bool hasChanged;
 
     public bool HasChanged { get => hasChanged; set => hasChanged = value; }
-
-    private void Awake()
-    {
-        HasChanged = false;
-    }
 }

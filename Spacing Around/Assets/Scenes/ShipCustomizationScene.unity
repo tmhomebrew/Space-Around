@@ -883,18 +883,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1514527773}
         m_TargetAssemblyTypeName: ShipSelector, Assembly-CSharp
-        m_MethodName: LeftButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
-      - m_Target: {fileID: 1514527773}
-        m_TargetAssemblyTypeName: ShipSelector, Assembly-CSharp
         m_MethodName: ChangeShip
         m_Mode: 3
         m_Arguments:
@@ -2867,18 +2855,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1514527773}
         m_TargetAssemblyTypeName: ShipSelector, Assembly-CSharp
-        m_MethodName: RightButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
-      - m_Target: {fileID: 1514527773}
-        m_TargetAssemblyTypeName: ShipSelector, Assembly-CSharp
         m_MethodName: ChangeShip
         m_Mode: 3
         m_Arguments:
@@ -3926,9 +3902,6 @@ MonoBehaviour:
   - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
   - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
   - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
-  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
-  nonPrefabList: []
-  placementList: []
   selectionIndex: 0
   showList: []
 --- !u!1 &1671652486

@@ -77,7 +77,5 @@ public class CanvasController : MonoBehaviour
         {
             //Kommet hertil..
         }
-        MySS.ArrangeAvailableShips();
     }
-
 }

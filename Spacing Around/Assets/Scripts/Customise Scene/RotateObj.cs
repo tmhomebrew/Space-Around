@@ -34,7 +34,7 @@ public class RotateObj : MonoBehaviour
                 (Input.GetAxis("Mouse Y") * RotationSpeed * Time.deltaTime),
                 (Input.GetAxis("Mouse X") * -RotationSpeed * Time.deltaTime), 
                 0, 
-                Space.World
+                Space.Self
             );
         }
         if (Input.GetMouseButtonUp(1))
