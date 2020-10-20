@@ -5,12 +5,26 @@ using UnityEngine.UI;
 
 public class PresetEditorScript : MonoBehaviour
 {
+    enum PresetChoise
+    {
+        Delete = 1,
+        Reset = 2,
+        Save = 3,
+        Back = 4,
+    }
+
     CanvasController myCanvasCont;
     ChooseUI myConfirm;
     [SerializeField]
     private GameObject shipHolder, changedShip, curShip;
     [SerializeField]
     private Button changeValue;
+    //ChoiseUI
+    [SerializeField]
+    private Button noButton, yesButton;
+
+    //Reference
+    public RotateObj myRotateobject;
 
     public GameObject ShipHolder { get => shipHolder; set => shipHolder = value; }
 
@@ -22,14 +36,17 @@ public class PresetEditorScript : MonoBehaviour
 
     public void OnOpenShipEditor()
     {
-        //if (changedShip == null)
-        //{
-            curShip = ShipHolder.transform.GetChild(0).gameObject; //<------
-            //changedShip = curShip;
+        curShip = ShipHolder.transform.GetChild(0).gameObject; //<------
+        if (changedShip == null)
+        {
             changedShip = Instantiate(curShip, ShipHolder.transform.position, ShipHolder.transform.rotation, ShipHolder.transform);
-            curShip.GetComponent<Renderer>().enabled = false;
-            changedShip.name = "TempShip";
-        //}
+        }
+        else
+        {
+            changedShip = curShip;
+        }
+        curShip.GetComponent<Renderer>().enabled = false;
+        changedShip.name = "TempShip";
         LoadValuesOfShip();
     }
 
@@ -38,15 +55,81 @@ public class PresetEditorScript : MonoBehaviour
         myConfirm.OpenAskUI(text);
     }
 
+    IEnumerator WaitForResponse(PresetChoise pc)
+    {
+        WaitForUIButtons waitForButton = new WaitForUIButtons(yesButton, noButton);
+        myRotateobject.enabled = false; //Hard coded
+        yield return waitForButton.Reset();
+        if (waitForButton.PressedButton == yesButton)
+        {
+            // yes was pressed
+            switch (pc)
+            {
+                case PresetChoise.Delete:
+                    //Delete current preset
+                    myCanvasCont.MySS.RemoveShipFromList(changedShip);
+                    Destroy(curShip);
+                    Destroy(changedShip);
+                    //Return to ShipSelector, ChangeScene..
+                    myCanvasCont.ChangeScene = true;
+                    break;
+                case PresetChoise.Reset:
+                    changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
+                    LoadValuesOfShip();
+                    break;
+                case PresetChoise.Save:
+                    curShip.GetComponent<TestScript>().HasChanged = changedShip.GetComponent<TestScript>().HasChanged;
+                    LoadValuesOfShip();
+                    break;
+                case PresetChoise.Back:
+                    curShip.GetComponent<Renderer>().enabled = true;
+                    changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
+                    myCanvasCont.ChangeScene = true;
+                    foreach (Transform child in ShipHolder.transform)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            // no was pressed
+            switch (pc)
+            {
+                case PresetChoise.Delete:
+                    break;
+                case PresetChoise.Reset:
+                    LoadValuesOfShip();
+                    break;
+                case PresetChoise.Save:
+                    LoadValuesOfShip();
+                    break;
+                case PresetChoise.Back:
+                    //Returns to Preset Editor
+                    myCanvasCont.ChangeScene = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+        myConfirm.CloseAskUI();
+        myRotateobject.enabled = true; //Hard coded
+    }
+
     void LoadValuesOfShip()
     {
         //Temp-test.. Is on, is of..
         if (changedShip.GetComponent<TestScript>().HasChanged)
         {
+            //Green
             changeValue.image.color = new Color(0, 255, 0);
         }
         else
         {
+            //Red
             changeValue.image.color = new Color(255, 0, 0);
         }
     }
@@ -55,16 +138,7 @@ public class PresetEditorScript : MonoBehaviour
     public void SavePreset()
     {
         UponChangesToShip("You have made changes to your current preset, do you want to overwrite last save.?");
-        print("1 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
-        if (myConfirm.SetQuestion)
-        {
-            print("2 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
-            //Should set every value (changedShip/TempShip to Shipholder)..
-            curShip.GetComponent<TestScript>().HasChanged = changedShip.GetComponent<TestScript>().HasChanged;
-            print("3 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
-            //
-        }
-        print("4 value is..: " + curShip.GetComponent<TestScript>().HasChanged);
+        StartCoroutine(WaitForResponse(PresetChoise.Save));
     }
 
     //Cancel and Back-buttons
@@ -74,27 +148,13 @@ public class PresetEditorScript : MonoBehaviour
         if (!CompareShips())
         {
             UponChangesToShip("You have unsaved changes, do you want to skip them.?");
-            if(myConfirm.SetQuestion)
-            {
-                curShip.GetComponent<Renderer>().enabled = true;
-                changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
-                myCanvasCont.ChangeScene = true;
-            }
-            else
-            {
-                //Returns to Preset Editor
-                myCanvasCont.ChangeScene = false;
-            }
+            StartCoroutine(WaitForResponse(PresetChoise.Back));
         }
         //If no changes to ships
         else
         {
             curShip.GetComponent<Renderer>().enabled = true;
             myCanvasCont.ChangeScene = true;
-        }
-
-        if (changedShip != null && myCanvasCont.ChangeScene)
-        {
             foreach (Transform child in ShipHolder.transform)
             {
                 Destroy(child.gameObject);
@@ -106,26 +166,14 @@ public class PresetEditorScript : MonoBehaviour
     public void ResetPreset()
     {
         UponChangesToShip("Reset your preset to last save.?");
-
-        if (myConfirm.SetQuestion)
-        {
-            changedShip.GetComponent<TestScript>().HasChanged = curShip.GetComponent<TestScript>().HasChanged;
-        }
+        StartCoroutine(WaitForResponse(PresetChoise.Reset));
     }
 
     //Delete-button
     public void DeletePreset()
     {
         UponChangesToShip("Do you want to delete your current preset.?");
-        if (myConfirm.SetQuestion)
-        {
-            //Delete current preset
-            myCanvasCont.MySS.RemoveShipFromList(curShip);
-            Destroy(curShip);
-            Destroy(changedShip);
-            //Return to ShipSelector, ChangeScene..
-            myCanvasCont.ChangeScene = true;
-        }
+        StartCoroutine(WaitForResponse(PresetChoise.Delete));
     }
 
     public void ChangeValue()

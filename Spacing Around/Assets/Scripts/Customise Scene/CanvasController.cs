@@ -12,6 +12,7 @@ public class CanvasController : MonoBehaviour
     
     [SerializeField]
     private Canvas ShipRoomSelector, PresetRoomEditor;
+    public CanvasGroup ShipRoomGroup, PresetRoomGroup;
 
     [SerializeField]
     private bool changeScene;
@@ -49,7 +50,9 @@ public class CanvasController : MonoBehaviour
         if (input)
         {
             PresetRoomEditor.enabled = !PresetRoomEditor.enabled;
+            PresetRoomGroup.interactable = PresetRoomEditor.enabled;
             ShipRoomSelector.enabled = !ShipRoomSelector.enabled;
+            ShipRoomGroup.enabled = ShipRoomSelector.enabled;
             if (PresetRoomEditor.enabled)
             {
                 SetShip();
@@ -63,19 +66,18 @@ public class CanvasController : MonoBehaviour
 
     void SetShip()
     {
-        MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform); //<-------
+        MySS.SelectedShip.transform.SetParent(myPES.ShipHolder.transform);
+        MySS.SelectedShip.transform.SetAsFirstSibling();
+        MySS.SelectedShip.transform.position = myPES.ShipHolder.transform.position;
+        MySS.SelectedShip.transform.rotation = myPES.ShipHolder.transform.rotation;
+
         myPES.OnOpenShipEditor();
     }
 
     void SaveShipAndReturn()
     {
-        if (myPES.ShipHolder.transform.GetChild(0).gameObject != null)
-        {
-            myPES.ShipHolder.transform.GetChild(0).transform.SetParent(MySS.PlacementList[2].transform);
-        }
-        else
-        {
-            //Kommet hertil..
-        }
+        myPES.ShipHolder.transform.GetChild(0).transform.SetParent(MySS.PlacementList[2].transform);
+        MySS.PlacementList[2].transform.GetChild(0).transform.position = MySS.PlacementList[2].transform.position;
+        MySS.PlacementList[2].transform.GetChild(0).transform.rotation = MySS.PlacementList[2].transform.rotation;
     }
 }

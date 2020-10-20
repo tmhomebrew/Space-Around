@@ -61,7 +61,7 @@ public class ShipSelector : MonoBehaviour
     }
 
     #region Right And Left Button System
-    public void ChangeShip(int _index)
+    private void ChangeShip(int _index)
     {
         selectionIndex += _index;
         SelectShip(selectionIndex);
@@ -165,14 +165,18 @@ public class ShipSelector : MonoBehaviour
 
     public void RemoveShipFromList(GameObject shipToRemove)
     {
+        shipList.RemoveAt(selectionIndex); //<-----------
+        
         foreach (GameObject go in shipList)
         {
-            if (go.transform.name.ToLower() == shipToRemove.transform.name.ToLower())
+            print("Ship1.: " + go.transform.name.ToLower() + " - Ship 2.: " + shipToRemove.transform.name.ToLower());
+            if (go == shipToRemove)
             {
                 print("Ship removed from shipList..: " + go.transform.name);
                 shipList.Remove(go);
                 break;
             }
         }
+        SetupShips(0);
     }
 }

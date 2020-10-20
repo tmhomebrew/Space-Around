@@ -43,10 +43,11 @@ public class ChooseUI : MonoBehaviour
         backButton.interactable = false;
         backButton.blocksRaycasts = false;
 
-        StartCoroutine(WaitForResponse());
+        //myRotateobject.enabled = false; //Hard coded
+        //StartCoroutine(WaitForResponse());
     }
 
-    private void CloseAskUI()
+    public void CloseAskUI()
     {
         optionsCanvas.alpha = 1;
         optionsCanvas.interactable = true;
@@ -59,29 +60,31 @@ public class ChooseUI : MonoBehaviour
         askCanvas.alpha = 0;
         askCanvas.interactable = false;
         askCanvas.blocksRaycasts = false;
+
+        //myRotateobject.enabled = true; //Hard coded
     }
 
-    public void YesNoButton(bool input)
-    {
-        SetQuestion = input;
-        CloseAskUI();
-    }
+    //public void YesNoButton(bool input)
+    //{
+    //    SetQuestion = input;
+    //    CloseAskUI();
+    //}
 
-    IEnumerator WaitForResponse()
-    {
-        WaitForUIButtons waitForButton = new WaitForUIButtons(yesButton, noButton);
-        myRotateobject.enabled = false; //Hard coded
-        yield return waitForButton.Reset();
-        if (waitForButton.PressedButton == yesButton)
-        {
-            // yes was pressed
-            YesNoButton(true);
-        }
-        else
-        {
-            // no was pressed
-            YesNoButton(false);
-        }
-        myRotateobject.enabled = true; //Hard coded
-    }
+    //IEnumerator WaitForResponse()
+    //{
+    //    WaitForUIButtons waitForButton = new WaitForUIButtons(yesButton, noButton);
+    //    //myRotateobject.enabled = false; //Hard coded
+    //    yield return waitForButton.Reset();
+    //    if (waitForButton.PressedButton == yesButton)
+    //    {
+    //        // yes was pressed
+    //        YesNoButton(true);
+    //    }
+    //    else
+    //    {
+    //        // no was pressed
+    //        YesNoButton(false);
+    //    }
+    //    //myRotateobject.enabled = true; //Hard coded
+    //}
 }
