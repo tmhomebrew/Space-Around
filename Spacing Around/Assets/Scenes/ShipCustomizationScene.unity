@@ -3823,11 +3823,6 @@ MonoBehaviour:
   matSelected: {fileID: 2100000, guid: bbcc8a2130e1ad24cb87fea0a25723d0, type: 2}
   shipList:
   - {fileID: 1342467049992699149, guid: 2e53065c5da787d47bff7ddac68f7e7b, type: 3}
-  - {fileID: 1788368677982296307, guid: ab6f99c8fedae4b40a1c696ff47f2640, type: 3}
-  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
-  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
-  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
-  - {fileID: 7113205996564870926, guid: e7f16f45d349157488f45b3ae90e0896, type: 3}
   selectionIndex: 0
   showList: []
 --- !u!1 &1671652486

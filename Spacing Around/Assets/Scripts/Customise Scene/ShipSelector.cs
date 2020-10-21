@@ -24,6 +24,7 @@ public class ShipSelector : MonoBehaviour
 
     public GameObject SelectedShip { get => selectedShip; set => selectedShip = value; }
     public List<GameObject> PlacementList { get => placementList; set => placementList = value; }
+    public List<GameObject> ShipList { get => shipList; set => shipList = value; }
 
     private void Awake()
     {
@@ -138,19 +139,19 @@ public class ShipSelector : MonoBehaviour
     void SetupShips(int index)
     {
         GameObject temp;
-        for (int i = 0; i < shipList.Count; i++)
+        for (int i = 0; i < ShipList.Count; i++)
         {
             //i + 2, To start placement at 'PlacementCurrent'
             if (i + 2 < PlacementList.Count)
             {
-                temp = Instantiate(shipList[i], 
+                temp = Instantiate(ShipList[i], 
                     PlacementList[i].transform.position,
                     PlacementList[i].transform.rotation, 
                     PlacementList[i].transform);
             }
             else
             {
-                temp = Instantiate(shipList[i], transform);
+                temp = Instantiate(ShipList[i], transform);
             }
             showList.Add(temp);
             temp = null;
@@ -159,24 +160,36 @@ public class ShipSelector : MonoBehaviour
 
     public void AddShipToList(GameObject newShip)
     {
-        shipList.Add(newShip);
+        ShipList.Add(newShip);
         print("Ship added to shipList..: + " + newShip.transform.name);
     }
 
     public void RemoveShipFromList(GameObject shipToRemove)
     {
-        shipList.RemoveAt(selectionIndex); //<-----------
-        
-        foreach (GameObject go in shipList)
+        ShipList.RemoveAt(selectionIndex); //Primary shipList
+        showList.Clear(); //List of ships to be placed in PlacementList
+        //Destroys all gameObjects, which is not a Placement or the ShipHolder itself
+        foreach (Transform t in transform.GetComponentsInChildren<Transform>())
         {
-            print("Ship1.: " + go.transform.name.ToLower() + " - Ship 2.: " + shipToRemove.transform.name.ToLower());
-            if (go == shipToRemove)
+            if (!t.name.ToLower().Contains("placement") && t != transform)
             {
-                print("Ship removed from shipList..: " + go.transform.name);
-                shipList.Remove(go);
-                break;
+                Destroy(t.gameObject);
             }
         }
+        //Setup the new ShipList to ShowList
         SetupShips(0);
+        //ReArranges new list, with starting point at last index
+        if (selectionIndex == 0)
+        {
+            SelectShip(0);
+        }
+        else if(selectionIndex < showList.Count)
+        {
+            SelectShip(selectionIndex);
+        }
+        else
+        {
+            SelectShip(selectionIndex - 1);
+        }
     }
 }

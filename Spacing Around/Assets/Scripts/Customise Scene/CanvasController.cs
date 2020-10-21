@@ -76,6 +76,7 @@ public class CanvasController : MonoBehaviour
 
     void SaveShipAndReturn()
     {
+        myPES.ShipHolder.transform.GetChild(0).GetComponent<Renderer>().enabled = true;
         myPES.ShipHolder.transform.GetChild(0).transform.SetParent(MySS.PlacementList[2].transform);
         MySS.PlacementList[2].transform.GetChild(0).transform.position = MySS.PlacementList[2].transform.position;
         MySS.PlacementList[2].transform.GetChild(0).transform.rotation = MySS.PlacementList[2].transform.rotation;

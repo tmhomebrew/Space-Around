@@ -66,11 +66,18 @@ public class PresetEditorScript : MonoBehaviour
             switch (pc)
             {
                 case PresetChoise.Delete:
-                    //Delete current preset
-                    myCanvasCont.MySS.RemoveShipFromList(changedShip);
-                    Destroy(curShip);
-                    Destroy(changedShip);
+                    if (myCanvasCont.MySS.ShipList.Count > 1)
+                    {
+                        //Delete current preset
+                        myCanvasCont.MySS.RemoveShipFromList(changedShip);
+                        Destroy(curShip);
+                    }
+                    else
+                    {
+                        print("Could not delete last ship..");
+                    }
                     //Return to ShipSelector, ChangeScene..
+                    Destroy(changedShip);
                     myCanvasCont.ChangeScene = true;
                     break;
                 case PresetChoise.Reset:
