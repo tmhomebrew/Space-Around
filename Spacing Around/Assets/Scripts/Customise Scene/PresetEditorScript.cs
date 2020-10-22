@@ -200,11 +200,9 @@ public class PresetEditorScript : MonoBehaviour
     {
         if (curShip.GetComponent<TestScript>().HasChanged != changedShip.GetComponent<TestScript>().HasChanged)
         {
-            print("Its not the same!!");
             return false;
         }
 
-        print("Its the same!!");
         return true;
     }
 }
