@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 625517171}
   - component: {fileID: 625517170}
   m_Layer: 10
-  m_Name: ToFight
+  m_Name: FightButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2322,7 +2322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1021198515}
   m_Layer: 10
-  m_Name: MainMenu and Fight
+  m_Name: MainMenuFightHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2590,7 +2590,7 @@ GameObject:
   - component: {fileID: 1186327894}
   - component: {fileID: 1186327893}
   m_Layer: 10
-  m_Name: ToMainMenu
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -37,7 +37,7 @@ public class ShipSelector : MonoBehaviour
                 PlacementList.Add(go.gameObject);
             }
         }
-        SetupShips(selectionIndex);
+        SetupShips();
 
         ChangeShip(0);
     }
@@ -136,7 +136,11 @@ public class ShipSelector : MonoBehaviour
     }
     #endregion
 
-    void SetupShips(int index)
+    /// <summary>
+    /// Setup ships from ShipList to Showlist, based on PlacementHolder-GOs..
+    /// When called, arranges from first object in ShipList at PlacementList[2]..
+    /// </summary>
+    void SetupShips()
     {
         GameObject temp;
         for (int i = 0; i < ShipList.Count; i++)
@@ -177,7 +181,7 @@ public class ShipSelector : MonoBehaviour
             }
         }
         //Setup the new ShipList to ShowList
-        SetupShips(0);
+        SetupShips();
         //ReArranges new list, with starting point at last index
         if (selectionIndex == 0)
         {
