@@ -160,7 +160,7 @@ public class ShipSelector : MonoBehaviour
 
     public void AddShipToList(GameObject newShip)
     {
-        ShipList.Add(newShip);
+        ShipList.Insert(0, newShip);
         print("Ship added to shipList..: + " + newShip.transform.name);
     }
 
