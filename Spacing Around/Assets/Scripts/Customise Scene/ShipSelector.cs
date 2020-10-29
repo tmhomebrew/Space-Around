@@ -65,6 +65,11 @@ public class ShipSelector : MonoBehaviour
     private void ChangeShip(int _index)
     {
         selectionIndex += _index;
+        if (_index != 0)
+        {
+            PlacementList[2].transform.localScale = Vector3.one;
+            //PlacementList[2].GetComponent<ObjectViewing>().ResetObjPosAndRot(); //<-- To reset Rotation of ship-Obj..
+        }
         SelectShip(selectionIndex);
     }
 

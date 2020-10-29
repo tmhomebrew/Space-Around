@@ -50,6 +50,7 @@ public class CanvasController : MonoBehaviour
         if (input)
         {
             PresetRoomEditor.enabled = !PresetRoomEditor.enabled;
+            myPES.ShipHolder.GetComponent<ObjectViewing>().enabled = PresetRoomEditor.enabled;
             PresetRoomGroup.interactable = PresetRoomEditor.enabled;
             ShipRoomSelector.enabled = !ShipRoomSelector.enabled;
             ShipRoomGroup.enabled = ShipRoomSelector.enabled;

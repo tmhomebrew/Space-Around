@@ -24,7 +24,7 @@ public class PresetEditorScript : MonoBehaviour
     private Button noButton, yesButton;
 
     //Reference
-    public RotateObj myRotateobject;
+    public ObjectViewing myRotateobject;
 
     public GameObject ShipHolder { get => shipHolder; set => shipHolder = value; }
 

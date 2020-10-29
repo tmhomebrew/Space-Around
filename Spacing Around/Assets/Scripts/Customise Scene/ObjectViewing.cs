@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateObj : MonoBehaviour
+public class ObjectViewing : MonoBehaviour
 {
     [SerializeField]
     bool isRotating, isZooming, canRotate, canZoom; //For Inspector Purpose
@@ -14,11 +14,12 @@ public class RotateObj : MonoBehaviour
     {
         isRotating = false;
         isZooming = false;
-        canRotate = false;
-        canZoom = false;
+        canRotate = true;
+        canZoom = true;
 
         startRot = transform.localRotation;
-        startScale = transform.localScale;
+        //startScale = transform.localScale;
+        startScale = Vector3.one;
     }
 
     // Update is called once per frame
@@ -50,29 +51,33 @@ public class RotateObj : MonoBehaviour
         {
             if (Input.mouseScrollDelta.y != 0 && !isZooming)
             {
-                print("Mouse Scroll Input - " + Input.mouseScrollDelta.y * 0.1f);
                 //Zoom in
                 if (Input.mouseScrollDelta.y > 0)
                 {
-                    StartCoroutine(ZoomInOnObject(0.1f, Vector3.one * 1.1f));
+                    StartCoroutine(ZoomInOnObject(0.1f, transform.localScale * 1.2f));
                 }
                 //Zoom out
                 if (Input.mouseScrollDelta.y < 0)
                 {
-                    StartCoroutine(ZoomInOnObject(0.1f, Vector3.one * -1.1f));
+                    StartCoroutine(ZoomInOnObject(0.1f, transform.localScale * .8f));
                 }
             }
         }
         if (Input.GetMouseButtonUp(1))
         {
-            if (transform.localRotation != startRot)
-            {
-                StartCoroutine(RotateTowardsStartingPoint());
-            }
-            if (transform.localScale != startScale)
-            {
-                StartCoroutine(ZoomInOnObject(0.5f, startScale));
-            }
+            ResetObjPosAndRot();
+        }
+    }
+
+    public void ResetObjPosAndRot()
+    {
+        if (transform.localRotation != startRot)
+        {
+            StartCoroutine(RotateTowardsStartingPoint());
+        }
+        if (transform.localScale != startScale)
+        {
+            StartCoroutine(ZoomInOnObject(0.5f, startScale));
         }
     }
 
@@ -99,7 +104,7 @@ public class RotateObj : MonoBehaviour
         if (zoomScale != startScale)
         {
             originalScale = transform.localScale;
-            targetScale = transform.localScale + zoomScale;
+            targetScale = zoomScale;
         }
         else
         {

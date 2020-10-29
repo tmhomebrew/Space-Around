@@ -15,7 +15,7 @@ public class ChooseUI : MonoBehaviour
     private bool setQuestion;
 
     //Reference
-    public RotateObj myRotateobject;
+    public ObjectViewing myRotateobject;
 
     public bool SetQuestion
     {
