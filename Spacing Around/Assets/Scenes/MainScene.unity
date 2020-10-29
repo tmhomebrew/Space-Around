@@ -546,7 +546,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 100}
+  m_Size: {x: 400, y: 400}
   m_EdgeRadius: 0
 --- !u!114 &1562965792
 MonoBehaviour:
@@ -836,6 +836,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6344548580799887621, guid: d392d62ad59ca4445928c0ad31e62dbc,
+        type: 3}
+      propertyPath: myRendr
+      value: 
+      objectReference: {fileID: 1111820539509994619}
     - target: {fileID: 6738490593924777517, guid: d392d62ad59ca4445928c0ad31e62dbc,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1083,6 +1088,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d392d62ad59ca4445928c0ad31e62dbc, type: 3}
+--- !u!212 &1111820539509994619 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9081571145739472943, guid: d392d62ad59ca4445928c0ad31e62dbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1111820539509994618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4092227295404937617
 PrefabInstance:
   m_ObjectHideFlags: 0

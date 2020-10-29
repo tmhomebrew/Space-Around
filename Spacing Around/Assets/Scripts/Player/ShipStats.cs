@@ -19,9 +19,12 @@ public class ShipStats : MonoBehaviour
     int shipMainBodyHealthCur;
     bool isAlive;
 
+    //Shield and HP
     int shipShieldMax;
     [SerializeField]
     int shipShieldCur;
+    ShieldRotater myShieldRotater;
+
     int shipRegenValue;
     bool shipRegen;
 
@@ -138,6 +141,7 @@ public class ShipStats : MonoBehaviour
     {
         isStatsSet = false;
         ShipInventory = GetComponentInChildren<Inventory>();
+        myShieldRotater = GetComponentInChildren<ShieldRotater>();
 
         switch (ShipType.Standard) //Should be a playerChoice..
         {
@@ -221,6 +225,7 @@ public class ShipStats : MonoBehaviour
             {
                 if (ShipShieldCur > 0)
                 {
+                    //myShieldRotater.ShieldOnHit();
                     ShipShieldCur--;
                     continue;
                 }
@@ -268,6 +273,8 @@ public class ShipStats : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
+        print("Im hit by..: " + col.transform.name);
+
         if (col.gameObject.GetComponent<LaserShot>().LaserOwner != gameObject)
         {
             attacker = col.gameObject.GetComponent<LaserShot>().LaserOwner;
