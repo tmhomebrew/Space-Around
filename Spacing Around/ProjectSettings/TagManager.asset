@@ -21,7 +21,7 @@ TagManager:
   - Lasershots
   - Astroid
   - Customise Ship UI
-  - 
+  - ShipEffects
   - 
   - 
   - 
@@ -43,9 +43,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 1074954031
     locked: 0
@@ -54,6 +51,9 @@ TagManager:
     locked: 0
   - name: MainLayer
     uniqueID: 763607015
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Visual Effects
     uniqueID: 1077073199
